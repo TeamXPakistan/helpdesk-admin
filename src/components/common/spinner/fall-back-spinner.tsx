@@ -1,7 +1,7 @@
 // ** MUI Imports
 import Box, { BoxProps } from '@mui/material/Box'
 import CircularProgress from '@mui/material/CircularProgress'
-import HatlyLogo from '@components/icons/hatly-logo'
+import Image from 'next/image'
 
 const FallbackSpinner = ({ sx }: { sx?: BoxProps['sx'] }) => {
 
@@ -16,7 +16,7 @@ const FallbackSpinner = ({ sx }: { sx?: BoxProps['sx'] }) => {
         ...sx
       }}
     >
-      <HatlyLogo width='30%' />
+      <Image src={'/images/icons/logo.svg'} alt={'Logo'} width={200} height={100} />
       <CircularProgress disableShrink sx={{ mt: 6 }} />
     </Box>
   )
