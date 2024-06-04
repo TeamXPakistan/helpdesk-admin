@@ -6,7 +6,7 @@ export const API_ENDPOINTS = {
   FORGOT_PASSWORD_EMAIL: '/auth/merchant/forgot/password',
   FORGOT_PASSWORD_VERIFY_USER: '/auth/merchant/verify/forgot',
   RESET_PASSWORD: '/auth/merchant/reset',
-  ME: '/auth/merchant/me',
+  ME: '/admin/find',
   CHECK_NETWORK: '/auth/merchant/ok',
   RESTURANT_CATEGORIES: '/resturant/category/list',
   SINGLE_RESTURANT_CATEGORY: '/resturant/category/single',

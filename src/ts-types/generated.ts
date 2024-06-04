@@ -82,7 +82,7 @@ export type User = {
   name?: Scalars['String']
   email?: Scalars['String']
   contact?: Scalars['String']
-  role?: Scalars['String']
+  roles?: Scalars['String']
   token?: Scalars['String']
   verified?: Scalars['String']
   wallet?: Scalars['Int']

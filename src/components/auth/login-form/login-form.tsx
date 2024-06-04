@@ -61,9 +61,8 @@ const LoginForm = () => {
             return;
           }
 
-          setLocalForageToken(data.token)
-          console.log(data)
-          setCredentials({ role: data.role, token: data.token, user: data })
+          setLocalForageToken(data.data.token)
+          setCredentials({ role: data.data.roles, token: data.data.token, user: data })
           resetForm({ values: '' })
           router.push(ROUTES.DASHBOARD)
         }
