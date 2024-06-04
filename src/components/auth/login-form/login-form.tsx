@@ -128,12 +128,12 @@ const LoginForm = () => {
         {t(`form:form-register-login-button-label`)}
       </CustomButton>
 
-      <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
+      {/* <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
         <Typography sx={{ color: 'text.secondary', mr: 2 }}>Dont have an account?</Typography>
         <Typography component={LinkStyled} href={ROUTES.REGISTER}>
           Sign up
         </Typography>
-      </Box>
+      </Box> */}
     </form>
   )
 }

@@ -16,7 +16,6 @@ import { getLocalForageAuthToken, isAuthenticated } from '@utils/auth-utils'
 import { useRouter } from 'next/router'
 import { ROUTES } from '@utils/routes'
 import BlankLayout from '@layouts/BlankLayout'
-import HatlyLogo from '@components/icons/hatly-logo'
 import Image from 'next/image'
 
 // ** Styled Components

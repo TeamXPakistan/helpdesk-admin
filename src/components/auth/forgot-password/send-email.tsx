@@ -23,7 +23,7 @@ import CustomButton from '@components/common/Button/custom-button'
 import { useForgotPasswordEmailMutation } from '@data/auth/forgot-password-email-mutation'
 import { useRouter } from 'next/router'
 import { ROUTES } from '@utils/routes'
-import HatlyLogo from '@components/icons/hatly-logo'
+import Image from 'next/image'
 
 
 // Styled Components
@@ -117,10 +117,10 @@ const SendEmail = () => {
                         margin: theme => theme.spacing(8, 0, 8, 8)
                     }}
                 >
-                    <ForgotPasswordIllustration
+                    {/* <ForgotPasswordIllustration
                         alt='forgot-password-illustration'
                         src={`/images/hatly-images/hatly-store.png`} />
-                    <FooterIllustrationsV2 />
+                    <FooterIllustrationsV2 /> */}
                 </Box>
             ) : null}
 
@@ -135,7 +135,7 @@ const SendEmail = () => {
                     }}
                 >
                     <Box sx={{ width: '100%', maxWidth: 400 }}>
-                        <HatlyLogo width="40%" />
+                        <Image src={'/images/icons/logo.svg'} alt={'Logo'} width={200} height={100} />
 
                         <Box sx={{ my: 6 }}>
                             <Typography sx={{ mb: 1.5, fontWeight: 500, fontSize: '1.625rem', lineHeight: 1.385 }}>

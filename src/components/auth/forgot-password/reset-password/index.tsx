@@ -5,7 +5,7 @@ import { styled, useTheme } from '@mui/material/styles'
 import FooterIllustrationsV2 from 'src/views/pages/auth/FooterIllustrationsV2'
 import { useTranslation } from 'react-i18next'
 import ResetPasswordForm from './reset-password-form'
-import HatlyLogo from '@components/icons/hatly-logo'
+import Image from 'next/image'
 
 
 // Styled Components
@@ -81,7 +81,7 @@ const ResetPassword = () => {
                     }}
                 >
                     <Box sx={{ width: '100%', maxWidth: 400 }}>
-                        <HatlyLogo width="40%" />
+                        <Image src={'/images/icons/logo.svg'} alt={'Logo'} width={200} height={100} />
 
                         <Box sx={{ my: 6 }}>
                             <Typography sx={{ fontWeight: 500, fontSize: '1.625rem', lineHeight: 1.385 }}>
