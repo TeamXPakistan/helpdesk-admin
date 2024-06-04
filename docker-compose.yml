@@ -1,0 +1,32 @@
+version: "3"
+
+services: 
+  dev:
+    container_name: helpdesk-admin-dev
+    build:
+      context: .
+      target: dev
+    restart: always
+    command: yarn dev
+    environment:
+      - NODE_ENV=development
+      - WDS_SOCKET_HOST=127.0.0.1 
+      # - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - 3000:3000
+
+  prod:
+    container_name: helpdesk-admin-prod
+    build:
+      context: .
+      target: production
+    restart: always 
+    environment:
+      - NODE_ENV=production
+    ports:
+      - 3000:3000
