@@ -15,10 +15,54 @@ code {
   color: #d400ff;
   border-radius: 0.1335rem;
 }
+
 code:not([class*='language-']):before,
 code:not([class*='language-']):after {
   content: '`';
 }
+
 code[class*='language-'] {
   padding: 0;
+}
+
+/* //Rimsha css */
+
+.css-19fkt2o-MuiPaper-root-MuiCard-root {
+  box-shadow: none !important;
+}
+
+
+.topUserbar-card-rim {
+  background-color: #fff;
+  padding: 20px 0px !important;
+  border-radius: 0px, 0px, 10px, 10px;
+
+}
+
+.overview-card-rim {
+  background-color: #fff;
+  padding: 10px;
+  margin: 30px 0px 0px 20px !important;
+  border-radius: 10px;
+}
+
+.dashboard-heading-rim {
+  font-size: 34px;
+  font-weight: 500;
+  text-align: left;
+
+}
+
+.overview-logos-rim {
+  border-radius: 8px !important;
+  background-color: #EEEEEE !important;
+  color: #555555 !important;
+
+}
+
+.report-profit-grap-rim {
+  background-color: #FFFFFF !important;
+  border-radius: 10px !important;
+
+
 }

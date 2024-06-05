@@ -12,6 +12,7 @@ import { LayoutProps } from 'src/@core/layouts/types'
 
 // ** Configs
 import HatlyLogo from '@components/icons/hatly-logo'
+import Image from 'next/image'
 
 interface Props {
   navHover: boolean
@@ -77,7 +78,8 @@ const VerticalNavHeader = (props: Props) => {
         userNavMenuBranding(props)
       ) : (
         <LinkStyled href='/'>
-          <HatlyLogo width='50%' />
+          <Image src={'/images/icons/logo.svg'} alt={'Logo'} width={150} height={100} />
+
         </LinkStyled>
       )}
 

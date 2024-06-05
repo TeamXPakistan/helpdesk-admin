@@ -11,7 +11,7 @@ const adminNavigation = (): VerticalNavItemsType => {
       title: 'common:nav-admin-text-dashboard',
       icon: 'tabler:layout-dashboard',
       path: '/',
-      allowedRoles: superAdmin_and_AdminStaff
+      // allowedRoles: superAdmin_and_AdminStaff
     },
     {
       title: 'common:nav-admin-text-hatly-mart',
