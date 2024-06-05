@@ -6,8 +6,14 @@ const adminNavigation = (): VerticalNavItemsType => {
   return [
     {
       title: 'common:nav-admin-text-dashboard',
-      icon: 'tabler:layout-dashboard',
+      icon: 'ic:round-home',
       path: '/',
+      allowedRoles: superAdmin_and_AdminStaff,
+    },
+    {
+      title: 'common:nav-admin-text-user',
+      icon: 'clarity:users-solid',
+      path: '/users',
       allowedRoles: superAdmin_and_AdminStaff,
     },
     // {

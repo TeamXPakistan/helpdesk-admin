@@ -113,5 +113,6 @@
     "save-changes": "Save Changes",
     "vendor-profile": "Vendor Profile",
     "placeholder-image-upload": "Upload an image or drag and drop PNG, JPG",
-    "view-file": "View File"
+    "view-file": "View File",
+    "nav-admin-text-user": "User"
 }
