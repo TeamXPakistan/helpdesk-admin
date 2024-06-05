@@ -79,25 +79,8 @@ const notifications: NotificationsType[] = [
 ]
 
 const AppBarContent = (props: Props) => {
-  const { authValues, setCredentials } = useAuthCredentials();
-  const [isToggled, setIsToggled] = useState(authValues?.user?.shop?.isOpen);
   const { hidden, settings, saveSettings, toggleNavVisibility } = props
-  const { mutate, isLoading } = useUpdateShopStatusMutation()
 
-  const handleToggle = () => {
-    setIsToggled((prev) => !prev);
-    mutate(
-      {
-        shopId: authValues?.user?.shop?._id,
-        toggle: !isToggled
-      },
-      {
-        onSuccess: () => {
-          setCredentials({ user: { ...authValues.user, shop: { ...authValues.user?.shop, isOpen: isToggled } }, role: authValues.user?.role, token: authValues.token })
-        }
-      }
-    )
-  };
 
   return (
     <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -110,18 +93,6 @@ const AppBarContent = (props: Props) => {
         {/* {auth.user && <Autocomplete hidden={hidden} settings={settings} />} */}
       </Box>
       <Box className='actions-right' sx={{ display: 'flex', alignItems: 'center' }}>
-        {authValues?.role == STORE_OWNER &&
-          <Grid display={'flex'} alignItems={'center'} >
-            <Switch
-              checked={isToggled}
-              onChange={handleToggle}
-              color="primary"
-              disabled={isLoading}
-            />
-            <Chip label={isToggled ? 'Open' : 'Closed'} color={isToggled ? 'success' : 'warning'} />
-            <Typography marginRight={10}>{ }</Typography>
-          </Grid>
-        }
         <LanguageDropdown settings={settings} saveSettings={saveSettings} />
         {/* <ModeToggler settings={settings} saveSettings={saveSettings} /> */}
         <>
