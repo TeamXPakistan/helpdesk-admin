@@ -142,5 +142,6 @@
     "Name": "الاسم الكامل",
     "save-changes": "حفظ التغييرات",
     "vendor-profile": "ملف تعريف البائع",
-    "view-file": "استعراض الملف"
+    "view-file": "استعراض الملف",
+    "nav-admin-text-user": "User"
 }

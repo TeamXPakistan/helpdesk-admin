@@ -77,14 +77,9 @@ const UserDropdown = (props: Props) => {
   }
 
   const handleLogout = () => {
-    logOut(API_ENDPOINTS.LOGOUT, {
-      onSuccess: () => {
-        queryClient.removeQueries();
-        removeLocalForageAuthToken()
-        removeCredentials()
-        router.replace(ROUTES.LOGIN)
-      }
-    })
+    removeLocalForageAuthToken()
+    removeCredentials()
+    router.replace(ROUTES.LOGIN)
   }
 
   return (

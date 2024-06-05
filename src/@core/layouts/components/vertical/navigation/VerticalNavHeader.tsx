@@ -1,17 +1,7 @@
-// ** Next Import
 import Link from 'next/link'
-
-// ** MUI Imports
 import Box, { BoxProps } from '@mui/material/Box'
 import { styled } from '@mui/material/styles'
-
-// ** Type Import
 import { LayoutProps } from 'src/@core/layouts/types'
-
-// ** Custom Icon Import
-
-// ** Configs
-import HatlyLogo from '@components/icons/hatly-logo'
 import Image from 'next/image'
 
 interface Props {
@@ -31,7 +21,7 @@ interface Props {
 const MenuHeaderWrapper = styled(Box)<BoxProps>(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'space-between',
+  justifyContent: 'center',
   paddingRight: theme.spacing(3.5),
   transition: 'padding .25s ease-in-out',
   minHeight: theme.mixins.toolbar.minHeight
@@ -78,39 +68,9 @@ const VerticalNavHeader = (props: Props) => {
         userNavMenuBranding(props)
       ) : (
         <LinkStyled href='/'>
-          <Image src={'/images/icons/logo.svg'} alt={'Logo'} width={150} height={100} />
-
+          <Image src={'/images/icons/logo.svg'} alt={'Logo'} width={140} height={100} />
         </LinkStyled>
       )}
-
-      {/* {hidden ? (
-        <IconButton
-          disableRipple
-          disableFocusRipple
-          onClick={toggleNavVisibility}
-          sx={{ p: 0, color: 'text.secondary', backgroundColor: 'transparent !important' }}
-        >
-          <Icon icon='tabler:x' fontSize='1.25rem' />
-        </IconButton>
-      ) : userMenuLockedIcon === null && userMenuUnlockedIcon === null ? null : (
-        <IconButton
-          disableRipple
-          disableFocusRipple
-          onClick={() => saveSettings({ ...settings, navCollapsed: !navCollapsed })}
-          sx={{
-            p: 0,
-            color: 'text.primary',
-            backgroundColor: 'transparent !important',
-            '& svg': {
-              fontSize: '1.25rem',
-              ...menuCollapsedStyles,
-              transition: 'opacity .25s ease-in-out'
-            }
-          }}
-        >
-          {navCollapsed ? MenuUnlockedIcon() : MenuLockedIcon()}
-        </IconButton>
-      )} */}
     </MenuHeaderWrapper>
   )
 }

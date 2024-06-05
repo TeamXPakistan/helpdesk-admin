@@ -38,7 +38,7 @@ const VerticalNavItems = (props: Props) => {
   const RenderMenuItems = verticalNavItems?.map((item: NavGroup | NavLink | NavSectionTitle, index: number) => {
     // check role and permission here
     if (
-      hasAccess(item?.allowedRoles, authValues.user?.role) &&
+      hasAccess(item?.allowedRoles, authValues.user?.roles) &&
       (item.allowedShops ? hasAccess(item?.allowedShops, authValues.user?.shop?.type) : true) &&
       (item?.adminStaffPermissions?.length && authValues?.role === ADMIN_STAFF ? staffHasPermission(item?.adminStaffPermissions, authValues?.user?.dynamicRole?.permissions) : true)
     ) {

@@ -79,25 +79,8 @@ const notifications: NotificationsType[] = [
 ]
 
 const AppBarContent = (props: Props) => {
-  const { authValues, setCredentials } = useAuthCredentials();
-  const [isToggled, setIsToggled] = useState(authValues?.user?.shop?.isOpen);
   const { hidden, settings, saveSettings, toggleNavVisibility } = props
-  const { mutate, isLoading } = useUpdateShopStatusMutation()
 
-  const handleToggle = () => {
-    setIsToggled((prev) => !prev);
-    mutate(
-      {
-        shopId: authValues?.user?.shop?._id,
-        toggle: !isToggled
-      },
-      {
-        onSuccess: () => {
-          setCredentials({ user: { ...authValues.user, shop: { ...authValues.user?.shop, isOpen: isToggled } }, role: authValues.user?.role, token: authValues.token })
-        }
-      }
-    )
-  };
 
   return (
     <Box className="topUserbar-card-rim" sx={{
@@ -115,21 +98,7 @@ const AppBarContent = (props: Props) => {
           Admin Dashboard
         </Typography>
       </Box>
-      <Box className='actions-right' sx={{
-        display: 'flex', alignItems: 'center',
-      }}>
-        {authValues?.role == STORE_OWNER &&
-          <Grid display={'flex'} alignItems={'center'} >
-            <Switch
-              checked={isToggled}
-              onChange={handleToggle}
-              color="primary"
-              disabled={isLoading}
-            />
-            <Chip label={isToggled ? 'Open' : 'Closed'} color={isToggled ? 'success' : 'warning'} />
-            <Typography marginRight={10}>{ }</Typography>
-          </Grid>
-        }
+      <Box className='actions-right' sx={{ display: 'flex', alignItems: 'center' }}>
         <LanguageDropdown settings={settings} saveSettings={saveSettings} />
         {/* <ModeToggler settings={settings} saveSettings={saveSettings} /> */}
         <>
