@@ -12,9 +12,11 @@ const SetAuth = ({ children }: { children: ReactNode }) => {
   const router = useRouter()
 
   useMeQuery({
-    onSuccess: async (data: User) => {
-      if (data?.hasOwnProperty('role')) {
-        setCredentials({ role: data?.roles, token: await getLocalForageAuthToken(), user: data })
+    onSuccess: async (data: { data: User }) => {
+      const userData = data?.data;
+
+      if (data?.data?.hasOwnProperty('roles')) {
+        setCredentials({ role: userData?.roles, token: await getLocalForageAuthToken(), user: userData })
       }
     },
     onError: (error: any) => {
