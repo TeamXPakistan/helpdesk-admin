@@ -63,13 +63,13 @@ const UsersList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
         {
             flex: 0.25,
             minWidth: 200,
-            field: 'title4',
-            headerName: 'Action',
+            field: 'view-detail',
+            headerName: 'View Detail',
             sortable: false,
             renderCell: ({ row }: { row: User }) => {
                 return (<>
                     <Box>
-                        <IconButton title='View' color='inherit' aria-haspopup='true' onClick={() => router.push(`${router.asPath}/details/${row?._id}`)}>
+                        <IconButton title='View' color='inherit' aria-haspopup='true' onClick={() => router.push(`${router.asPath}/details/${row?.id}`)}>
                             <Icon fontSize='1.625rem' icon={'ph:eye'} />
                         </IconButton>
                     </Box >
@@ -82,7 +82,7 @@ const UsersList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
         <DataGrid
             autoHeight
             disableColumnMenu
-            rows={data.map((value) => ({ id: value._id, ...value })) ?? []}
+            rows={data.map((value) => ({ id: value.id, ...value })) ?? []}
             columns={usersListColumn}
             hideFooterPagination={true}
         />

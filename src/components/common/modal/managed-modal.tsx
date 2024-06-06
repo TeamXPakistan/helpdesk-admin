@@ -6,7 +6,6 @@ const RejectShopModalView = dynamic(() => import('@components/shop/reject-shop-m
 const CancelOrderModalView = dynamic(() => import('@components/orders/cancel-order-modal-view'))
 const CreateRoleModalView = dynamic(() => import('@components/roles/create-role-modal-view'))
 const EditRoleView = dynamic(() => import('@components/roles/edit-role-modal-view'))
-const UserOrderDetailsView = dynamic(() => import('@components/users/user-order-details-modal-view'))
 const ShopReviewImagesModal = dynamic(() => import('@components/reviews/shop-review-images-modal-view'))
 const DriverOrderDetailsView = dynamic(() => import('@components/drivers/driver-order-details-modal-view'))
 const DriverParcelDetailsView = dynamic(() => import('@components/drivers/driver-parcel-details-modal-view'))
@@ -28,7 +27,6 @@ const ManagedModal = () => {
             {view === "CANCEL_ORDER_VIEW" && < CancelOrderModalView />}
             {view === "CREATE_ROLE_VIEW" && < CreateRoleModalView />}
             {view === "EDIT_ROLE_VIEW" && < EditRoleView />}
-            {view === "USER_ORDER_DETAILS_VIEW" && < UserOrderDetailsView />}
             {view === "SHOP_REVIEW_IMAGES_VIEW" && < ShopReviewImagesModal />}
             {view === "DRIVER_ORDER_DETAILS_VIEW" && < DriverOrderDetailsView />}
             {view === "DRIVER_PARCEL_DETAILS_VIEW" && < DriverParcelDetailsView />}

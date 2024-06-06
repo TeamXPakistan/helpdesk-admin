@@ -78,7 +78,7 @@ export type UpdateUserInput = {
 }
 
 export type User = {
-  _id?: Scalars['String']
+  id?: Scalars['String']
   name?: Scalars['String']
   email?: Scalars['String']
   firstName?: Scalars['String'],
