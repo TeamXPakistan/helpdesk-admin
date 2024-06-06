@@ -48,12 +48,105 @@ const ParcelsEarningsBarChart = ({ analytics }: PropType) => {
         }
     ]
 
+
+
+    const colors = [
+        "#80E4DE",
+        "#80E4DE",
+        "#80E4DE",
+        "#80E4DE",
+        "#80E4DE",
+        "#80E4DE",
+        "#80E4DE",
+        "#80E4DE",
+        "#80E4DE",
+    ];
     const max = 3;
     const seriesIndex = ((tabData[0]?.series[0] as ApexChartSeriesData)?.data as number[]).indexOf(max)
-    const colors = Array(9)?.fill(theme.palette.secondary.main);
+    // const colors = Array(9)?.fill(theme.palette.secondary.main);
     const finalColors =
         colors.map((color, i) => (seriesIndex === i ? hexToRGBA(theme.palette.primary.main, 1) : color))
 
+    // const options: ApexOptions = {
+    //     chart: {
+    //         parentHeightOffset: 0,
+    //         toolbar: { show: false }
+    //     },
+    //     plotOptions: {
+    //         bar: {
+    //             borderRadius: 8,
+    //             distributed: true,
+    //             columnWidth: '16px',
+    //             startingShape: 'rounded',
+    //             dataLabels: { position: 'top' }
+    //         }
+    //     },
+    //     legend: { show: false },
+    //     tooltip: { enabled: true },
+    //     // dataLabels: {
+    //     //     offsetY: -15,
+    //     //     formatter: val => `${val}`,
+    //     //     style: {
+    //     //         fontWeight: 500,
+    //     //         colors: [theme.palette.text.secondary],
+    //     //         fontSize: theme.typography.body1.fontSize as string,
+    //     //     }
+    //     // },
+    //     colors,
+    //     states: {
+    //         hover: {
+    //             filter: { type: 'none' }
+    //         },
+    //         active: {
+    //             filter: { type: 'none' }
+    //         }
+    //     },
+    //     grid: {
+    //         show: false,
+    //         padding: {
+    //             top: 20,
+    //             left: -5,
+    //             right: -8,
+    //             bottom: -12
+    //         }
+    //     },
+    //     xaxis: {
+    //         axisTicks: { show: false },
+    //         axisBorder: { color: theme.palette.divider },
+    //         categories: monthsArray,
+    //         labels: {
+    //             style: {
+    //                 colors: theme.palette.text.disabled,
+    //                 fontFamily: theme.typography.fontFamily,
+    //                 fontSize: theme.typography.body2.fontSize as string
+    //             }
+    //         }
+    //     },
+    //     yaxis: {
+    //         labels: {
+    //             offsetX: -15,
+    //             formatter: val => `$${val}k`,
+    //             style: {
+    //                 colors: theme.palette.text.disabled,
+    //                 fontFamily: theme.typography.fontFamily,
+    //                 fontSize: theme.typography.body2.fontSize as string
+    //             }
+    //         }
+    //     },
+    //     responsive: [
+    //         {
+    //             breakpoint: theme.breakpoints.values.sm,
+    //             options: {
+    //                 plotOptions: {
+    //                     bar: { columnWidth: '16px' }
+    //                 },
+    //                 grid: {
+    //                     padding: { right: 20 }
+    //                 }
+    //             }
+    //         }
+    //     ]
+    // }
     const options: ApexOptions = {
         chart: {
             parentHeightOffset: 0,
@@ -61,9 +154,9 @@ const ParcelsEarningsBarChart = ({ analytics }: PropType) => {
         },
         plotOptions: {
             bar: {
-                borderRadius: 6,
+                borderRadius: 8,
                 distributed: true,
-                columnWidth: '35%',
+                columnWidth: '24px',
                 startingShape: 'rounded',
                 dataLabels: { position: 'top' }
             }
@@ -71,13 +164,13 @@ const ParcelsEarningsBarChart = ({ analytics }: PropType) => {
         legend: { show: false },
         tooltip: { enabled: false },
         dataLabels: {
-            offsetY: -15,
-            formatter: val => `${val}k`,
-            style: {
-                fontWeight: 500,
-                colors: [theme.palette.text.secondary],
-                fontSize: theme.typography.body1.fontSize as string
-            }
+            // offsetY: -15,
+            // formatter: val => ``,
+            // style: {
+            //     fontWeight: 500,
+            //     colors: [theme.palette.text.secondary],
+            //     fontSize: theme.typography.body1.fontSize as string
+            // }
         },
         colors,
         states: {
@@ -112,20 +205,24 @@ const ParcelsEarningsBarChart = ({ analytics }: PropType) => {
         yaxis: {
             labels: {
                 offsetX: -15,
-                formatter: val => `$${val}k`,
+                formatter: val => `${val}`,
                 style: {
                     colors: theme.palette.text.disabled,
                     fontFamily: theme.typography.fontFamily,
                     fontSize: theme.typography.body2.fontSize as string
                 }
-            }
+            }, axisBorder: {
+                color: theme.palette.divider,
+
+                show: true,
+            },
         },
         responsive: [
             {
                 breakpoint: theme.breakpoints.values.sm,
                 options: {
                     plotOptions: {
-                        bar: { columnWidth: '60%' }
+                        bar: { columnWidth: '20px' }
                     },
                     grid: {
                         padding: { right: 20 }
@@ -134,7 +231,6 @@ const ParcelsEarningsBarChart = ({ analytics }: PropType) => {
             }
         ]
     }
-
     return (
         <Card className='report-profit-grap-rim'>
 

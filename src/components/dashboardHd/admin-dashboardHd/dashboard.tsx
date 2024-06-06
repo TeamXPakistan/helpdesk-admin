@@ -121,10 +121,10 @@ const AdminDashboardHd = () => {
           </Grid>
         </Grid>
 
-        <Grid item xs={6}>
+        <Grid item xs={12} lg={6}>
           <EarningsBarChart analytics={analytics} />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} lg={6}>
           <ParcelsEarningsBarChart analytics={analytics} />
         </Grid>
 

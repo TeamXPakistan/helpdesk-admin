@@ -51,10 +51,23 @@ const EarningsBarChart = ({ analytics }: PropType) => {
             series: [{ data: monthValues }]
         }
     ]
+
+    const colors = [
+        "#EF8888",
+        "#EF8888",
+        "#EF8888",
+        "#EF8888",
+        "#EF8888",
+        "#EF8888",
+        "#EF8888",
+        "#EF8888",
+        "#EF8888",
+    ];
+
     // console.log("monthValues order", monthValues, "fdff", monthsArray)
     const max = 6;
     const seriesIndex = ((tabData[0]?.series[0] as ApexChartSeriesData)?.data as number[]).indexOf(max)
-    const colors = Array(9)?.fill(theme.palette.primary.main);
+    // const colors = Array(9)?.fill(theme.palette.primary.main);
 
     const finalColors = colors.map((color, i) => (seriesIndex === i ? hexToRGBA(theme.palette.primary.main, 1) : color))
 
@@ -67,7 +80,7 @@ const EarningsBarChart = ({ analytics }: PropType) => {
             bar: {
                 borderRadius: 6,
                 distributed: true,
-                columnWidth: '35%',
+                columnWidth: '15%',
                 startingShape: 'rounded',
                 dataLabels: { position: 'top' }
             }
@@ -76,7 +89,7 @@ const EarningsBarChart = ({ analytics }: PropType) => {
         tooltip: { enabled: false },
         dataLabels: {
             offsetY: -15,
-            formatter: val => `${val}k`,
+            formatter: val => `${val}`,
             style: {
                 fontWeight: 500,
                 colors: [theme.palette.text.secondary],
@@ -103,7 +116,9 @@ const EarningsBarChart = ({ analytics }: PropType) => {
         },
         xaxis: {
             axisTicks: { show: false },
-            axisBorder: { color: theme.palette.divider },
+            axisBorder: {
+                color: theme.palette.divider
+            },
             categories: monthsArray,
             labels: {
                 style: {
@@ -116,13 +131,18 @@ const EarningsBarChart = ({ analytics }: PropType) => {
         yaxis: {
             labels: {
                 offsetX: -15,
-                formatter: val => `$${val}k`,
+                formatter: val => `${val}`,
                 style: {
                     colors: theme.palette.text.disabled,
                     fontFamily: theme.typography.fontFamily,
                     fontSize: theme.typography.body2.fontSize as string
                 }
-            }
+            },
+            axisBorder: {
+                color: theme.palette.divider,
+
+                show: true,
+            },
         },
         responsive: [
             {
@@ -136,8 +156,12 @@ const EarningsBarChart = ({ analytics }: PropType) => {
                     }
                 }
             }
-        ]
+        ],
+        stroke: {
+            width: 2
+        },
     }
+    console.log("colors", colors)
 
     return (
         <Card>
@@ -163,7 +187,11 @@ const EarningsBarChart = ({ analytics }: PropType) => {
 
             </Grid>
             <CardContent>
-                <ReactApexcharts type='bar' height={263} options={{ ...options, colors: finalColors }} series={tabData[0]?.series} />
+                <ReactApexcharts
+                    type='line'
+                    height={263}
+                    options={{ ...options, colors: finalColors }}
+                    series={tabData[0]?.series} />
             </CardContent>
         </Card>
     )
