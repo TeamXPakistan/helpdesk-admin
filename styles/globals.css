@@ -66,3 +66,24 @@ code[class*='language-'] {
 
 
 }
+
+.css-r0i92s-MuiButtonBase-root-MuiListItemButton-root.active {
+  background: #fff !important;
+  box-shadow: none !important;
+}
+
+.css-r0i92s-MuiButtonBase-root-MuiListItemButton-root,
+.css-r0i92s-MuiButtonBase-root-MuiListItemButton-root {
+  background-color: #fff !important;
+}
+
+.css-r0i92s-MuiButtonBase-root-MuiListItemButton-root.active,
+.css-r0i92s-MuiButtonBase-root-MuiListItemButton-root.active:hover {
+  background-color: #EEEEEE !important;
+}
+
+.css-r0i92s-MuiButtonBase-root-MuiListItemButton-root.active .MuiTypography-root,
+.css-r0i92s-MuiButtonBase-root-MuiListItemButton-root.active svg {
+  color: #000;
+
+}

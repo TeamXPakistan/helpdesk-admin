@@ -68,7 +68,6 @@ const EarningsBarChart = ({ analytics }: PropType) => {
     const max = 6;
     const seriesIndex = ((tabData[0]?.series[0] as ApexChartSeriesData)?.data as number[]).indexOf(max)
     // const colors = Array(9)?.fill(theme.palette.primary.main);
-
     const finalColors = colors.map((color, i) => (seriesIndex === i ? hexToRGBA(theme.palette.primary.main, 1) : color))
 
     const options: ApexOptions = {
@@ -109,8 +108,8 @@ const EarningsBarChart = ({ analytics }: PropType) => {
             show: false,
             padding: {
                 top: 20,
-                left: -5,
-                right: -8,
+                left: -2,
+                right: -2,
                 bottom: -12
             }
         },
@@ -140,7 +139,6 @@ const EarningsBarChart = ({ analytics }: PropType) => {
             },
             axisBorder: {
                 color: theme.palette.divider,
-
                 show: true,
             },
         },
@@ -157,19 +155,26 @@ const EarningsBarChart = ({ analytics }: PropType) => {
                 }
             }
         ],
+        markers: {
+            size: 5,
+            colors: '#fff',
+            strokeColor: finalColors,
+            strokeWidth: 2,
+            shape: "circle",
+        },
         stroke: {
+            curve: 'smooth',
             width: 2
         },
-    }
-    console.log("colors", colors)
 
+    }
     return (
         <Card>
             <Grid item xs={12} sx={{ display: "flex", justifyContent: "space-between" }}>
                 <CardHeader
+                    className='dashboard-heading-rim'
                     title='Earnings Report'
                 />
-
                 <CustomTextField1
                     select
                     sx={{ pr: 5, pt: 5, '& .MuiFilledInput-input.MuiSelect-select': { minWidth: '8rem !important' } }}

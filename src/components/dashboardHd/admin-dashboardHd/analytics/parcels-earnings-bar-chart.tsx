@@ -67,86 +67,7 @@ const ParcelsEarningsBarChart = ({ analytics }: PropType) => {
     const finalColors =
         colors.map((color, i) => (seriesIndex === i ? hexToRGBA(theme.palette.primary.main, 1) : color))
 
-    // const options: ApexOptions = {
-    //     chart: {
-    //         parentHeightOffset: 0,
-    //         toolbar: { show: false }
-    //     },
-    //     plotOptions: {
-    //         bar: {
-    //             borderRadius: 8,
-    //             distributed: true,
-    //             columnWidth: '16px',
-    //             startingShape: 'rounded',
-    //             dataLabels: { position: 'top' }
-    //         }
-    //     },
-    //     legend: { show: false },
-    //     tooltip: { enabled: true },
-    //     // dataLabels: {
-    //     //     offsetY: -15,
-    //     //     formatter: val => `${val}`,
-    //     //     style: {
-    //     //         fontWeight: 500,
-    //     //         colors: [theme.palette.text.secondary],
-    //     //         fontSize: theme.typography.body1.fontSize as string,
-    //     //     }
-    //     // },
-    //     colors,
-    //     states: {
-    //         hover: {
-    //             filter: { type: 'none' }
-    //         },
-    //         active: {
-    //             filter: { type: 'none' }
-    //         }
-    //     },
-    //     grid: {
-    //         show: false,
-    //         padding: {
-    //             top: 20,
-    //             left: -5,
-    //             right: -8,
-    //             bottom: -12
-    //         }
-    //     },
-    //     xaxis: {
-    //         axisTicks: { show: false },
-    //         axisBorder: { color: theme.palette.divider },
-    //         categories: monthsArray,
-    //         labels: {
-    //             style: {
-    //                 colors: theme.palette.text.disabled,
-    //                 fontFamily: theme.typography.fontFamily,
-    //                 fontSize: theme.typography.body2.fontSize as string
-    //             }
-    //         }
-    //     },
-    //     yaxis: {
-    //         labels: {
-    //             offsetX: -15,
-    //             formatter: val => `$${val}k`,
-    //             style: {
-    //                 colors: theme.palette.text.disabled,
-    //                 fontFamily: theme.typography.fontFamily,
-    //                 fontSize: theme.typography.body2.fontSize as string
-    //             }
-    //         }
-    //     },
-    //     responsive: [
-    //         {
-    //             breakpoint: theme.breakpoints.values.sm,
-    //             options: {
-    //                 plotOptions: {
-    //                     bar: { columnWidth: '16px' }
-    //                 },
-    //                 grid: {
-    //                     padding: { right: 20 }
-    //                 }
-    //             }
-    //         }
-    //     ]
-    // }
+
     const options: ApexOptions = {
         chart: {
             parentHeightOffset: 0,
@@ -185,8 +106,8 @@ const ParcelsEarningsBarChart = ({ analytics }: PropType) => {
             show: false,
             padding: {
                 top: 20,
-                left: -5,
-                right: -8,
+                left: -2,
+                right: -2,
                 bottom: -12
             }
         },

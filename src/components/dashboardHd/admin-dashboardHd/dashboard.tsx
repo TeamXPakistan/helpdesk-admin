@@ -1,15 +1,13 @@
 import { Grid, Typography } from "@mui/material";
-import { AdminDashboardAnalyticsFilterBy } from "@utils/constants";
-import { useState } from "react";
-import Spinner from "@components/common/spinner/spinner";
-import CustomError from "@components/common/error/custom-error";
-import { useAdminAnalyticsQuery } from "@data/analytics/admin-analytics-query";
 import EcommerceStatistics from "./analytics/ecommerce-statistics";
-import CustomTextField1 from "@components/common/text-field/custom-text-field-1";
-import { MenuItem } from '@mui/material'
 import { AdminAnalytics } from "@ts-types/generated";
 import EarningsBarChart from "./analytics/orders-earnings-bar-chart";
 import ParcelsEarningsBarChart from "./analytics/parcels-earnings-bar-chart";
+import { Box } from "@mui/system";
+import RecentCustomerRegistered from "./analytics/recent-customers-registered";
+import HelpersPerformance from "./analytics/helpers-performance";
+import TopCategories from "./analytics/top-categories";
+import UserFeedback from "./analytics/users-feedback";
 
 
 const AdminDashboardHd = () => {
@@ -121,22 +119,37 @@ const AdminDashboardHd = () => {
           </Grid>
         </Grid>
 
-        <Grid item xs={12} lg={6}>
-          <EarningsBarChart analytics={analytics} />
-        </Grid>
-        <Grid item xs={12} lg={6}>
-          <ParcelsEarningsBarChart analytics={analytics} />
-        </Grid>
-
-        {/* <Grid item xs={12}>
+        <Grid item xs={12} md={6}>
           <EarningsBarChart analytics={analytics} />
         </Grid>
 
-        <Grid item xs={12}>
+        <Grid item xs={12} md={6}>
           <ParcelsEarningsBarChart analytics={analytics} />
-        </Grid> */}
+        </Grid>
 
-      </Grid>
+        <Grid item xs={12} lg={6}>
+          <RecentCustomerRegistered />
+        </Grid>
+
+        <Grid item xs={12} lg={3}>
+          <HelpersPerformance />
+        </Grid>
+
+        <Grid item xs={12} lg={3} style={{
+          display: 'flex',
+          flexDirection: 'column', justifyContent: 'space-between'
+        }}>
+          <Box sx={{ height: '48.5%', overflowY: 'hidden' }}>
+            <TopCategories />
+          </Box>
+          <Box sx={{ height: '48.5%', overflowY: 'hidden' }}>
+            <UserFeedback />
+          </Box>
+        </Grid>
+
+
+
+      </Grid >
     </>
   )
 }
