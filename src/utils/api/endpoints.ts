@@ -41,7 +41,7 @@ export const API_ENDPOINTS = {
   CREATE_FOOD: '/food/create',
   UPDATE_FOOD: '/food/update',
   SHOP_REVIEWS: '/review/list',
-  USERS: '/user/all',
+  USERS: '/users/findAll',
   SINGLE_USER: '/user/single',
   MERCHANT_WITHDRAWS: '/withdrawal/list',
   DRIVERS: '/user/list/driver',

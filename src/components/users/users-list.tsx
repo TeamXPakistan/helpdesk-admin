@@ -3,10 +3,11 @@ import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { IPaginatorInfo, User } from '@ts-types/generated';
-import { Avatar, IconButton } from '@mui/material';
+import { Avatar, Grid, IconButton } from '@mui/material';
 import Icon from '@components/common/icon/icon';
 import { Box } from '@mui/system';
 import { useRouter } from 'next/router';
+import { fullName } from '@utils/helper-functions';
 
 
 type PropTypes = {
@@ -19,50 +20,52 @@ type PropTypes = {
 const UsersList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
     const router = useRouter();
 
-    const defaultColumns2: GridColDef[] = [
+    const usersListColumn: GridColDef[] = [
         {
-            width: 125,
-            field: 'id',
-            headerName: 'Profile',
+            flex: 0.25,
+            minWidth: 200,
+            field: 'Profile',
+            headerName: 'Name',
             sortable: false,
-            headerAlign: "center",
-            align: "center",
-            renderCell: ({ row }: { row: User }) => <Avatar alt={"profile"} src={row?.profileImage} sx={{ width: 38, height: 38, borderRadius: "20%" }} />
+            renderCell: ({ row }: { row: User }) => {
+                return (
+                    <Grid display={'flex'} justifyContent={'center'} alignItems={'center'}>
+                        <Avatar alt={"profile"} src={row?.profileImage} sx={{ width: 38, height: 38, borderRadius: "20%" }} />
+                        <Typography sx={{ color: 'text.secondary', marginLeft: 2 }}>{fullName(row?.firstName, row?.lastName)}</Typography>
+                    </Grid>
+                )
+            }
         },
         {
-            width: 200,
-            field: 'image',
-            headerName: 'name',
-            sortable: false,
-            headerAlign: "center",
-            align: "center",
-            renderCell: ({ row }: { row: User }) => <Typography sx={{ color: 'text.secondary' }}>{row?.name ?? "-"}</Typography>
-        },
-        {
-            width: 200,
+            flex: 0.25,
+            minWidth: 200,
             field: 'email',
             headerName: 'Email',
             sortable: false,
-            headerAlign: "center",
-            align: "center",
             renderCell: ({ row }: { row: User }) => <Typography sx={{ color: 'text.secondary' }}>{row?.email ?? "-"}</Typography>
         },
         {
-            width: 200,
-            field: 'contact',
+            flex: 0.25,
+            minWidth: 200,
+            field: 'phone',
             headerName: 'Contact',
             sortable: false,
-            headerAlign: "center",
-            align: "center",
-            renderCell: ({ row }: { row: User }) => <Typography sx={{ color: 'text.secondary' }}>{row?.contact ?? "-"}</Typography>
+            renderCell: ({ row }: { row: User }) => <Typography sx={{ color: 'text.secondary' }}>{row?.phone ?? "-"}</Typography>
         },
         {
-            width: 100,
+            flex: 0.25,
+            minWidth: 200,
+            field: 'genderPreference',
+            headerName: 'Gender',
+            sortable: false,
+            renderCell: ({ row }: { row: User }) => <Typography sx={{ color: 'text.secondary' }}>{row?.genderPreference ?? "-"}</Typography>
+        },
+        {
+            flex: 0.25,
+            minWidth: 200,
             field: 'title4',
             headerName: 'Action',
             sortable: false,
-            headerAlign: "center",
-            align: "center",
             renderCell: ({ row }: { row: User }) => {
                 return (<>
                     <Box>
@@ -77,11 +80,10 @@ const UsersList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
 
     return <>
         <DataGrid
-            sx={{ "& .css-q360zr-MuiDataGrid-columnHeaders": { backgroundColor: "transparent" }, height: "80vh" }}
+            autoHeight
             disableColumnMenu
-            rowHeight={54}
             rows={data.map((value) => ({ id: value._id, ...value })) ?? []}
-            columns={defaultColumns2}
+            columns={usersListColumn}
             hideFooterPagination={true}
         />
         <Stack

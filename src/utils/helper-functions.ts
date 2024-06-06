@@ -131,3 +131,9 @@ export const getVendorDashboardFilterDate = (date: VendorDashboardAnalyticsFilte
     currentDate.setMinutes(0)
     return currentDate;
 }
+
+export const fullName = (firstName: string | null | undefined, lastName: string | null | undefined) => {
+    if (firstName || lastName) {
+        return `${firstName || ''} ${lastName || ''}`;
+    }
+}

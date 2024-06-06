@@ -81,17 +81,15 @@ export type User = {
   _id?: Scalars['String']
   name?: Scalars['String']
   email?: Scalars['String']
+  firstName?: Scalars['String'],
+  lastName?: Scalars['String']
   contact?: Scalars['String']
   roles?: Scalars['String']
   token?: Scalars['String']
   verified?: Scalars['String']
-  wallet?: Scalars['Int']
   profileImage: Scalars['String']
-  shop?: Shop | null | undefined
-  dynamicRole?: LoginUserDynamicRole
-  isGuest?: Scalars['Boolean']
-  isDeleted?: Scalars['Boolean']
-  totalWalletWithdrawal?: Scalars['Int']
+  phone?: Scalars['Int']
+  genderPreference?: Scalars['String']
 }
 
 export type Driver = {

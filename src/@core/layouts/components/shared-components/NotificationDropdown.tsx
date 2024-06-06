@@ -142,14 +142,14 @@ const NotificationDropdown = (props: Props) => {
   const [anchorEl, setAnchorEl] = useState<(EventTarget & Element) | null>(null)
   const hidden = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'))
   const { mutate: readNotificationMutation } = useReadNotificationMutation()
-  const { data: notificationsData, fetchNextPage, isFetching, hasNextPage } = useNotificationsInfinteQuery({
-    limit: Number(process.env.NEXT_PUBLIC_PAGINATED_QUERY_LIMIT),
-  })
+  // const { data: notificationsData, fetchNextPage, isFetching, hasNextPage } = useNotificationsInfinteQuery({
+  //   limit: Number(process.env.NEXT_PUBLIC_PAGINATED_QUERY_LIMIT),
+  // })
   const { mutate: readAll, isLoading: readingAll } = useReadAllNotificationsMutation()
 
   const { direction } = settings
 
-  const totalUnread = notificationsData?.pages[0]?.notifications?.paginatorInfo?.totalUnreadNotifications;
+  // const totalUnread = notificationsData?.pages[0]?.notifications?.paginatorInfo?.totalUnreadNotifications;
 
   const handleDropdownOpen = (event: SyntheticEvent) => {
     setAnchorEl(event.currentTarget)
@@ -185,7 +185,7 @@ const NotificationDropdown = (props: Props) => {
       <IconButton sx={{ mr: 3 }} color='inherit' aria-haspopup='true' onClick={handleDropdownOpen} aria-controls='customized-menu'>
         <Badge
           color='error'
-          badgeContent={totalUnread}
+          // badgeContent={totalUnread}
           sx={{
             '& .MuiBadge-badge': { top: 4, right: 0, boxShadow: theme => `0 0 0 2px ${theme.palette.background.paper}` }
           }}
@@ -209,11 +209,11 @@ const NotificationDropdown = (props: Props) => {
             <Typography variant='h5' sx={{ cursor: 'text' }}>
               Notifications
             </Typography>
-            <CustomChip skin='light' size='small' color='primary' label={`${totalUnread} unread`} />
+            {/* <CustomChip skin='light' size='small' color='primary' label={`${totalUnread} unread`} /> */}
           </Box>
         </MenuItem>
 
-        <ScrollWrapper hidden={hidden}>
+        {/* <ScrollWrapper hidden={hidden}>
           {notificationsData?.pages?.map((page) => {
             return page?.notifications?.data?.map((notification, index) => {
               return (
@@ -247,7 +247,7 @@ const NotificationDropdown = (props: Props) => {
               :
               null
           }
-        </ScrollWrapper>
+        </ScrollWrapper> */}
 
         <MenuItem
           disableRipple

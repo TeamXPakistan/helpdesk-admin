@@ -21,8 +21,6 @@ const UsersPage = () => {
     const { data: users, isLoading, error } = useUsersQuery({
         limit: Number(process.env.NEXT_PUBLIC_PAGINATED_QUERY_LIMIT),
         page: page,
-        text: text,
-        role: USER
     });
 
     const onPageChange = (event: React.ChangeEvent<unknown>, value: number) => {
@@ -34,6 +32,7 @@ const UsersPage = () => {
 
     if (isLoading) return <Spinner />
     if (error) return <CustomError errorMsg={error.message} />
+
     return <>
         <Box
             sx={{ gap: 4, display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', mb: 8 }}
@@ -74,6 +73,7 @@ UsersPage.authProps = {
     allowedRoles: superAdmin_and_AdminStaff,
     adminStaffPermissions: [AdminStaffPermissions.USERS]
 }
+
 UsersPage.getLayout = (page: ReactNode) => <Adminlayout>{page}</Adminlayout>
 
 export default UsersPage
