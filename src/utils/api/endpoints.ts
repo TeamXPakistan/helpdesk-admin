@@ -41,8 +41,8 @@ export const API_ENDPOINTS = {
   CREATE_FOOD: '/food/create',
   UPDATE_FOOD: '/food/update',
   SHOP_REVIEWS: '/review/list',
-  USERS: '/user/all',
-  SINGLE_USER: '/user/single',
+  USERS: '/users/findAll',
+  SINGLE_USER: '/users/find',
   MERCHANT_WITHDRAWS: '/withdrawal/list',
   DRIVERS: '/user/list/driver',
   DRIVER_CURRENT_ORDER: '/incoming/requests/current/order',
@@ -83,4 +83,5 @@ export const API_ENDPOINTS = {
   UPDATE_SETTINGS: 'setting/update',
   EARNINGS: 'user/earning',
   EXCEL_EXPORT: 'user/export',
+  USER_STATUS: 'users/ban'
 }

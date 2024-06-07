@@ -8,7 +8,7 @@ import CardContent from '@mui/material/CardContent'
 import CustomTextField1 from '@components/common/text-field/custom-text-field-1';
 import Spinner from '@components/common/spinner/spinner';
 import CustomButton from '@components/common/Button/custom-button';
-import { AdminStaffPermissions, USER } from '@utils/constants';
+import { AdminStaffPermissions } from '@utils/constants';
 import CustomError from '@components/common/error/custom-error'
 import { useUsersQuery } from '@data/users/users-query'
 import UsersList from '@components/users/users-list'
@@ -21,8 +21,7 @@ const UsersPage = () => {
     const { data: users, isLoading, error } = useUsersQuery({
         limit: Number(process.env.NEXT_PUBLIC_PAGINATED_QUERY_LIMIT),
         page: page,
-        text: text,
-        role: USER
+        text
     });
 
     const onPageChange = (event: React.ChangeEvent<unknown>, value: number) => {
@@ -34,6 +33,7 @@ const UsersPage = () => {
 
     if (isLoading) return <Spinner />
     if (error) return <CustomError errorMsg={error.message} />
+
     return <>
         <Box
             sx={{ gap: 4, display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', mb: 8 }}
@@ -74,6 +74,7 @@ UsersPage.authProps = {
     allowedRoles: superAdmin_and_AdminStaff,
     adminStaffPermissions: [AdminStaffPermissions.USERS]
 }
+
 UsersPage.getLayout = (page: ReactNode) => <Adminlayout>{page}</Adminlayout>
 
 export default UsersPage
