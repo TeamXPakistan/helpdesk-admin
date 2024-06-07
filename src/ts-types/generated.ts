@@ -43,6 +43,7 @@ export type IPaginatorInfo = {
   hasNextPage: boolean;
   prevPage?: any;
   nextPage?: any;
+  lastPage?: number;
   totalUnreadNotifications?: number
 }
 

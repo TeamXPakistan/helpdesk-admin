@@ -31,7 +31,7 @@ const UsersList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
             renderCell: ({ row }: { row: User }) => {
                 return (
                     <Grid display={'flex'} justifyContent={'center'} alignItems={'center'}>
-                        <Avatar alt={"profile"} src={row?.profileImage} sx={{ width: 38, height: 38, borderRadius: "20%" }} />
+                        <Avatar alt={"profile"} src={row?.profilePic} sx={{ width: 38, height: 38, borderRadius: "20%" }} />
                         <Typography sx={{ color: 'text.secondary', marginLeft: 2 }}>{fullName(row?.firstName, row?.lastName)}</Typography>
                     </Grid>
                 )
@@ -115,7 +115,7 @@ const UsersList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
         >
             <Pagination
                 color="primary"
-                count={paginatorInfo.totalPages}
+                count={paginatorInfo.lastPage}
                 page={paginatorInfo.page}
                 onChange={onPaginationChange}
             />

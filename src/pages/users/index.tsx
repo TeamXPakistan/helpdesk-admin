@@ -21,6 +21,7 @@ const UsersPage = () => {
     const { data: users, isLoading, error } = useUsersQuery({
         limit: Number(process.env.NEXT_PUBLIC_PAGINATED_QUERY_LIMIT),
         page: page,
+        text
     });
 
     const onPageChange = (event: React.ChangeEvent<unknown>, value: number) => {

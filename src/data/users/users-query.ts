@@ -10,9 +10,10 @@ type QueryParamType = GeneralQueryParam;
 const fetchUsers = async ({ queryKey }: QueryParamsType) => {
     const {
         limit,
-        page
+        page,
+        text
     } = queryKey[1] as QueryParamType;
-    const url = `${API_ENDPOINTS.USERS}?limit=${limit}&page=${page}`
+    const url = `${API_ENDPOINTS.USERS}?limit=${limit}&page=${page}${text && `&search=${text}`}`
     const { data: { data } } = await users.getAllUsers(url)
     return { users: { data: data?.data, paginatorInfo: data?.meta } }
 }
