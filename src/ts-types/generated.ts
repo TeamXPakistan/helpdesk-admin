@@ -99,6 +99,26 @@ export type User = {
   location?: Scalars['String']
 }
 
+export type Helpers = {
+  id: Scalars['ID'],
+  email: Scalars['String'],
+  username: Scalars['String'],
+  phone: Scalars['String'],
+  roles: Scalars['String'],
+  isActive: Scalars['Boolean'],
+  profilePic: Scalars['String'],
+  createdAt: Scalars['DateTime']
+  updatedAt: Scalars['DateTime']
+  preferredLanguage: Scalars['String'],
+  languageSpoken: Scalars['String'],
+  genderPreference: Scalars['String'],
+  status: Scalars['String'],
+  documents: Scalars['String'],
+  location: Scalars['String'],
+  firstName: Scalars['String'],
+  lastName: Scalars['String']
+}
+
 export type LoginUserDynamicRole = {
   _id: Scalars["ID"]
   name: Scalars['String'];
