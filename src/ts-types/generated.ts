@@ -93,10 +93,11 @@ export type User = {
   roles?: Scalars['String']
   token?: Scalars['String']
   verified?: Scalars['String']
-  profileImage: Scalars['String']
+  profilePic: Scalars['String']
   phone?: Scalars['Int']
   genderPreference?: Scalars['String']
   isActive?: Scalars['Boolean']
+  location?: Scalars['String']
 }
 
 export type Driver = {
