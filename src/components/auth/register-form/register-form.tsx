@@ -147,7 +147,7 @@ const RegisterForm = () => {
         label={
           <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
             <Typography sx={{ color: 'text.secondary' }}>I agree to</Typography>
-            <a target="_blank" href='https://hatly.ae/terms-conditions'
+            <a target="_blank" href='https://helpdesk.com'
               style={{
                 paddingLeft: "3px",
                 textDecoration: "none",

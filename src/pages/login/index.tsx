@@ -83,8 +83,6 @@ const LoginPage = () => {
             margin: theme => theme.spacing(8, 0, 8, 8)
           }}
         >
-          {/* <LoginIllustration alt='login-illustration' src={`/images/hatly-images/hatly-store.png`} /> */}
-          {/* <FooterIllustrationsV2 /> */}
         </Box>
       ) : null}
       <RightWrapper>

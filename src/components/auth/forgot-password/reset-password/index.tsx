@@ -65,7 +65,7 @@ const ResetPassword = () => {
                 >
                     <ForgotPasswordIllustration
                         alt='forgot-password-illustration'
-                        src={`/images/hatly-images/hatly-store.png`} />
+                        src={`/`} />
                     <FooterIllustrationsV2 />
                 </Box>
             ) : null}

@@ -113,14 +113,9 @@ const SendEmail = () => {
                         alignItems: 'center',
                         borderRadius: '20px',
                         justifyContent: 'center',
-                        // backgroundColor: 'customColors.bodyBg',
                         margin: theme => theme.spacing(8, 0, 8, 8)
                     }}
                 >
-                    {/* <ForgotPasswordIllustration
-                        alt='forgot-password-illustration'
-                        src={`/images/hatly-images/hatly-store.png`} />
-                    <FooterIllustrationsV2 /> */}
                 </Box>
             ) : null}
 

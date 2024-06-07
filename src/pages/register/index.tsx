@@ -20,7 +20,6 @@ import { useRouter } from 'next/router'
 // import BlankLayout from 'src/@core/layouts/BlankLayout'
 import { getLocalForageAuthToken, isAuthenticated } from '@utils/auth-utils'
 import BlankLayout from '@layouts/BlankLayout'
-import HatlyLogo from '@components/icons/hatly-logo'
 
 // ** Styled Components
 const RegisterIllustration = styled('img')(({ theme }) => ({
@@ -89,7 +88,7 @@ const Register = () => {
         >
           <RegisterIllustration
             alt='register-illustration'
-            src={`/images/hatly-images/hatly-store.png`}
+            src={``}
           />
           <FooterIllustrationsV2 />
         </Box>
@@ -105,7 +104,7 @@ const Register = () => {
           }}
         >
           <Box sx={{ width: '100%', maxWidth: 400 }}>
-            <HatlyLogo width="40%" />
+
 
             <Box sx={{ my: 0 }}>
               <Typography variant='h4' sx={{ mb: 3, fontWeight: 'bold' }}>
