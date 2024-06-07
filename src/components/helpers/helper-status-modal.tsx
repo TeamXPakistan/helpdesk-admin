@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import { useTranslation } from 'react-i18next';
 import { useUpdateUserMutation } from '@data/users/user-update-mutation';
 
-const UserStatusModal = () => {
+const HelperStatusModal = () => {
     const { t } = useTranslation(['form']);
     const [open, setOpen] = useState<boolean>(true);
     const { closeModal, modalState } = useModal();
@@ -85,4 +85,4 @@ const UserStatusModal = () => {
     );
 };
 
-export default UserStatusModal;
+export default HelperStatusModal;
