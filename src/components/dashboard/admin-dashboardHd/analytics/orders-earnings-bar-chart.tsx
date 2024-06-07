@@ -2,21 +2,13 @@ import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
 import { useTheme } from '@mui/material/styles'
-
-// ** Third Party Imports
 import { ApexOptions } from 'apexcharts'
-
-// ** Custom Components Import
 import ReactApexcharts from 'src/@core/components/react-apexcharts'
-
-// ** Util Import
 import { hexToRGBA } from 'src/@core/utils/hex-to-rgba'
-import { AdminAnalytics } from '@ts-types/generated'
-import { Grid, MenuItem } from '@mui/material'
 import CustomTextField1 from '@components/common/text-field/custom-text-field-1'
-import { AdminDashboardAnalyticsFilterBy } from '@utils/constants'
+import { Grid, MenuItem, Typography } from '@mui/material'
 import { useState } from 'react'
-
+import { AdminDashboardAnalyticsFilterBy } from '@utils/constants'
 type ApexChartSeries = NonNullable<ApexOptions['series']>
 type ApexChartSeriesData = Exclude<ApexChartSeries[0], number>
 
@@ -28,17 +20,11 @@ type TabType = {
     series: ApexChartSeries
 }
 
-type PropType = {
-    analytics: AdminAnalytics,
-}
-
-
-const ParcelsEarningsBarChart = ({ analytics }: PropType) => {
+const EarningsBarChart = ({ analytics }: any) => {
     const theme = useTheme()
-    const [filter, setFilter] = useState<AdminDashboardAnalyticsFilterBy>(AdminDashboardAnalyticsFilterBy.YEARLY);
 
-    const monthValues = analytics[0]?.earlyParcelsEarningBarChart?.map((val: any) => val?.subTotal)
-    const monthsArray = analytics[0]?.earlyParcelsEarningBarChart?.map((val: any) => val?._id?.month)
+    const monthValues = analytics[0]?.earlyOrdersEarningBarChart?.map((val: any) => val?.subTotal)
+    const monthsArray = analytics[0]?.earlyOrdersEarningBarChart?.map((val: any) => val?._id?.month)
 
     const tabData: TabType[] = [
         {
@@ -48,25 +34,21 @@ const ParcelsEarningsBarChart = ({ analytics }: PropType) => {
         }
     ]
 
-
-
     const colors = [
-        "#80E4DE",
-        "#80E4DE",
-        "#80E4DE",
-        "#80E4DE",
-        "#80E4DE",
-        "#80E4DE",
-        "#80E4DE",
-        "#80E4DE",
-        "#80E4DE",
+        "#EF8888",
+        "#EF8888",
+        "#EF8888",
+        "#EF8888",
+        "#EF8888",
+        "#EF8888",
+        "#EF8888",
+        "#EF8888",
+        "#EF8888",
     ];
-    const max = 3;
+    const max = 6;
     const seriesIndex = ((tabData[0]?.series[0] as ApexChartSeriesData)?.data as number[]).indexOf(max)
-    // const colors = Array(9)?.fill(theme.palette.secondary.main);
-    const finalColors =
-        colors.map((color, i) => (seriesIndex === i ? hexToRGBA(theme.palette.primary.main, 1) : color))
-
+    // const colors = Array(9)?.fill(theme.palette.primary.main);
+    const finalColors = colors.map((color, i) => (seriesIndex === i ? hexToRGBA(theme.palette.primary.main, 1) : color))
 
     const options: ApexOptions = {
         chart: {
@@ -75,9 +57,9 @@ const ParcelsEarningsBarChart = ({ analytics }: PropType) => {
         },
         plotOptions: {
             bar: {
-                borderRadius: 8,
+                borderRadius: 6,
                 distributed: true,
-                columnWidth: '24px',
+                columnWidth: '15%',
                 startingShape: 'rounded',
                 dataLabels: { position: 'top' }
             }
@@ -85,13 +67,13 @@ const ParcelsEarningsBarChart = ({ analytics }: PropType) => {
         legend: { show: false },
         tooltip: { enabled: false },
         dataLabels: {
-            // offsetY: -15,
-            // formatter: val => ``,
-            // style: {
-            //     fontWeight: 500,
-            //     colors: [theme.palette.text.secondary],
-            //     fontSize: theme.typography.body1.fontSize as string
-            // }
+            offsetY: -15,
+            formatter: val => `${val}`,
+            style: {
+                fontWeight: 500,
+                colors: [theme.palette.text.secondary],
+                fontSize: theme.typography.body1.fontSize as string
+            }
         },
         colors,
         states: {
@@ -113,7 +95,9 @@ const ParcelsEarningsBarChart = ({ analytics }: PropType) => {
         },
         xaxis: {
             axisTicks: { show: false },
-            axisBorder: { color: theme.palette.divider },
+            axisBorder: {
+                color: theme.palette.divider
+            },
             categories: monthsArray,
             labels: {
                 style: {
@@ -132,9 +116,9 @@ const ParcelsEarningsBarChart = ({ analytics }: PropType) => {
                     fontFamily: theme.typography.fontFamily,
                     fontSize: theme.typography.body2.fontSize as string
                 }
-            }, axisBorder: {
+            },
+            axisBorder: {
                 color: theme.palette.divider,
-
                 show: true,
             },
         },
@@ -143,24 +127,38 @@ const ParcelsEarningsBarChart = ({ analytics }: PropType) => {
                 breakpoint: theme.breakpoints.values.sm,
                 options: {
                     plotOptions: {
-                        bar: { columnWidth: '20px' }
+                        bar: { columnWidth: '60%' }
                     },
                     grid: {
                         padding: { right: 20 }
                     }
                 }
             }
-        ]
+        ],
+        markers: {
+            size: 5,
+            colors: '#fff',
+            strokeColor: finalColors,
+            strokeWidth: 2,
+            shape: "circle",
+        },
+        stroke: {
+            curve: 'smooth',
+            width: 2
+        },
+
     }
     return (
-        <Card className='report-profit-grap-rim'>
-
+        <Card className='cards-styling-rim'>
             <Grid item xs={12} sx={{ display: "flex", justifyContent: "space-between" }}>
                 <CardHeader
-                    className='dashboard-heading-rim'
-                    title='Profit Report'
+                    title={
+                        <Typography sx={{ textAlign: 'left' }}
+                            variant='h4' className='dashboard-heading-rim'>
+                            Earnings Report
+                        </Typography>
+                    }
                 />
-
                 <CustomTextField1
                     select
                     sx={{ pr: 5, pt: 5, '& .MuiFilledInput-input.MuiSelect-select': { minWidth: '8rem !important' } }}
@@ -177,18 +175,15 @@ const ParcelsEarningsBarChart = ({ analytics }: PropType) => {
                 </CustomTextField1>
 
             </Grid>
-
             <CardContent>
-                <ReactApexcharts type='bar'
+                <ReactApexcharts
+                    type='line'
                     height={263}
                     options={{ ...options, colors: finalColors }}
-                    series={tabData[0]?.series}
-                />
+                    series={tabData[0]?.series} />
             </CardContent>
-        </Card >
-
-
+        </Card>
     )
 }
 
-export default ParcelsEarningsBarChart
+export default EarningsBarChart

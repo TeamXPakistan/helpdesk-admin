@@ -47,11 +47,18 @@ const renderCustomizedLabel = (props: LabelProp) => {
 
 const HelpersPerformance = () => {
     return (
-        <Card>
+        <Card className='cards-styling-rim'>
             <CardHeader
-                title='Helpers Performance'
-                sx={{ textAlign: 'center' }}
+                title={
+                    <Typography sx={{
+                        textAlign: 'center'
+                    }}
+                        variant='h4' className='dashboard-heading-rim'>
+                        Helpers Performance
+                    </Typography>
+                }
             />
+
             <CardContent>
                 <Box sx={{ height: 350 }}>
                     <ResponsiveContainer>

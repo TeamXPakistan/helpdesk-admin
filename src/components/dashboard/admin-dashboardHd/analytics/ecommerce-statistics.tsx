@@ -2,14 +2,11 @@
 import Card from '@mui/material/Card'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
-
-// ** Custom Component Import
 import Icon from 'src/@core/components/icon'
 import CustomAvatar from 'src/@core/components/mui/avatar'
 import { Box } from '@mui/system'
 import { Grid } from '@mui/material'
 import { AdminAnalytics } from '@ts-types/generated'
-import { formatPrice } from '@utils/products'
 import { useTranslation } from 'react-i18next'
 
 type DataType = {
@@ -17,10 +14,6 @@ type DataType = {
   subtitle: string
   avatarColor: "error" | "primary" | "secondary" | "warning" | "info" | "success" | undefined
   avatarIcon: string
-}
-
-type PropTypes = {
-  analytics: AdminAnalytics;
 }
 
 const analyticsArray = (analytics: AdminAnalytics): DataType[] => {
@@ -52,7 +45,7 @@ const analyticsArray = (analytics: AdminAnalytics): DataType[] => {
   ]
 }
 
-const EcommerceStatistics = ({ analytics }: PropTypes) => {
+const EcommerceStatistics = ({ analytics }: any) => {
 
   const { t } = useTranslation(["common"]);
 
@@ -62,7 +55,7 @@ const EcommerceStatistics = ({ analytics }: PropTypes) => {
         {analyticsArray(analytics).map((item) => (
           <>
             <Grid item xs={12} sm={4} md={3}>
-              <Card >
+              <Card>
                 <CardContent sx={{
                   display: 'flex', flexDirection: 'row', alignItems: 'flex-start',
                   flexWrap: "nowrap", gap: 4

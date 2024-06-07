@@ -6,7 +6,7 @@ import FallbackSpinner from '@components/common/spinner/fall-back-spinner'
 import { ADMIN_STAFF, STORE_OWNER, SUPER_ADMIN } from '@utils/constants'
 import AppLayout from 'src/layouts/app-layout'
 import { useAuthCredentials } from '@store/apps/auth'
-import AdminDashboardHd from '@components/dashboardHd/admin-dashboardHd/dashboard'
+import AdminDashboardHd from '@components/dashboard/admin-dashboardHd/dashboard'
 
 // const AdminDashboard = dynamic(() => import('@components/dashboard/admin-dashboard/dashboard'))
 

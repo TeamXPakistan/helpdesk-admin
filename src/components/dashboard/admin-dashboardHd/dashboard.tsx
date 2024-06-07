@@ -1,6 +1,5 @@
 import { Grid, Typography } from "@mui/material";
 import EcommerceStatistics from "./analytics/ecommerce-statistics";
-import { AdminAnalytics } from "@ts-types/generated";
 import EarningsBarChart from "./analytics/orders-earnings-bar-chart";
 import ParcelsEarningsBarChart from "./analytics/parcels-earnings-bar-chart";
 import { Box } from "@mui/system";
@@ -11,8 +10,7 @@ import UserFeedback from "./analytics/users-feedback";
 
 
 const AdminDashboardHd = () => {
-
-  const analytics: AdminAnalytics =
+  const analytics =
     [
       {
         "_id": "dfd",
@@ -104,12 +102,15 @@ const AdminDashboardHd = () => {
       },
     ]
 
-
   return (
     <>
       <Grid container spacing={6}>
-        <Grid item xs={12} className="overview-card-rim">
-          <Typography sx={{ color: "text.primary" }} variant='h4' className='dashboard-heading-rim'>
+
+        <Grid item xs={12} className="overview-card">
+          <Typography
+            sx={{ textAlign: 'left' }}
+            variant='h4'
+            className='dashboard-heading-rim'>
             Overview
           </Typography>
           <Grid item xs={12}>
@@ -127,31 +128,30 @@ const AdminDashboardHd = () => {
           <ParcelsEarningsBarChart analytics={analytics} />
         </Grid>
 
-        <Grid item xs={12} lg={6}>
+        <Grid item xs={12} lg={6} md={8} className="fixed-height">
           <RecentCustomerRegistered />
         </Grid>
 
-        <Grid item xs={12} lg={3}>
+        <Grid item xs={12} lg={3} md={4} className="fixed-height">
           <HelpersPerformance />
         </Grid>
 
-        <Grid item xs={12} lg={3} style={{
-          display: 'flex',
-          flexDirection: 'column', justifyContent: 'space-between'
-        }}>
-          <Box sx={{ height: '48.5%', overflowY: 'hidden' }}>
+        <Grid item xs={12} lg={3} className="cat-feedback">
+          <Box sx={{ height: '53%' }}>
             <TopCategories />
           </Box>
-          <Box sx={{ height: '48.5%', overflowY: 'hidden' }}>
-            <UserFeedback />
+          <Box sx={{ height: '43%' }}>
+            <UserFeedback
+              positiveFeedback={60}
+              negativeFeedback={40} />
           </Box>
         </Grid>
 
-
-
-      </Grid >
+      </Grid>
     </>
   )
 }
 
 export default AdminDashboardHd;
+
+

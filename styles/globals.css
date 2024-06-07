@@ -39,7 +39,7 @@ code[class*='language-'] {
 
 }
 
-.overview-card-rim {
+.overview-card {
   background-color: #fff;
   padding: 10px;
   margin: 30px 0px 0px 20px !important;
@@ -47,9 +47,23 @@ code[class*='language-'] {
 }
 
 .dashboard-heading-rim {
-  font-size: 34px;
-  font-weight: 500;
-  text-align: left;
+  font-size: 30px !important;
+  font-weight: 500 !important;
+}
+
+@media screen and (max-width: 1900px) {
+  .dashboard-heading-rim {
+    font-size: 26px !important;
+    font-weight: 500 !important;
+  }
+
+}
+
+@media screen and (max-width: 1600px) {
+  .dashboard-heading-rim {
+    font-size: 22px !important;
+    font-weight: 500 !important;
+  }
 
 }
 
@@ -63,27 +77,23 @@ code[class*='language-'] {
 .report-profit-grap-rim {
   background-color: #FFFFFF !important;
   border-radius: 10px !important;
-
-
 }
 
-.css-r0i92s-MuiButtonBase-root-MuiListItemButton-root.active {
-  background: #fff !important;
-  box-shadow: none !important;
-}
-
-.css-r0i92s-MuiButtonBase-root-MuiListItemButton-root,
-.css-r0i92s-MuiButtonBase-root-MuiListItemButton-root {
+.cards-styling-rim {
+  height: 100% !important;
+  border-radius: 10px !important;
   background-color: #fff !important;
+  padding: 20px auto !important;
 }
 
-.css-r0i92s-MuiButtonBase-root-MuiListItemButton-root.active,
-.css-r0i92s-MuiButtonBase-root-MuiListItemButton-root.active:hover {
-  background-color: #EEEEEE !important;
+.fixed-height {
+  height: 590px;
 }
 
-.css-r0i92s-MuiButtonBase-root-MuiListItemButton-root.active .MuiTypography-root,
-.css-r0i92s-MuiButtonBase-root-MuiListItemButton-root.active svg {
-  color: #000;
+.cat-feedback {
+  display: flex !important;
+  height: 590px !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
 
 }
