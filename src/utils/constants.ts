@@ -83,7 +83,6 @@ export enum AdminStaffPermissions {
     DRIVERS = "drivers",
     PARCELS = "parcels",
     VENDORS = "vendors",
-    HATLY_MART = "hatly-mart",
     EARNINGS = "earnings",
     RESTURANT_CATEGORIES = "resturant-categories",
 }
@@ -91,7 +90,6 @@ export enum AdminStaffPermissions {
 export const adminStaffPermissionsList = [
     AdminStaffPermissions.DRIVERS,
     AdminStaffPermissions.EARNINGS,
-    AdminStaffPermissions.HATLY_MART,
     AdminStaffPermissions.RESTURANT_CATEGORIES,
     AdminStaffPermissions.USERS,
     AdminStaffPermissions.VENDORS,

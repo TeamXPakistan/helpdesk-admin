@@ -18,7 +18,6 @@ export const ROUTES = {
   PARCELS: '/parcels',
   ORDERS: '/orders',
   RESTURANT_CATEGORIES: '/resturant-categories',
-  HATLY_MART: '/hatly-mart',
   NETWORK_ERROR: '/500',
   ACCESS_DENIED: '/401',
   PROFILE: '/profile',
