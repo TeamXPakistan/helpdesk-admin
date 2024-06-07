@@ -8,7 +8,8 @@ import Icon from '@components/common/icon/icon';
 import { Box } from '@mui/system';
 import { useRouter } from 'next/router';
 import { fullName } from '@utils/helper-functions';
-
+import CustomButton from '@components/common/Button/custom-button';
+import { useModal } from '@store/apps/modal';
 
 type PropTypes = {
     data: User[];
@@ -16,9 +17,9 @@ type PropTypes = {
     paginatorInfo: IPaginatorInfo
 };
 
-
 const UsersList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
     const router = useRouter();
+    const { openModal } = useModal();
 
     const usersListColumn: GridColDef[] = [
         {
@@ -63,6 +64,26 @@ const UsersList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
         {
             flex: 0.25,
             minWidth: 200,
+            field: 'isActive',
+            headerName: 'Ban/ Un-Ban User',
+            sortable: false,
+            renderCell: ({ row }: { row: User }) => {
+                return (<>
+                    <Box>
+                        <CustomButton
+                            type={'button'}
+                            variant='contained'
+                            onClick={() => openModal({ view: "USER_STATUS_MODAL", data: row })}
+                        >
+                            {`${row?.isActive ? 'Ban' : 'Un-Ban'} User`}
+                        </CustomButton>
+                    </Box >
+                </>)
+            }
+        },
+        {
+            flex: 0.25,
+            minWidth: 200,
             field: 'view-detail',
             headerName: 'View Detail',
             sortable: false,
@@ -85,8 +106,10 @@ const UsersList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
             rows={data.map((value) => ({ id: value.id, ...value })) ?? []}
             columns={usersListColumn}
             hideFooterPagination={true}
+            hideFooter={true}
         />
         <Stack
+            mt={5}
             spacing={2}
             sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center' }}
         >

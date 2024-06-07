@@ -8,7 +8,7 @@ import CardContent from '@mui/material/CardContent'
 import CustomTextField1 from '@components/common/text-field/custom-text-field-1';
 import Spinner from '@components/common/spinner/spinner';
 import CustomButton from '@components/common/Button/custom-button';
-import { AdminStaffPermissions, USER } from '@utils/constants';
+import { AdminStaffPermissions } from '@utils/constants';
 import CustomError from '@components/common/error/custom-error'
 import { useUsersQuery } from '@data/users/users-query'
 import UsersList from '@components/users/users-list'

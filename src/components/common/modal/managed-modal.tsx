@@ -15,6 +15,7 @@ const GeneralDeleteView = dynamic(() => import('./general-delete-view'))
 const WithdrawRequestDetailsView = dynamic(() => import('@components/withdraws/withdraw-request-details-view'))
 const CreateWithdrawRequest = dynamic(() => import('@components/withdraws/create-withdraw-request'))
 const AdminProcessWithdrawRequest = dynamic(() => import('@components/withdraws/admin-process-withdraw-request'))
+const UserStatusModal = dynamic(() => import('@components/users/user-status-modal'));
 
 const ManagedModal = () => {
     const { modalState: { view } } = useModal();
@@ -35,6 +36,7 @@ const ManagedModal = () => {
             {view === "WITHDRAW_REQUEST" && < WithdrawRequestDetailsView />}
             {view === "CREATE_WITHDRAW_REQUEST" && < CreateWithdrawRequest />}
             {view === "PROCESS_WITHDRAW_REQUEST" && < AdminProcessWithdrawRequest />}
+            {view === "USER_STATUS_MODAL" && <UserStatusModal />}
         </>
     );
 };

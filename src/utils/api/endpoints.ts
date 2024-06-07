@@ -83,4 +83,5 @@ export const API_ENDPOINTS = {
   UPDATE_SETTINGS: 'setting/update',
   EARNINGS: 'user/earning',
   EXCEL_EXPORT: 'user/export',
+  USER_STATUS: 'users/ban'
 }

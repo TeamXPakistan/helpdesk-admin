@@ -27,6 +27,12 @@ export type IPaginator<Data> = {
   paginatorInfo: IPaginatorInfo;
 }
 
+export type UserBanPayload = {
+  email?: Scalars['String']
+  phone?: Scalars['String']
+  isActive: Scalars['Boolean']
+}
+
 export type IPaginatorInfo = {
   totalDocs: number;
   limit: number;
@@ -90,6 +96,7 @@ export type User = {
   profileImage: Scalars['String']
   phone?: Scalars['Int']
   genderPreference?: Scalars['String']
+  isActive?: Scalars['Boolean']
 }
 
 export type Driver = {

@@ -21,6 +21,7 @@ type ModalStatetypes = {
     "WITHDRAW_REQUEST" |
     "CREATE_WITHDRAW_REQUEST" |
     "PROCESS_WITHDRAW_REQUEST" |
+    "USER_STATUS_MODAL" |
     "",
 }
 
