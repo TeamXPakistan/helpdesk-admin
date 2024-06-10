@@ -7,5 +7,7 @@ export const ROUTES = {
   NETWORK_ERROR: '/500',
   ACCESS_DENIED: '/401',
   SETTINGS: '/settings',
-  HELPER: '/helpers'
+  HELPER: '/helpers',
+  ROLES: '/roles',
+  STAFF: '/staff'
 }
