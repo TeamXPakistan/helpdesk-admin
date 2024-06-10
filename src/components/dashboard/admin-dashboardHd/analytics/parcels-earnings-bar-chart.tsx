@@ -59,9 +59,9 @@ const ParcelsEarningsBarChart = ({ analytics }: any) => {
         },
         plotOptions: {
             bar: {
-                borderRadius: 8,
+                borderRadius: 9,
                 distributed: true,
-                columnWidth: '24px',
+                columnWidth: '25px',
                 startingShape: 'rounded',
                 dataLabels: { position: 'top' }
             }
@@ -69,13 +69,7 @@ const ParcelsEarningsBarChart = ({ analytics }: any) => {
         legend: { show: false },
         tooltip: { enabled: false },
         dataLabels: {
-            // offsetY: -15,
-            // formatter: val => ``,
-            // style: {
-            //     fontWeight: 500,
-            //     colors: [theme.palette.text.secondary],
-            //     fontSize: theme.typography.body1.fontSize as string
-            // }
+            enabled: false,
         },
         colors,
         states: {

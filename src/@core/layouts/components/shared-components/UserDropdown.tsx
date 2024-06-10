@@ -96,7 +96,7 @@ const UserDropdown = (props: Props) => {
           alt={authValues.user?.name}
           src={authValues?.user?.profileImage}
           onClick={handleDropdownOpen}
-          sx={{ width: 38, height: 38, borderRadius: "20%" }}
+          sx={{ width: 38, height: 38, borderRadius: "10px" }}
         />
       </Badge>
       <Menu

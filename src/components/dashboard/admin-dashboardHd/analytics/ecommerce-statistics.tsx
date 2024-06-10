@@ -51,29 +51,33 @@ const EcommerceStatistics = ({ analytics }: any) => {
   const { t } = useTranslation(["common"]);
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: "start", gap: 4 }}>
+    <Box
+      sx={{
+        display: 'flex', flexDirection: 'row',
+        justifyContent: "start", gap: 4
+      }}
+    >
       <Grid container spacing={6}>
-        {analyticsArray(analytics).map((item) => (
+        {analyticsArray(analytics).map((item, index) => (
           <>
-            <Grid item xs={12} sm={4} md={3}>
+            <Grid item xs={12} sm={6} md={3}
+              className="dashboard-overview-card">
               <Card>
                 <CardContent sx={{
-                  display: 'flex', flexDirection: 'row', alignItems: 'flex-start',
+                  display: 'flex', flexDirection: 'row',
+                  alignItems: 'flex-start',
                   flexWrap: "nowrap", gap: 4
                 }}>
                   <CustomAvatar
                     skin='light'
                     variant='rounded'
-                    sx={{ mb: 3.5, width: 44, height: 44 }}
+                    sx={{ mb: 3.5, width: 50, height: 50 }}
                     className='overview-logos-hd'
                   >
-                    {/* <Icon icon={item?.avatarIcon} fontSize={'1.9rem'} /> */}
-
-                    <Image src={item?.avatarIcon} alt={'Logo'} style={{ fontSize: '1.9rem' }} width={50} height={50} />
-
+                    <Image src={item?.avatarIcon} alt={'Logo'} width={30} height={30} />
                   </CustomAvatar>
                   <Box>
-                    <Typography variant='h5' sx={{ mt: -1 }}>
+                    <Typography variant='h5' sx={{ mt: 0 }}>
                       {item?.value}
                     </Typography>
                     <Typography variant='body1' sx={{ mt: 1, color: 'text.disabled' }}>
@@ -82,6 +86,7 @@ const EcommerceStatistics = ({ analytics }: any) => {
                   </Box>
                 </CardContent>
               </Card>
+              {index !== analytics.length + 1 && <hr className='vertical-line' />}
             </Grid>
           </>
         ))}

@@ -34,9 +34,8 @@ code[class*='language-'] {
 
 .topUserbar-card-hd {
   background-color: #fff;
-  padding: 20px 0px !important;
+  padding: 20px 0px;
   border-radius: 0px, 0px, 10px, 10px;
-
 }
 
 .overview-card {
@@ -47,40 +46,29 @@ code[class*='language-'] {
 }
 
 .dashboard-heading-hd {
-  font-size: 30px !important;
+  font-size: 26px !important;
   font-weight: 500 !important;
 }
 
 @media screen and (max-width: 1900px) {
   .dashboard-heading-hd {
-    font-size: 26px !important;
-    font-weight: 500 !important;
+    font-size: 24px !important;
   }
-
 }
 
 @media screen and (max-width: 1600px) {
   .dashboard-heading-hd {
     font-size: 22px !important;
-    font-weight: 500 !important;
   }
-
 }
 
 .overview-logos-hd {
   border-radius: 8px !important;
   background-color: #EEEEEE !important;
-  color: #555555 !important;
-
-}
-
-.report-profit-grap-hd {
-  background-color: #FFFFFF !important;
-  border-radius: 10px !important;
 }
 
 .cards-styling-hd {
-  height: 100% !important;
+  height: 100%;
   border-radius: 10px !important;
   background-color: #fff !important;
   padding: 20px auto !important;
@@ -91,9 +79,42 @@ code[class*='language-'] {
 }
 
 .cat-feedback {
-  display: flex !important;
-  height: 590px !important;
+  display: flex;
+  height: 590px;
   flex-direction: column !important;
-  justify-content: space-between !important;
+  justify-content: space-between;
 
+}
+
+.dashboard-overview-card {
+  display: flex !important;
+}
+
+@media screen and (max-width: 600px) {
+  .dashboard-overview-card {
+    justify-content: center;
+    margin: 0px auto;
+  }
+}
+
+.language-selected {
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+.vertical-line {
+  border: 1px solid #EEEEEE;
+  height: 70px;
+}
+
+@media screen and (max-width: 1300px) {
+  .vertical-line {
+    height: 100px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .vertical-line {
+    display: none;
+  }
 }
