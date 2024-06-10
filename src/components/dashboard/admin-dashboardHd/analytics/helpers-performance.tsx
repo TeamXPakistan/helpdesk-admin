@@ -47,13 +47,13 @@ const renderCustomizedLabel = (props: LabelProp) => {
 
 const HelpersPerformance = () => {
     return (
-        <Card className='cards-styling-rim'>
+        <Card className='cards-styling-hd'>
             <CardHeader
                 title={
                     <Typography sx={{
                         textAlign: 'center'
                     }}
-                        variant='h4' className='dashboard-heading-rim'>
+                        variant='h4' className='dashboard-heading-hd'>
                         Helpers Performance
                     </Typography>
                 }

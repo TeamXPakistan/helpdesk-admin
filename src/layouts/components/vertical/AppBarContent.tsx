@@ -83,7 +83,7 @@ const AppBarContent = (props: Props) => {
 
 
   return (
-    <Box className="topUserbar-card-rim" sx={{
+    <Box className="topUserbar-card-hd" sx={{
       width: '100%', display: 'flex', alignItems: 'center', justifyContent:
         'space-between'
     }}>
@@ -93,7 +93,7 @@ const AppBarContent = (props: Props) => {
             <Icon fontSize='1.5rem' icon='tabler:menu-2' />
           </IconButton>
         ) : null}
-        <Typography variant='h4' className='dashboard-heading-rim'
+        <Typography variant='h4' className='dashboard-heading-hd'
         >
           Admin Dashboard
         </Typography>

@@ -67,11 +67,11 @@ const TopCategories = () => {
     }, [])
 
     return data ? (
-        <Card className='cards-styling-rim'>
+        <Card className='cards-styling-hd'>
             <CardHeader
                 title={
                     <Typography sx={{ textAlign: "left" }}
-                        variant='h4' className='dashboard-heading-rim'>
+                        variant='h4' className='dashboard-heading-hd'>
                         Top Categories
                     </Typography>
                 }

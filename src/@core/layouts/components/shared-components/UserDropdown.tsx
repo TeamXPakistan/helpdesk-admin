@@ -33,7 +33,20 @@ import { useTranslation } from 'react-i18next'
 interface Props {
   settings: Settings
 }
-
+const styles = {
+  px: 4,
+  py: 1.75,
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  color: 'text.primary',
+  textDecoration: 'none',
+  '& svg': {
+    mr: 2.5,
+    fontSize: '1.5rem',
+    color: 'text.secondary'
+  }
+}
 const MenuItemStyled = styled(MenuItem)<MenuItemProps>(({ theme }) => ({
   '&:hover .MuiBox-root, &:hover .MuiBox-root svg': {
     color: theme.palette.primary.main
@@ -59,21 +72,6 @@ const UserDropdown = (props: Props) => {
       router.push(url)
     }
     setAnchorEl(null)
-  }
-
-  const styles = {
-    px: 4,
-    py: 1.75,
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    color: 'text.primary',
-    textDecoration: 'none',
-    '& svg': {
-      mr: 2.5,
-      fontSize: '1.5rem',
-      color: 'text.secondary'
-    }
   }
 
   const handleLogout = () => {
