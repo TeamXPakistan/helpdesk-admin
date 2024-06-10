@@ -20,7 +20,6 @@ import Icon from 'src/@core/components/icon'
 // ** Type Imports
 import { Settings } from 'src/@core/context/settingsContext'
 import { useAuthCredentials } from '@store/apps/auth'
-import { getRoleName } from '@utils/helper-functions'
 import { removeLocalForageAuthToken } from '@utils/auth-utils'
 import { ROUTES } from '@utils/routes'
 import { useLogoutUserMutation } from '@data/auth/logout-user-mutation'
@@ -96,7 +95,7 @@ const UserDropdown = (props: Props) => {
       >
         <Avatar
           alt={authValues.user?.name}
-          src={authValues?.user?.profileImage}
+          src={authValues?.user?.profilePic}
           onClick={handleDropdownOpen}
           sx={{ width: 38, height: 38, borderRadius: "20%" }}
         />
@@ -119,11 +118,10 @@ const UserDropdown = (props: Props) => {
                 horizontal: 'right'
               }}
             >
-              <Avatar alt={authValues.user?.name} src={authValues?.user?.profileImage} sx={{ width: '2.5rem', height: '2.5rem', borderRadius: "20%" }} />
+              <Avatar alt={authValues.user?.name} src={authValues?.user?.profilePic} sx={{ width: '2.5rem', height: '2.5rem', borderRadius: "20%" }} />
             </Badge>
             <Box sx={{ display: 'flex', ml: 2.5, alignItems: 'flex-start', flexDirection: 'column' }}>
               <Typography sx={{ fontWeight: 500 }}>{authValues.user?.name}</Typography>
-              <Typography variant='body2'>{getRoleName(authValues?.role)}</Typography>
             </Box>
           </Box>
         </Box>
@@ -134,25 +132,8 @@ const UserDropdown = (props: Props) => {
             {t("common:my-profile")}
           </Box>
         </MenuItemStyled>
-        {/* <MenuItemStyled sx={{ p: 0 }} onClick={() => handleDropdownClose('/pages/account-settings/account')}>
-          <Box sx={styles}>
-            <Icon icon='tabler:settings' />
-            Settings
-          </Box>
-        </MenuItemStyled> */}
-        {/* <MenuItemStyled sx={{ p: 0 }} onClick={() => handleDropdownClose('/pages/account-settings/billing')}>
-          <Box sx={styles}>
-            <Icon icon='tabler:credit-card' />
-            Billing
-          </Box>
-        </MenuItemStyled> */}
         <Divider sx={{ my: theme => `${theme.spacing(2)} !important` }} />
-        {/* <MenuItemStyled sx={{ p: 0 }} onClick={() => handleDropdownClose('/pages/help-center')}>
-          <Box sx={styles}>
-            <Icon icon='tabler:lifebuoy' />
-            Help
-          </Box>
-        </MenuItemStyled> */}
+
         <MenuItemStyled sx={{ p: 0 }} onClick={() => handleDropdownClose('/pages/faq')}>
           <Box sx={styles}>
             <Icon icon='tabler:info-circle' />

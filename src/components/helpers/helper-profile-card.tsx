@@ -7,16 +7,16 @@ import CardContent from '@mui/material/CardContent'
 import Icon from 'src/@core/components/icon'
 import CustomAvatar from 'src/@core/components/mui/avatar'
 import { getInitials } from 'src/@core/utils/get-initials'
-import { User } from '@ts-types/generated'
+import { Helpers } from '@ts-types/generated'
 import { fullName } from '@utils/helper-functions'
 
 type PropType = {
-  userDetails: User
+  helperDetails: Helpers
 }
 
-const UserProfileCard = ({ userDetails }: PropType) => {
+const HelperProfileCard = ({ helperDetails }: PropType) => {
   //@ts-ignore
-  const { profilePic, firstName, lastName, isActive, email, contact, location, genderPreference, username } = userDetails?.data;
+  const { profilePic, firstName, lastName, isActive, email, contact, location, genderPreference, username } = helperDetails?.data;
 
   return (
     <Grid container spacing={6}>
@@ -36,7 +36,7 @@ const UserProfileCard = ({ userDetails }: PropType) => {
                 variant='rounded'
                 sx={{ width: 100, height: 100, mb: 4, fontSize: '3rem' }}
               >
-                {getInitials(firstName ?? "U")}
+                {getInitials(firstName ?? "H")}
               </CustomAvatar>
             )}
             <Typography variant='h4' sx={{ mb: 3 }}>
@@ -51,7 +51,7 @@ const UserProfileCard = ({ userDetails }: PropType) => {
                   <Icon fontSize='1.75rem' icon='tabler:checkbox' />
                 </CustomAvatar>
                 <div>
-                  <Typography sx={{ fontWeight: 500, color: 'text.secondary' }}>User Status</Typography>
+                  <Typography sx={{ fontWeight: 500, color: 'text.secondary' }}>Helper Status</Typography>
                   <Typography variant='body2'>{isActive ? "Active" : "InActive"}</Typography>
                 </div>
               </Box>
@@ -63,7 +63,7 @@ const UserProfileCard = ({ userDetails }: PropType) => {
           {/* USER DETAILS  */}
           <CardContent sx={{ pb: 4 }}>
             <Typography variant='body2' sx={{ color: 'text.disabled', textTransform: 'uppercase' }}>
-              User Details
+              Helper Details
             </Typography>
             <Box sx={{ pt: 4 }}>
               <Box sx={{ display: 'flex', mb: 3 }}>
@@ -98,4 +98,4 @@ const UserProfileCard = ({ userDetails }: PropType) => {
   )
 }
 
-export default UserProfileCard
+export default HelperProfileCard
