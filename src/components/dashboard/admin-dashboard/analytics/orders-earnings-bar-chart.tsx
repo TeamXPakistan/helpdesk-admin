@@ -2,17 +2,13 @@ import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
 import { useTheme } from '@mui/material/styles'
-
-// ** Third Party Imports
 import { ApexOptions } from 'apexcharts'
-
-// ** Custom Components Import
 import ReactApexcharts from 'src/@core/components/react-apexcharts'
-
-// ** Util Import
 import { hexToRGBA } from 'src/@core/utils/hex-to-rgba'
-import { AdminAnalytics } from '@ts-types/generated'
-
+import CustomTextField1 from '@components/common/text-field/custom-text-field-1'
+import { Grid, MenuItem, Typography } from '@mui/material'
+import { useState } from 'react'
+import { AdminDashboardAnalyticsFilterBy } from '@utils/constants'
 type ApexChartSeries = NonNullable<ApexOptions['series']>
 type ApexChartSeriesData = Exclude<ApexChartSeries[0], number>
 
@@ -24,18 +20,11 @@ type TabType = {
     series: ApexChartSeries
 }
 
-type PropType = {
-    analytics: AdminAnalytics,
-}
-
-
-const EarningsBarChart = ({ analytics }: PropType) => {
-
-    // ** Hook
+const EarningsBarChart = ({ analytics }: any) => {
     const theme = useTheme()
 
-    const monthValues = analytics?.earlyOrdersEarningBarChart?.map((val) => val?.subTotal)
-    const monthsArray = analytics?.earlyOrdersEarningBarChart?.map((val) => val?._id?.month)
+    const monthValues = analytics[0]?.earlyOrdersEarningBarChart?.map((val: any) => val?.subTotal)
+    const monthsArray = analytics[0]?.earlyOrdersEarningBarChart?.map((val: any) => val?._id?.month)
 
     const tabData: TabType[] = [
         {
@@ -45,10 +34,20 @@ const EarningsBarChart = ({ analytics }: PropType) => {
         }
     ]
 
-    const max = Math?.max(...((tabData[0]?.series[0] as ApexChartSeriesData)?.data as number[]))
+    const colors = [
+        "#EF8888",
+        "#EF8888",
+        "#EF8888",
+        "#EF8888",
+        "#EF8888",
+        "#EF8888",
+        "#EF8888",
+        "#EF8888",
+        "#EF8888",
+    ];
+    const max = 6;
     const seriesIndex = ((tabData[0]?.series[0] as ApexChartSeriesData)?.data as number[]).indexOf(max)
-    const colors = Array(9)?.fill(theme.palette.primary.main);
-
+    // const colors = Array(9)?.fill(theme.palette.primary.main);
     const finalColors = colors.map((color, i) => (seriesIndex === i ? hexToRGBA(theme.palette.primary.main, 1) : color))
 
     const options: ApexOptions = {
@@ -60,7 +59,7 @@ const EarningsBarChart = ({ analytics }: PropType) => {
             bar: {
                 borderRadius: 6,
                 distributed: true,
-                columnWidth: '35%',
+                columnWidth: '15%',
                 startingShape: 'rounded',
                 dataLabels: { position: 'top' }
             }
@@ -69,7 +68,7 @@ const EarningsBarChart = ({ analytics }: PropType) => {
         tooltip: { enabled: false },
         dataLabels: {
             offsetY: -15,
-            formatter: val => `${val}k`,
+            formatter: val => `${val}`,
             style: {
                 fontWeight: 500,
                 colors: [theme.palette.text.secondary],
@@ -89,14 +88,16 @@ const EarningsBarChart = ({ analytics }: PropType) => {
             show: false,
             padding: {
                 top: 20,
-                left: -5,
-                right: -8,
+                left: -2,
+                right: -2,
                 bottom: -12
             }
         },
         xaxis: {
             axisTicks: { show: false },
-            axisBorder: { color: theme.palette.divider },
+            axisBorder: {
+                color: theme.palette.divider
+            },
             categories: monthsArray,
             labels: {
                 style: {
@@ -109,13 +110,17 @@ const EarningsBarChart = ({ analytics }: PropType) => {
         yaxis: {
             labels: {
                 offsetX: -15,
-                formatter: val => `$${val}k`,
+                formatter: val => `${val}`,
                 style: {
                     colors: theme.palette.text.disabled,
                     fontFamily: theme.typography.fontFamily,
                     fontSize: theme.typography.body2.fontSize as string
                 }
-            }
+            },
+            axisBorder: {
+                color: theme.palette.divider,
+                show: true,
+            },
         },
         responsive: [
             {
@@ -129,17 +134,53 @@ const EarningsBarChart = ({ analytics }: PropType) => {
                     }
                 }
             }
-        ]
-    }
+        ],
+        markers: {
+            size: 5,
+            colors: '#fff',
+            strokeColor: finalColors,
+            strokeWidth: 2,
+            shape: "circle",
+        },
+        stroke: {
+            curve: 'smooth',
+            width: 2
+        },
 
+    }
     return (
-        <Card>
-            <CardHeader
-                title='Orders Earning Reports'
-                subheader='Overall System Yearly Earnings of orders'
-            />
+        <Card className='cards-styling-hd'>
+            <Grid item xs={12} sx={{ display: "flex", justifyContent: "space-between" }}>
+                <CardHeader
+                    title={
+                        <Typography sx={{ textAlign: 'left' }}
+                            variant='h4' className='dashboard-heading-hd'>
+                            Earnings Report
+                        </Typography>
+                    }
+                />
+                <CustomTextField1
+                    select
+                    sx={{ pr: 5, pt: 5, '& .MuiFilledInput-input.MuiSelect-select': { minWidth: '8rem !important' } }}
+                    SelectProps={{
+                        displayEmpty: true,
+                        value: "",
+                    }}
+                >
+                    <MenuItem disabled value=''>Filter By</MenuItem>
+                    <MenuItem value={AdminDashboardAnalyticsFilterBy.TODAY}>Today</MenuItem>
+                    <MenuItem value={AdminDashboardAnalyticsFilterBy.WEEKLY}>Weekly</MenuItem>
+                    <MenuItem value={AdminDashboardAnalyticsFilterBy.MONTHLY}>Monthly</MenuItem>
+                    <MenuItem value={AdminDashboardAnalyticsFilterBy.YEARLY}>Yearly</MenuItem>
+                </CustomTextField1>
+
+            </Grid>
             <CardContent>
-                <ReactApexcharts type='bar' height={263} options={{ ...options, colors: finalColors }} series={tabData[0]?.series} />
+                <ReactApexcharts
+                    type='line'
+                    height={263}
+                    options={{ ...options, colors: finalColors }}
+                    series={tabData[0]?.series} />
             </CardContent>
         </Card>
     )
