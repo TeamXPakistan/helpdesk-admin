@@ -15,10 +15,106 @@ code {
   color: #d400ff;
   border-radius: 0.1335rem;
 }
+
 code:not([class*='language-']):before,
 code:not([class*='language-']):after {
   content: '`';
 }
+
 code[class*='language-'] {
   padding: 0;
+}
+
+/* //HelpDesk CSS */
+
+.css-19fkt2o-MuiPaper-root-MuiCard-root {
+  box-shadow: none !important;
+}
+
+
+.topUserbar-card-hd {
+  background-color: #fff;
+  padding: 20px 0px;
+  border-radius: 0px, 0px, 10px, 10px;
+}
+
+.overview-card {
+  background-color: #fff;
+  padding: 10px;
+  margin: 30px 0px 0px 20px !important;
+  border-radius: 10px;
+}
+
+.dashboard-heading-hd {
+  font-size: 26px !important;
+  font-weight: 500 !important;
+}
+
+@media screen and (max-width: 1900px) {
+  .dashboard-heading-hd {
+    font-size: 24px !important;
+  }
+}
+
+@media screen and (max-width: 1600px) {
+  .dashboard-heading-hd {
+    font-size: 22px !important;
+  }
+}
+
+.overview-logos-hd {
+  border-radius: 8px !important;
+  background-color: #EEEEEE !important;
+}
+
+.cards-styling-hd {
+  height: 100%;
+  border-radius: 10px !important;
+  background-color: #fff !important;
+  padding: 20px auto !important;
+}
+
+.recent-customers {
+  height: 590px;
+}
+
+.cat-feedback {
+  display: flex;
+  height: 590px;
+  flex-direction: column !important;
+  justify-content: space-between;
+
+}
+
+.dashboard-overview-card {
+  display: flex !important;
+}
+
+@media screen and (max-width: 600px) {
+  .dashboard-overview-card {
+    justify-content: center;
+    margin: 0px auto;
+  }
+}
+
+.language-selected {
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+.vertical-line {
+  border: 1px solid #EEEEEE;
+  height: 70px;
+}
+
+@media screen and (max-width: 1300px) {
+  .vertical-line {
+    height: 100px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .vertical-line {
+    display: none;
+  }
 }

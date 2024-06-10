@@ -1,12 +1,10 @@
 import { allRoles } from '@utils/auth-utils'
 import { ReactNode } from 'react'
-import dynamic from 'next/dynamic'
 import FallbackSpinner from '@components/common/spinner/fall-back-spinner'
 import { ADMIN_STAFF, SUPER_ADMIN } from '@utils/constants'
 import AppLayout from 'src/layouts/app-layout'
 import { useAuthCredentials } from '@store/apps/auth'
-
-const AdminDashboard = dynamic(() => import('@components/dashboard/admin-dashboard/dashboard'))
+import AdminDashboard from '@components/dashboard/admin-dashboard/dashboard'
 
 const Home = () => {
   const { authValues } = useAuthCredentials()
@@ -24,4 +22,4 @@ Home.getLayout = (page: ReactNode) => {
   return <AppLayout page={page} />
 }
 
-export default Home
+export default Home;

@@ -1,30 +1,18 @@
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
-
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
-
 // ** Type Import
 import { Settings } from 'src/@core/context/settingsContext'
-
 // ** Components
-import ModeToggler from 'src/@core/layouts/components/shared-components/ModeToggler'
 import UserDropdown from 'src/@core/layouts/components/shared-components/UserDropdown'
 import LanguageDropdown from 'src/@core/layouts/components/shared-components/LanguageDropdown'
 import NotificationDropdown, {
   NotificationsType
 } from 'src/@core/layouts/components/shared-components/NotificationDropdown'
-import { useState } from 'react'
-import Switch from '@mui/material/Switch';
-import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import Chip from '@mui/material/Chip'
-import { useUpdateShopStatusMutation } from '@data/shop/update-shop-status-mutation'
-import { useAuthCredentials } from '@store/apps/auth'
-import { STORE_OWNER } from '@utils/constants'
-
-// ** Hook Import
+import ModeToggler from 'src/@core/layouts/components/shared-components/ModeToggler'
 
 interface Props {
   hidden: boolean
@@ -83,20 +71,26 @@ const AppBarContent = (props: Props) => {
 
 
   return (
-    <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+    <Box className="topUserbar-card-hd" sx={{
+      width: '100%', display: 'flex', alignItems: 'center', justifyContent:
+        'space-between'
+    }}>
       <Box className='actions-left' sx={{ mr: 2, display: 'flex', alignItems: 'center' }}>
         {hidden && !settings.navHidden ? (
           <IconButton color='inherit' sx={{ ml: -2.75 }} onClick={toggleNavVisibility}>
             <Icon fontSize='1.5rem' icon='tabler:menu-2' />
           </IconButton>
         ) : null}
-        {/* {auth.user && <Autocomplete hidden={hidden} settings={settings} />} */}
+        <Typography variant='h4' className='dashboard-heading-hd'
+        >
+          Admin Dashboard
+        </Typography>
       </Box>
-      <Box className='actions-right' sx={{ display: 'flex', alignItems: 'center' }}>
+      <Box className='actions-right'
+        sx={{ display: 'flex', alignItems: 'center' }}>
+        <Icon fontSize='22px' icon='tabler:world' />
         <LanguageDropdown settings={settings} saveSettings={saveSettings} />
-        {/* <ModeToggler settings={settings} saveSettings={saveSettings} /> */}
         <>
-          {/* <ShortcutsDropdown settings={settings} shortcuts={shortcuts} /> */}
           <NotificationDropdown settings={settings} notifications={notifications} />
           <UserDropdown settings={settings} />
         </>

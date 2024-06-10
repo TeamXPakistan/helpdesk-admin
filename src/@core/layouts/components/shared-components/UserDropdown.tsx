@@ -32,7 +32,20 @@ import { useTranslation } from 'react-i18next'
 interface Props {
   settings: Settings
 }
-
+const styles = {
+  px: 4,
+  py: 1.75,
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  color: 'text.primary',
+  textDecoration: 'none',
+  '& svg': {
+    mr: 2.5,
+    fontSize: '1.5rem',
+    color: 'text.secondary'
+  }
+}
 const MenuItemStyled = styled(MenuItem)<MenuItemProps>(({ theme }) => ({
   '&:hover .MuiBox-root, &:hover .MuiBox-root svg': {
     color: theme.palette.primary.main
@@ -60,21 +73,6 @@ const UserDropdown = (props: Props) => {
     setAnchorEl(null)
   }
 
-  const styles = {
-    px: 4,
-    py: 1.75,
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    color: 'text.primary',
-    textDecoration: 'none',
-    '& svg': {
-      mr: 2.5,
-      fontSize: '1.5rem',
-      color: 'text.secondary'
-    }
-  }
-
   const handleLogout = () => {
     removeLocalForageAuthToken()
     removeCredentials()
@@ -97,7 +95,7 @@ const UserDropdown = (props: Props) => {
           alt={authValues.user?.name}
           src={authValues?.user?.profilePic}
           onClick={handleDropdownOpen}
-          sx={{ width: 38, height: 38, borderRadius: "20%" }}
+          sx={{ width: 38, height: 38, borderRadius: "10px" }}
         />
       </Badge>
       <Menu
