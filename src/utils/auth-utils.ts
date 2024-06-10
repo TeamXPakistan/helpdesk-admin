@@ -1,15 +1,11 @@
 import localforage from 'localforage'
-import { ADMIN_STAFF, AUTH_CREDS, STORE_OWNER, SUPER_ADMIN, ShopTypes } from './constants'
+import { ADMIN_STAFF, AUTH_CREDS, SUPER_ADMIN } from './constants'
 
-export const superAdmin_and_storeOWner = [SUPER_ADMIN, STORE_OWNER];
-export const storeOwnerOnly = [STORE_OWNER];
+export const superAdmin_and_storeOWner = [SUPER_ADMIN];
 export const superAdminOnly = [SUPER_ADMIN];
 export const superAdmin_and_AdminStaff = [SUPER_ADMIN, ADMIN_STAFF];
-export const superAdmin_AdminStaff_and_StoreOwner = [SUPER_ADMIN, ADMIN_STAFF, STORE_OWNER];
-export const allRoles = [SUPER_ADMIN, STORE_OWNER, ADMIN_STAFF];
-
-export const health_grocery_and_homeBusinessOnly = [ShopTypes.pharmacy, ShopTypes.grocery, ShopTypes.homeBusiness];
-export const resturantOnly = [ShopTypes.resturant];
+export const superAdmin_AdminStaff_and_StoreOwner = [SUPER_ADMIN, ADMIN_STAFF];
+export const allRoles = [SUPER_ADMIN, ADMIN_STAFF];
 
 export const setLocalForageToken = (token: string | null | undefined) => {
   localforage.setItem(AUTH_CREDS, token)
