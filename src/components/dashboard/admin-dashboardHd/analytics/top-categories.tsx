@@ -12,7 +12,11 @@ interface Customer {
     name: string;
     categoryName: string;
 }
-
+const styles = {
+    '& .MuiDataGrid-row, & .MuiDataGrid-cell': {
+        borderBottom: 'none !important',
+    },
+};
 const TopCategories = () => {
 
     const [data, setData] = useState<Customer[]>([]);
@@ -22,7 +26,7 @@ const TopCategories = () => {
             flex: 0.1,
             field: 'name',
             minWidth: 120,
-            headerName: 'Name',
+            headerName: 'Rank',
             renderCell: ({ row }) => {
                 return (
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -49,12 +53,6 @@ const TopCategories = () => {
             }
         }
     ]
-
-    const styles = {
-        '& .MuiDataGrid-row, & .MuiDataGrid-cell': {
-            borderBottom: 'none !important',
-        },
-    };
 
     useEffect(() => {
         const customerData = [
