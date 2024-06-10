@@ -97,6 +97,9 @@ export type User = {
   genderPreference?: Scalars['String']
   isActive?: Scalars['Boolean']
   location?: Scalars['String']
+  role?: {
+    name?: Scalars['String']
+  }
 }
 
 export type Helpers = {
