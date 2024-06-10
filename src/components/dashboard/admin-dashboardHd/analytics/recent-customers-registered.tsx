@@ -12,7 +12,11 @@ interface Customer {
     email: string;
     subscribedPlan: string;
 }
-
+const styles = {
+    '& .MuiDataGrid-row, & .MuiDataGrid-cell': {
+        borderBottom: 'none !important',
+    },
+};
 
 const RecentCustomerRegistered = () => {
     const [data, setData] = useState<Customer[]>([]);
@@ -65,12 +69,6 @@ const RecentCustomerRegistered = () => {
         }
     ]
 
-    const styles = {
-        '& .MuiDataGrid-row, & .MuiDataGrid-cell': {
-            borderBottom: 'none !important',
-        },
-    };
-
     useEffect(() => {
         const customerData = [
             { id: 1, name: 'John Doe', email: 'josdhn.doe@example.com', subscribedPlan: 'Basic plan' },
@@ -89,13 +87,13 @@ const RecentCustomerRegistered = () => {
     }, [])
 
     return data ? (
-        <Card className='cards-styling-rim'>
+        <Card className='cards-styling-hd'>
             <CardHeader
                 title={
                     <Typography
                         sx={{ textAlign: 'left' }}
                         variant='h4'
-                        className='dashboard-heading-rim'>
+                        className='dashboard-heading-hd'>
                         Recent Customers Registered
                     </Typography>
                 }

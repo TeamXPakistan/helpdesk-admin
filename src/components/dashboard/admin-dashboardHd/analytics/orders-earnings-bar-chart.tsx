@@ -149,12 +149,12 @@ const EarningsBarChart = ({ analytics }: any) => {
 
     }
     return (
-        <Card className='cards-styling-rim'>
+        <Card className='cards-styling-hd'>
             <Grid item xs={12} sx={{ display: "flex", justifyContent: "space-between" }}>
                 <CardHeader
                     title={
                         <Typography sx={{ textAlign: 'left' }}
-                            variant='h4' className='dashboard-heading-rim'>
+                            variant='h4' className='dashboard-heading-hd'>
                             Earnings Report
                         </Typography>
                     }

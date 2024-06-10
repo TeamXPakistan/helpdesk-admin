@@ -8,6 +8,7 @@ import { Box } from '@mui/system'
 import { Grid } from '@mui/material'
 import { AdminAnalytics } from '@ts-types/generated'
 import { useTranslation } from 'react-i18next'
+import Image from 'next/image'
 
 type DataType = {
   value: string
@@ -22,25 +23,25 @@ const analyticsArray = (analytics: AdminAnalytics): DataType[] => {
       value: "343435 AED",
       subtitle: "Total Revenue",
       avatarColor: "error",
-      avatarIcon: "tabler:currency-dollar"
+      avatarIcon: "/images/icons/admin-dashboard-icons/revenue-icon.svg"
     },
     {
       value: '22333',
       subtitle: "Total Users",
       avatarColor: "error",
-      avatarIcon: "tabler:currency-dollar"
+      avatarIcon: "/images/icons/admin-dashboard-icons/users-icon.svg"
     },
     {
       value: "55",
       subtitle: "Total Helpers",
       avatarColor: "error",
-      avatarIcon: "tabler:currency-dollar"
+      avatarIcon: "/images/icons/admin-dashboard-icons/helper-icon.svg"
     },
     {
       value: "86",
       subtitle: "Number of Calls",
       avatarColor: "error",
-      avatarIcon: 'tabler:shopping-cart'
+      avatarIcon: '/images/icons/admin-dashboard-icons/call-icon.svg'
     }
   ]
 }
@@ -64,9 +65,12 @@ const EcommerceStatistics = ({ analytics }: any) => {
                     skin='light'
                     variant='rounded'
                     sx={{ mb: 3.5, width: 44, height: 44 }}
-                    className='overview-logos-rim'
+                    className='overview-logos-hd'
                   >
-                    <Icon icon={item?.avatarIcon} fontSize={'1.9rem'} />
+                    {/* <Icon icon={item?.avatarIcon} fontSize={'1.9rem'} /> */}
+
+                    <Image src={item?.avatarIcon} alt={'Logo'} style={{ fontSize: '1.9rem' }} width={50} height={50} />
+
                   </CustomAvatar>
                   <Box>
                     <Typography variant='h5' sx={{ mt: -1 }}>

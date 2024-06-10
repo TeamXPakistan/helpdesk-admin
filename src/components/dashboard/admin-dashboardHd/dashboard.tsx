@@ -9,7 +9,7 @@ import TopCategories from "./analytics/top-categories";
 import UserFeedback from "./analytics/users-feedback";
 
 
-const AdminDashboardHd = () => {
+const AdminDashboard = () => {
   const analytics =
     [
       {
@@ -110,7 +110,7 @@ const AdminDashboardHd = () => {
           <Typography
             sx={{ textAlign: 'left' }}
             variant='h4'
-            className='dashboard-heading-rim'>
+            className='dashboard-heading-hd'>
             Overview
           </Typography>
           <Grid item xs={12}>
@@ -128,11 +128,11 @@ const AdminDashboardHd = () => {
           <ParcelsEarningsBarChart analytics={analytics} />
         </Grid>
 
-        <Grid item xs={12} lg={6} md={8} className="fixed-height">
+        <Grid item xs={12} lg={6} md={8} className="recent-customers">
           <RecentCustomerRegistered />
         </Grid>
 
-        <Grid item xs={12} lg={3} md={4} className="fixed-height">
+        <Grid item xs={12} lg={3} md={4} className="recent-customers">
           <HelpersPerformance />
         </Grid>
 
@@ -152,6 +152,6 @@ const AdminDashboardHd = () => {
   )
 }
 
-export default AdminDashboardHd;
+export default AdminDashboard;
 
 

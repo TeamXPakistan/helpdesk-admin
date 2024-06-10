@@ -7,11 +7,11 @@ const FeedbackCard = ({ positiveFeedback, negativeFeedback }: any) => {
     const negativePercentage = (negativeFeedback / totalFeedback) * 100;
 
     return (
-        <Card className='cards-styling-rim'>
+        <Card className='cards-styling-hd'>
             <CardHeader
                 title={
                     <Typography sx={{ textAlign: "left", marginBottom: '-15px' }}
-                        variant='h4' className='dashboard-heading-rim'>
+                        variant='h4' className='dashboard-heading-hd'>
                         User Feedbacks
                     </Typography>
                 }

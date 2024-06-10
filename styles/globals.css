@@ -25,14 +25,14 @@ code[class*='language-'] {
   padding: 0;
 }
 
-/* //Rimsha css */
+/* //HelpDesk CSS */
 
 .css-19fkt2o-MuiPaper-root-MuiCard-root {
   box-shadow: none !important;
 }
 
 
-.topUserbar-card-rim {
+.topUserbar-card-hd {
   background-color: #fff;
   padding: 20px 0px !important;
   border-radius: 0px, 0px, 10px, 10px;
@@ -46,13 +46,13 @@ code[class*='language-'] {
   border-radius: 10px;
 }
 
-.dashboard-heading-rim {
+.dashboard-heading-hd {
   font-size: 30px !important;
   font-weight: 500 !important;
 }
 
 @media screen and (max-width: 1900px) {
-  .dashboard-heading-rim {
+  .dashboard-heading-hd {
     font-size: 26px !important;
     font-weight: 500 !important;
   }
@@ -60,33 +60,33 @@ code[class*='language-'] {
 }
 
 @media screen and (max-width: 1600px) {
-  .dashboard-heading-rim {
+  .dashboard-heading-hd {
     font-size: 22px !important;
     font-weight: 500 !important;
   }
 
 }
 
-.overview-logos-rim {
+.overview-logos-hd {
   border-radius: 8px !important;
   background-color: #EEEEEE !important;
   color: #555555 !important;
 
 }
 
-.report-profit-grap-rim {
+.report-profit-grap-hd {
   background-color: #FFFFFF !important;
   border-radius: 10px !important;
 }
 
-.cards-styling-rim {
+.cards-styling-hd {
   height: 100% !important;
   border-radius: 10px !important;
   background-color: #fff !important;
   padding: 20px auto !important;
 }
 
-.fixed-height {
+.recent-customers {
   height: 590px;
 }
 
