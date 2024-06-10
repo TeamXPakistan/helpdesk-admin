@@ -109,6 +109,7 @@ export type Helpers = {
   phone: Scalars['String'],
   roles: Scalars['String'],
   isActive: Scalars['Boolean'],
+  contact?: Scalars['String']
   profilePic: Scalars['String'],
   createdAt: Scalars['DateTime']
   updatedAt: Scalars['DateTime']

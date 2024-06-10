@@ -73,7 +73,7 @@ const HelpersList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => 
                         <CustomButton
                             type={'button'}
                             variant='contained'
-                            onClick={() => openModal({ view: "USER_STATUS_MODAL", data: row })}
+                            onClick={() => openModal({ view: "HELPER_STATUS_MODAL", data: row })}
                         >
                             {`${row?.isActive ? 'Ban' : 'Un-Ban'} Helper`}
                         </CustomButton>

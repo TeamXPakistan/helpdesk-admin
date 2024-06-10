@@ -6,18 +6,15 @@ import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
 import Icon from 'src/@core/components/icon'
 import CustomAvatar from 'src/@core/components/mui/avatar'
-import { ThemeColor } from 'src/@core/layouts/types'
 import { getInitials } from 'src/@core/utils/get-initials'
 import { User } from '@ts-types/generated'
-import { fullName, getRoleName } from '@utils/helper-functions'
-import { formatPrice } from '@utils/products'
+import { fullName } from '@utils/helper-functions'
 
 type PropType = {
   userDetails: User
 }
 
 const UserProfileCard = ({ userDetails }: PropType) => {
-  console.log(userDetails)
   //@ts-ignore
   const { profilePic, firstName, lastName, isActive, email, contact, location, genderPreference, username } = userDetails?.data;
 
@@ -95,9 +92,6 @@ const UserProfileCard = ({ userDetails }: PropType) => {
               </Box>
             </Box>
           </CardContent>
-
-          <Divider sx={{ my: '0 !important', mx: 6 }} />
-
         </Card>
       </Grid>
     </Grid>

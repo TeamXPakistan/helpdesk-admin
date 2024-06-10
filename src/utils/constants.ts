@@ -7,6 +7,7 @@ export const USER_DISPLAY = 'User'
 
 export enum AdminStaffPermissions {
     USERS = "users",
+    HELPERS = "helpers"
 }
 
 export const adminStaffPermissionsList = [

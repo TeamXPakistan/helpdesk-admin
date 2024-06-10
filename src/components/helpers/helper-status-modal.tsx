@@ -5,24 +5,24 @@ import { useModal } from '@store/apps/modal';
 import Box from '@mui/system/Box';
 import Typography from '@mui/material/Typography';
 import Icon from 'src/@core/components/icon'
-import { User } from '@ts-types/generated';
+import { Helpers } from '@ts-types/generated';
 import DialogActions from '@mui/material/DialogActions';
 import CustomButton from '@components/common/Button/custom-button';
 import Button from '@mui/material/Button';
 import { useTranslation } from 'react-i18next';
-import { useUpdateUserMutation } from '@data/users/user-update-mutation';
+import { useUpdateHelperMutation } from '@data/helpers/helper-update-mutation';
 
 const HelperStatusModal = () => {
     const { t } = useTranslation(['form']);
     const [open, setOpen] = useState<boolean>(true);
     const { closeModal, modalState } = useModal();
 
-    const helperData: User = modalState?.data
+    const helperData: Helpers = modalState?.data
 
-    const { mutate: toggleUserStatus, isLoading } = useUpdateUserMutation();
+    const { mutate: toggleHelperStatus, isLoading } = useUpdateHelperMutation();
 
     const handleBan = () => {
-        toggleUserStatus(
+        toggleHelperStatus(
             {
                 ...(helperData?.email ? { email: helperData?.email } : { phone: helperData?.contact }),
                 isActive: !helperData?.isActive,
@@ -39,7 +39,6 @@ const HelperStatusModal = () => {
         setOpen(false);
         closeModal();
     };
-
 
     return (
         <Fragment>
@@ -81,7 +80,7 @@ const HelperStatusModal = () => {
                     </Button>
                 </DialogActions>
             </Dialog>
-        </Fragment >
+        </Fragment>
     );
 };
 
