@@ -27,6 +27,12 @@ export type IPaginator<Data> = {
   paginatorInfo: IPaginatorInfo;
 }
 
+export type UserBanPayload = {
+  email?: Scalars['String']
+  phone?: Scalars['String']
+  isActive: Scalars['Boolean']
+}
+
 export type IPaginatorInfo = {
   totalDocs: number;
   limit: number;
@@ -37,6 +43,7 @@ export type IPaginatorInfo = {
   hasNextPage: boolean;
   prevPage?: any;
   nextPage?: any;
+  lastPage?: number;
   totalUnreadNotifications?: number
 }
 
@@ -78,20 +85,23 @@ export type UpdateUserInput = {
 }
 
 export type User = {
-  _id?: Scalars['String']
+  id?: Scalars['String']
   name?: Scalars['String']
   email?: Scalars['String']
+  firstName?: Scalars['String'],
+  lastName?: Scalars['String']
   contact?: Scalars['String']
   roles?: Scalars['String']
   token?: Scalars['String']
   verified?: Scalars['String']
-  wallet?: Scalars['Int']
-  profileImage: Scalars['String']
-  shop?: Shop | null | undefined
-  dynamicRole?: LoginUserDynamicRole
-  isGuest?: Scalars['Boolean']
-  isDeleted?: Scalars['Boolean']
-  totalWalletWithdrawal?: Scalars['Int']
+  profilePic: Scalars['String']
+  phone?: Scalars['Int']
+  genderPreference?: Scalars['String']
+  isActive?: Scalars['Boolean']
+  location?: Scalars['String']
+  role?: {
+    name?: Scalars['String']
+  }
 }
 
 export type Driver = {

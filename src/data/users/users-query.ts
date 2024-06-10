@@ -5,18 +5,17 @@ import { IPaginator, User } from "@ts-types/generated"
 import { API_ENDPOINTS } from "@utils/api/endpoints"
 
 
-type QueryParamType = GeneralQueryParam & UsersQueryParam;
+type QueryParamType = GeneralQueryParam;
 
 const fetchUsers = async ({ queryKey }: QueryParamsType) => {
     const {
-        limit = 20,
-        page = 1,
-        text,
-        role
+        limit,
+        page,
+        text
     } = queryKey[1] as QueryParamType;
-    const url = `${API_ENDPOINTS.USERS}?limit=${limit}&page=${page}${text ? `&text=${text}` : ""}${role ? `&role=${role}` : ''}`
-    const { data: { docs, ...rest } } = await users.getAllUsers(url)
-    return { users: { data: docs, paginatorInfo: rest } }
+    const url = `${API_ENDPOINTS.USERS}?limit=${limit}&page=${page}${text && `&search=${text}`}`
+    const { data: { data } } = await users.getAllUsers(url)
+    return { users: { data: data?.data, paginatorInfo: data?.meta } }
 }
 
 const useUsersQuery = (options: QueryParamType) => {

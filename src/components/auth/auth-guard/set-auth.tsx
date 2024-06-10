@@ -15,8 +15,8 @@ const SetAuth = ({ children }: { children: ReactNode }) => {
     onSuccess: async (data: { data: User }) => {
       const userData = data?.data;
 
-      if (userData?.hasOwnProperty('roles')) {
-        setCredentials({ role: userData?.roles, token: await getLocalForageAuthToken(), user: userData })
+      if (userData?.hasOwnProperty('role')) {
+        setCredentials({ role: userData?.role?.name, token: await getLocalForageAuthToken(), user: userData })
       }
     },
     onError: (error: any) => {
