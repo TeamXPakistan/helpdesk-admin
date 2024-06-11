@@ -22,8 +22,7 @@ const AuthGuard = ({ children, authProps }: PropTypes) => {
 
   isUser = !!authValues.token
   hasPermission = hasAccess(authProps.allowedRoles, authValues.role) &&
-    // authValues.user?.dynamicRole?.permissions
-    (authValues?.role === ADMIN_STAFF && authProps.adminStaffPermissions ? staffHasPermission(authProps.adminStaffPermissions, []) : true)
+    (authValues?.role === ADMIN_STAFF && authProps.adminStaffPermissions ? staffHasPermission(authProps.adminStaffPermissions, authValues?.user?.role?.roles) : true)
 
 
   // checking if the logged in user has proper role. 

@@ -1,6 +1,6 @@
 export const AUTH_CREDS = '_CCAA00'
 export const SUPER_ADMIN = 'ADMIN'
-export const ADMIN_STAFF = 'staff'
+export const ADMIN_STAFF = 'STAFF'
 export const USER = 'user'
 export const SUPER_ADMIN_DISPLAY = 'Admin'
 export const USER_DISPLAY = 'User'

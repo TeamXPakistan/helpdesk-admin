@@ -99,6 +99,7 @@ export type User = {
   location?: Scalars['String']
   role?: {
     name?: Scalars['String']
+    roles?: Array<string>
   }
 }
 
