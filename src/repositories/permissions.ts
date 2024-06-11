@@ -11,6 +11,10 @@ class Permissions extends Base<any, any> {
         return this.create(url, variables)
     }
 
+    getSinglePermission = async (url: string) => {
+        return this.find(url)
+    }
+
     deletePermission = async (url: string) => {
         return this.delete(url);
     }

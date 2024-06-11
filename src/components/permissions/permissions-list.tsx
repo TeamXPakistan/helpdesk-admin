@@ -85,7 +85,7 @@ const PermissionsList = ({ data, onPaginationChange, paginatorInfo }: PropTypes)
                             color='inherit'
                             title='Edit'
                             aria-haspopup='true'
-                            onClick={() => openModal({ view: "EDIT_ROLE_VIEW", data: { roleId: row?.id } })}
+                            onClick={() => openModal({ view: "EDIT_PERMISSION_VIEW", data: { permissionId: row?.id } })}
                         >
                             <Icon color='green' fontSize='1.225rem' icon={'nimbus:edit'} />
                         </IconButton>
