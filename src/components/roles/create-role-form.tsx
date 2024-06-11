@@ -11,7 +11,6 @@ import CustomError from "@components/common/error/custom-error";
 import { Box } from "@mui/system";
 import { useCreateRoleMutation } from "@data/roles/create-role-mutation";
 
-
 type propTypes = {
     closeModal: () => void
 }
@@ -28,8 +27,9 @@ const initialValues: FormValues = {
 
 const CreateRoleForm = ({ closeModal }: propTypes) => {
 
-    const { t } = useTranslation(['form'])
-    const { mutate, isLoading } = useCreateRoleMutation()
+    const { t } = useTranslation(['form']);
+    const { mutate: createRole, isLoading } = useCreateRoleMutation();
+
     const { data: permissions, isLoading: fetchingPermissions, error: permissionsError } = usePermissionsQuery({
         limit: 9999,
         page: 1,
@@ -50,9 +50,7 @@ const CreateRoleForm = ({ closeModal }: propTypes) => {
     })
 
     const handelCreateRole = (values: FormValues, resetForm: any) => {
-
-        console.log(values)
-        mutate({
+        createRole({
             name: values.name,
             permissions: values.permissions?.map(permission => permission.value)
         },
@@ -67,21 +65,21 @@ const CreateRoleForm = ({ closeModal }: propTypes) => {
 
     if (fetchingPermissions) return <Spinner />
     if (permissionsError) return <CustomError errorMsg={permissionsError.message} />
+
     return (<>
         <form noValidate autoComplete='off' onSubmit={handleSubmit}>
-            <Box sx={{ minHeight: "60vh", width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+            <Box sx={{ minHeight: "50vh", width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                 <Box>
                     <CustomTextField1
                         errorMsg={t(errors?.name as string)}
                         fullWidth
                         sx={{ mb: 5 }}
                         label={t(`Name`)}
-                        placeholder={t(`Full Name`) as string}
                         {...getFieldProps('name')}
                     />
 
                     <CustomSelect
-                        name="resturantCategory"
+                        name="permissions"
                         list={permissions?.permissions.data.map((permission) => ({ label: permission.name, value: permission.id }))}
                         value={values?.permissions}
                         //@ts-ignore
