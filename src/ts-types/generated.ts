@@ -168,8 +168,20 @@ export type Permission = {
 }
 
 export type Role = {
-  _id: Scalars["ID"]
+  id: Scalars["ID"]
   name: Scalars['String'];
+  roles: Array<{
+    roleId: Scalars['ID'],
+    permissionId: Scalars['ID'],
+    permission: {
+      id: Scalars['ID'],
+      name: Scalars['String'],
+      moduleName: Scalars['String'],
+      actions: Array<string>,
+      isEnabled: Scalars['Boolean'],
+      createdAt: Scalars['DateTime'],
+    }
+  }>;
   permissions: Array<Permission>;
 };
 
