@@ -69,7 +69,7 @@ const CreatePermissionForm = ({ closeModal }: propTypes) => {
     return (
         <>
             <form noValidate autoComplete='off' onSubmit={handleSubmit}>
-                <Box sx={{ minHeight: "60vh", width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                <Box sx={{ minHeight: "50vh", width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                     <Box>
                         <CustomTextField1
                             errorMsg={t(errors?.name as string)}
