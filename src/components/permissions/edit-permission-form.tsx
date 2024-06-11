@@ -51,10 +51,10 @@ const EditPermissionForm = ({ closeModal, formData }: propTypes) => {
             ).required("Permission is required")
 
         }),
-        onSubmit: (values, { resetForm }) => handelCreateRole(values, resetForm)
+        onSubmit: (values, { resetForm }) => handelUpdatePermission(values, resetForm)
     })
 
-    const handelCreateRole = (values: FormValues, resetForm: any) => {
+    const handelUpdatePermission = (values: FormValues, resetForm: any) => {
 
         updatedPermission({
             id: values?.id,
