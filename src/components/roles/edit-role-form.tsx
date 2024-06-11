@@ -12,7 +12,6 @@ import { Box } from "@mui/system";
 import { Role } from "@ts-types/generated";
 import { useUpdateRoleMutation } from "@data/roles/edit-role-mutation";
 
-
 type propTypes = {
     closeModal: () => void
     formData: Role
@@ -23,12 +22,10 @@ type FormValues = {
     permissions: { label: string; value: string }[] | null
 }
 
-
-
 const EditRoleForm = ({ closeModal, formData }: propTypes) => {
-    console.log(formData)
     const { t } = useTranslation(['form'])
-    const { mutate, isLoading } = useUpdateRoleMutation()
+    const { mutate: updatedRole, isLoading } = useUpdateRoleMutation()
+
     const { data: permissions, isLoading: fetchingPermissions, error: permissionsError } = usePermissionsQuery({
         limit: 9999,
         page: 1,
@@ -36,7 +33,7 @@ const EditRoleForm = ({ closeModal, formData }: propTypes) => {
 
     const initialValues: FormValues = {
         name: formData?.name,
-        permissions: formData?.permissions.map((permission) => ({ label: permission.name, value: permission._id }))
+        permissions: formData?.permissions?.map((permission) => ({ label: permission.name, value: permission.id }))
     }
 
     const { handleSubmit, errors, getFieldProps, setFieldValue, values } = useFormik({
@@ -54,9 +51,8 @@ const EditRoleForm = ({ closeModal, formData }: propTypes) => {
     })
 
     const handelCreateRole = (values: FormValues, resetForm: any) => {
-        console.log(values)
-        mutate({
-            _id: formData._id,
+        updatedRole({
+            id: formData.id,
             name: values.name,
             permissions: values.permissions?.map(permission => permission?.value)
         },
@@ -71,59 +67,61 @@ const EditRoleForm = ({ closeModal, formData }: propTypes) => {
 
     if (fetchingPermissions) return <Spinner />
     if (permissionsError) return <CustomError errorMsg={permissionsError.message} />
-    return (<>
-        <form noValidate autoComplete='off' onSubmit={handleSubmit}>
-            <Box sx={{ minHeight: "300px", width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                <Box>
-                    <CustomTextField1
-                        errorMsg={t(errors?.name as string)}
-                        fullWidth
-                        sx={{ mb: 5 }}
-                        label={t(`Name`)}
-                        placeholder={t(`Full Name`) as string}
-                        {...getFieldProps('name')}
-                    />
 
-                    <CustomSelect
-                        name="resturantCategory"
-                        list={permissions?.permissions.data.map((permission) => ({ label: permission?.name, value: permission?._id }))}
-                        value={values?.permissions}
-                        //@ts-ignore
-                        onChange={(val, { action }) => {
-                            if (action === "clear") {
-                                setFieldValue("permissions", [])
-                            }
-                            setFieldValue("permissions", val)
-                        }}
-                        isMulti={true}
-                        label={"Permissions"}
-                        errorMsg={t(errors.permissions as string)}
-                        placeHolder='Select Permissions'
-                    />
+    return (
+        <>
+            <form noValidate autoComplete='off' onSubmit={handleSubmit}>
+                <Box sx={{ minHeight: "300px", width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                    <Box>
+                        <CustomTextField1
+                            errorMsg={t(errors?.name as string)}
+                            fullWidth
+                            sx={{ mb: 5 }}
+                            label={t(`Name`)}
+                            {...getFieldProps('name')}
+                        />
+
+                        <CustomSelect
+                            name="permissions"
+                            list={permissions?.permissions?.data.map((permission) => ({ label: permission?.name, value: permission?.id }))}
+                            value={values?.permissions}
+                            //@ts-ignore
+                            onChange={(val, { action }) => {
+                                if (action === "clear") {
+                                    setFieldValue("permissions", [])
+                                }
+                                setFieldValue("permissions", val)
+                            }}
+                            isMulti={true}
+                            label={"Permissions"}
+                            errorMsg={t(errors.permissions as string)}
+                            placeHolder='Select Permissions'
+                        />
+                    </Box>
+                    <DialogActions >
+                        <CustomButton
+                            fullWidth={true}
+                            variant='contained'
+                            disabled={isLoading}
+                            loading={isLoading}
+                            type='submit'
+                        >
+                            {t(`Update`)}
+                        </CustomButton>
+
+                        <CustomButton
+                            fullWidth={true}
+                            type="button"
+                            variant='outlined'
+                            onClick={closeModal}
+                        >
+                            Cancel
+                        </CustomButton>
+                    </DialogActions>
                 </Box>
-                <DialogActions >
-                    <CustomButton
-                        fullWidth={true}
-                        variant='contained'
-                        disabled={isLoading}
-                        loading={isLoading}
-                        type='submit'
-                    >
-                        {t(`Update`)}
-                    </CustomButton>
-
-                    <CustomButton
-                        fullWidth={true}
-                        type="button"
-                        variant='outlined'
-                        onClick={closeModal}
-                    >
-                        Cancel
-                    </CustomButton>
-                </DialogActions>
-            </Box>
-        </form>
-    </>)
+            </form>
+        </>
+    )
 }
 
 

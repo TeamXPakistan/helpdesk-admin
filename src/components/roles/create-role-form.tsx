@@ -80,7 +80,7 @@ const CreateRoleForm = ({ closeModal }: propTypes) => {
 
                     <CustomSelect
                         name="permissions"
-                        list={permissions?.permissions.data.map((permission) => ({ label: permission.name, value: permission.id }))}
+                        list={permissions?.permissions?.data.map((permission) => ({ label: permission.name, value: permission.id }))}
                         value={values?.permissions}
                         //@ts-ignore
                         onChange={(val, { action }) => {

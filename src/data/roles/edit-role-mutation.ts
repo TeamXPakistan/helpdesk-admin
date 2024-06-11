@@ -11,7 +11,7 @@ export const useUpdateRoleMutation = () => {
     const queryClient = useQueryClient();
     return useMutation(
         (roleInput: UpdateRoleInput) =>
-            roles.updateRole(`${API_ENDPOINTS.UPDATE_ROLE}/${roleInput._id}`, roleInput),
+            roles.updateRole(`${API_ENDPOINTS.UPDATE_ROLE}/${roleInput.id}`, roleInput),
         {
             onSuccess: () => {
                 toast.success(t("Role updated successfully"), { duration: 4000 });

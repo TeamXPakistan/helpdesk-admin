@@ -198,7 +198,7 @@ export type PermissionInput = {
 }
 
 export type UpdateRoleInput = {
-  _id: Scalars['ID'];
+  id?: Scalars['ID'];
   name: Scalars['String'];
   permissions: Maybe<Scalars['String'][]>;
 };

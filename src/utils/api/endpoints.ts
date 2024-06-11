@@ -55,7 +55,6 @@ export const API_ENDPOINTS = {
   UPDATE_ORDER_STATUS: '/order/merchant/update/status',
   CANCEL_ORDER: '/order/cancel',
   ROLES: '/role/all',
-  SINGLE_ROLE: '/role',
   CREATE_ROLE: '/role/create',
   UPDATE_ROLE: '/role/update/role',
   DELETE_ROLE: '/role/delete',
@@ -90,5 +89,6 @@ export const API_ENDPOINTS = {
   DELETE_PERMISSION: '/permission/delete',
   PERMISSIONS: '/permission/all',
   SINGLE_PERMISSION: '/permission/get',
-  UPDATE_PERMISSION: '/permission/update'
+  UPDATE_PERMISSION: '/permission/update',
+  SINGLE_ROLE: '/role/get'
 }
