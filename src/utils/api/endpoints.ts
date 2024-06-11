@@ -58,7 +58,7 @@ export const API_ENDPOINTS = {
   SINGLE_ROLE: '/role',
   CREATE_ROLE: '/role/create',
   UPDATE_ROLE: '/role/update/role',
-  DELETE_ROLE: '/role/remove',
+  DELETE_ROLE: '/role/delete',
   ADMIN_STAFFS: '/role/all/staff',
   ADMIN_STAFF: '/role/single/staff',
   CREATE_ADMIN_STAFF: '/role/create/staff',
