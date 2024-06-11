@@ -8,6 +8,6 @@ export const ROUTES = {
   ACCESS_DENIED: '/401',
   SETTINGS: '/settings',
   HELPER: '/helpers',
-  ROLES: '/roles',
-  STAFF: '/staff'
+  ROLES: '/management/roles',
+  STAFF: '/management/staff'
 }

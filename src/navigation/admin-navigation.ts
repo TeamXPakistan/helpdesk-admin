@@ -1,5 +1,5 @@
 // ** Type import
-import { superAdmin_and_AdminStaff } from '@utils/auth-utils'
+import { superAdminOnly, superAdmin_and_AdminStaff } from '@utils/auth-utils'
 import { AdminStaffPermissions } from '@utils/constants'
 import { ROUTES } from '@utils/routes'
 import { VerticalNavItemsType } from 'src/@core/layouts/types'
@@ -29,17 +29,17 @@ const adminNavigation = (): VerticalNavItemsType => {
     {
       title: 'common:nav-admin-text-role-based',
       icon: 'flowbite:user-settings-solid',
-      allowedRoles: superAdmin_and_AdminStaff,
+      allowedRoles: superAdminOnly,
       children: [
         {
           title: 'common:nav-admin-text-roles',
           path: ROUTES.ROLES,
-          allowedRoles: superAdmin_and_AdminStaff,
+          allowedRoles: superAdminOnly,
         },
         {
           title: 'common:nav-admin-text-staff',
           path: ROUTES.STAFF,
-          allowedRoles: superAdmin_and_AdminStaff,
+          allowedRoles: superAdminOnly,
         }
       ]
     },
