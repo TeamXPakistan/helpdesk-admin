@@ -1,3 +1,4 @@
+import HelpersUsersFeedbackReviewsModal from '@components/helpers/helpers-users-feedback-reviews-modal';
 import { useModal } from '@store/apps/modal';
 import dynamic from 'next/dynamic';
 
@@ -17,6 +18,7 @@ const ManagedModal = () => {
             {view === "EDIT_ROLE_VIEW" && < EditRoleView />}
             {view === "USER_STATUS_MODAL" && <UserStatusModal />}
             {view === "HELPER_STATUS_MODAL" && <HelperStatusModal />}
+            {view === "HELPERS_USERS_FEEDBACK_REVIEWS_MODAL" && <HelpersUsersFeedbackReviewsModal />}
         </>
     );
 };

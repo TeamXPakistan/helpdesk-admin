@@ -23,6 +23,7 @@ type ModalStatetypes = {
     "PROCESS_WITHDRAW_REQUEST" |
     "USER_STATUS_MODAL" |
     "HELPER_STATUS_MODAL" |
+    "HELPERS_USERS_FEEDBACK_REVIEWS_MODAL" |
     "",
 }
 

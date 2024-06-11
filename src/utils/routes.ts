@@ -7,5 +7,8 @@ export const ROUTES = {
   NETWORK_ERROR: '/500',
   ACCESS_DENIED: '/401',
   SETTINGS: '/settings',
-  HELPER: '/helpers'
+  HELPER: '/helpers',
+  USERS_FEEDBACK: '/feedback-and-reviews/users-feedback',
+  HELPERS_FEEDBACK: '/feedback-and-reviews/helpers-feedback'
+
 }

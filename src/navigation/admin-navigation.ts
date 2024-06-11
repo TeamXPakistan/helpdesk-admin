@@ -23,26 +23,23 @@ const adminNavigation = (): VerticalNavItemsType => {
       path: ROUTES.HELPER,
       allowedRoles: superAdmin_and_AdminStaff,
     },
-    // {
-    //   title: 'common:nav-admin-text-drivers',
-    //   icon: 'ic:twotone-directions-bike',
-    //   allowedRoles: superAdmin_and_AdminStaff,
-    //   adminStaffPermissions: [AdminStaffPermissions.DRIVERS, AdminStaffPermissions.PARCELS],
-    //   children: [
-    //     {
-    //       title: 'common:nav-admin-text-drivers-all-drivers',
-    //       path: ROUTES.DRIVERS,
-    //       allowedRoles: superAdmin_and_AdminStaff,
-    //       adminStaffPermissions: [AdminStaffPermissions.DRIVERS]
-    //     },
-    //     {
-    //       title: 'common:nav-admin-text-drivers-parcels',
-    //       path: ROUTES.PARCELS,
-    //       allowedRoles: superAdmin_and_AdminStaff,
-    //       adminStaffPermissions: [AdminStaffPermissions.PARCELS]
-    //     }
-    //   ]
-    // },
+    {
+      title: 'common:nav-admin-text-feedback-and-review',
+      icon: 'fa-solid:thumbs-up',
+      allowedRoles: superAdmin_and_AdminStaff,
+      children: [
+        {
+          title: 'common:nav-admin-text-users-feedback',
+          path: ROUTES.USERS_FEEDBACK,
+          allowedRoles: superAdmin_and_AdminStaff,
+        },
+        {
+          title: 'common:nav-admin-text-helpers-feedback',
+          path: ROUTES.HELPERS_FEEDBACK,
+          allowedRoles: superAdmin_and_AdminStaff,
+        }
+      ]
+    },
   ]
 }
 

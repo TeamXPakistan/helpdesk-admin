@@ -88,7 +88,6 @@ const AppBarContent = (props: Props) => {
       </Box>
       <Box className='actions-right'
         sx={{ display: 'flex', alignItems: 'center' }}>
-        <Icon fontSize='22px' icon='tabler:world' />
         <LanguageDropdown settings={settings} saveSettings={saveSettings} />
         <>
           <NotificationDropdown settings={settings} notifications={notifications} />

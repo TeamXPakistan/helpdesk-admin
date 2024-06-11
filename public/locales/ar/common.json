@@ -143,5 +143,8 @@
     "vendor-profile": "ملف تعريف البائع",
     "view-file": "استعراض الملف",
     "nav-admin-text-user": "User",
-    "nav-admin-text-helper": "Helper"
+    "nav-admin-text-helper": "Helper",
+    "nav-admin-text-feedback-and-review": "Feedback and Review",
+    "nav-admin-text-users-feedback": "Users Feedback",
+    "nav-admin-text-helpers-feedback": "Helpers Feedback"
 }
