@@ -160,8 +160,11 @@ export type Notification = {
 
 
 export type Permission = {
-  name: Scalars["String"]
-  _id: Scalars["ID"]
+  id: Scalars['ID'],
+  name: Scalars['String'],
+  moduleName: Scalars['String'],
+  actions: Array<string>
+  createdAt: Scalars['DateTime'],
 }
 
 export type Role = {

@@ -64,7 +64,7 @@ export const API_ENDPOINTS = {
   CREATE_ADMIN_STAFF: '/role/create/staff',
   UPDATE_ADMIN_STAFF: '/role/update/staff',
   DELETE_ADMIN_STAFF: '/role',
-  PERMISSIONS: '/role/list/permissions',
+  PERMISSIONS: '/permission/all',
   NOTIFICATIONS: '/notification/merchant',
   READ_NOTIFICATION: '/notification',
   READ_ALL_NOTIFICATIONS: '/notification/read/all',

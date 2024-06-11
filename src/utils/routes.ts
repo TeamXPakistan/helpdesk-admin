@@ -8,6 +8,7 @@ export const ROUTES = {
   ACCESS_DENIED: '/401',
   SETTINGS: '/settings',
   HELPER: '/helpers',
+  PERMISSIONS: '/management/permissions',
   ROLES: '/management/roles',
   STAFF: '/management/staff'
 }

@@ -1,16 +1,11 @@
 import CustomButton from "@components/common/Button/custom-button";
-import CustomSelect from "@components/common/select/custom-select";
 import CustomTextField1 from "@components/common/text-field/custom-text-field-1";
 import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
 import * as Yup from 'yup'
 import DialogActions from '@mui/material/DialogActions'
-import { usePermissionsQuery } from "@data/permissions/permissions-query";
-import Spinner from "@components/common/spinner/spinner";
-import CustomError from "@components/common/error/custom-error";
 import { Box } from "@mui/system";
 import { useCreateRoleMutation } from "@data/roles/create-role-mutation";
-
 
 type propTypes = {
     closeModal: () => void
@@ -26,14 +21,11 @@ const initialValues: FormValues = {
     permissions: null,
 }
 
-const CreateRoleForm = ({ closeModal }: propTypes) => {
+const CreatePermissionForm = ({ closeModal }: propTypes) => {
 
     const { t } = useTranslation(['form'])
     const { mutate, isLoading } = useCreateRoleMutation()
-    const { data: permissions, isLoading: fetchingPermissions, error: permissionsError } = usePermissionsQuery({
-        limit: 9999,
-        page: 1,
-    });
+
 
     const { handleSubmit, errors, getFieldProps, setFieldValue, values } = useFormik({
         initialValues,
@@ -50,8 +42,6 @@ const CreateRoleForm = ({ closeModal }: propTypes) => {
     })
 
     const handelCreateRole = (values: FormValues, resetForm: any) => {
-
-        console.log(values)
         mutate({
             name: values.name,
             permissions: values.permissions?.map(permission => permission.value)
@@ -65,8 +55,6 @@ const CreateRoleForm = ({ closeModal }: propTypes) => {
         )
     }
 
-    if (fetchingPermissions) return <Spinner />
-    if (permissionsError) return <CustomError errorMsg={permissionsError.message} />
     return (<>
         <form noValidate autoComplete='off' onSubmit={handleSubmit}>
             <Box sx={{ minHeight: "60vh", width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
@@ -80,22 +68,6 @@ const CreateRoleForm = ({ closeModal }: propTypes) => {
                         {...getFieldProps('name')}
                     />
 
-                    <CustomSelect
-                        name="resturantCategory"
-                        list={permissions?.permissions.data.map((permission) => ({ label: permission.name, value: permission.id }))}
-                        value={values?.permissions}
-                        //@ts-ignore
-                        onChange={(val, { action }) => {
-                            if (action === "clear") {
-                                setFieldValue("permissions", [])
-                            }
-                            setFieldValue("permissions", val)
-                        }}
-                        isMulti={true}
-                        label={"Permissions"}
-                        errorMsg={t(errors.permissions as string)}
-                        placeHolder='Select Permissions'
-                    />
                 </Box>
                 <DialogActions >
                     <CustomButton
@@ -123,4 +95,4 @@ const CreateRoleForm = ({ closeModal }: propTypes) => {
 }
 
 
-export default CreateRoleForm;
+export default CreatePermissionForm;

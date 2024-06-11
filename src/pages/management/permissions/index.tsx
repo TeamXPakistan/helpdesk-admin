@@ -12,13 +12,15 @@ import Icon from '@components/common/icon/icon';
 import { useRolesQuery } from '@data/roles/roles-query'
 import { useModal } from '@store/apps/modal'
 import RolesList from '@components/roles/roles-list'
+import { usePermissionsQuery } from '@data/permissions/permissions-query'
+import PermissionsList from '@components/permissions/permissions-list'
 
-const VendorsPage = () => {
+const Permissions = () => {
     const [page, setPage] = useState<number>(1)
     const { openModal } = useModal()
 
 
-    const { data: roles, isLoading, error } = useRolesQuery({
+    const { data: permissions, isLoading, error } = usePermissionsQuery({
         limit: Number(process.env.NEXT_PUBLIC_PAGINATED_QUERY_LIMIT),
         page: page,
     });
@@ -27,43 +29,44 @@ const VendorsPage = () => {
         setPage(value);
     };
 
-
     if (isLoading) return <Spinner />
     if (error) return <CustomError errorMsg={error.message} />
+
     return <>
         <Box
             sx={{ gap: 4, display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', mb: 8 }}
         >
-            <Typography variant='h4' sx={{ color: "text.primary" }}>Roles List</Typography>
+            <Typography variant='h4' sx={{ color: "text.primary" }}>Permissions List</Typography>
             <Box sx={{ gap: 4, display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
                 <CustomButton
                     type="button"
                     variant='contained'
                     fullWidth={false}
-                    onClick={() => openModal({ view: "CREATE_ROLE_VIEW" })}
+                    onClick={() => openModal({ view: "CREATE_PERMISSION_VIEW" })}
                     //@ts-ignore
                     startIcon={<Icon color='white' fontSize='1.625rem' icon={'mdi:add-bold'} />}
                 >
-                    Create Role
+                    Create Permission
                 </CustomButton>
             </Box>
         </Box>
 
         <Card sx={{ borderRadius: 2 }}>
             <CardContent>
-                {/* <RolesList
+                <PermissionsList
                     onPaginationChange={onPageChange}
-                    data={roles?.roles?.data}
-                    paginatorInfo={roles?.roles?.paginatorInfo}
-                /> */}
+                    data={permissions?.permissions?.data}
+                    paginatorInfo={permissions?.permissions?.paginatorInfo}
+                />
             </CardContent>
         </Card>
     </>
 }
 
-VendorsPage.authProps = {
+Permissions.authProps = {
     allowedRoles: superAdminOnly
 }
-VendorsPage.getLayout = (page: ReactNode) => <Adminlayout>{page}</Adminlayout>
 
-export default VendorsPage
+Permissions.getLayout = (page: ReactNode) => <Adminlayout>{page}</Adminlayout>
+
+export default Permissions

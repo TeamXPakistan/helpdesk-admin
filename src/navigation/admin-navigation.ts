@@ -32,6 +32,11 @@ const adminNavigation = (): VerticalNavItemsType => {
       allowedRoles: superAdminOnly,
       children: [
         {
+          title: 'common:nav-admin-text-permissions',
+          path: ROUTES.PERMISSIONS,
+          allowedRoles: superAdminOnly,
+        },
+        {
           title: 'common:nav-admin-text-roles',
           path: ROUTES.ROLES,
           allowedRoles: superAdminOnly,

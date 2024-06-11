@@ -7,11 +7,20 @@ export const USER_DISPLAY = 'User'
 
 export enum AdminStaffPermissions {
     USERS = "users",
-    HELPERS = "helpers"
+    HELPERS = "helpers",
+    REVIEW = "review",
+    FEEDBACK = "feedback"
 }
 
 export const adminStaffPermissionsList = [
     AdminStaffPermissions.USERS,
+]
+
+export const permissionModuleList = [
+    AdminStaffPermissions.USERS,
+    AdminStaffPermissions.HELPERS,
+    AdminStaffPermissions.FEEDBACK,
+    AdminStaffPermissions.REVIEW
 ]
 
 export enum AdminDashboardAnalyticsFilterBy {
