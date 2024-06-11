@@ -6,7 +6,7 @@ export const SUPER_ADMIN_DISPLAY = 'Admin'
 export const USER_DISPLAY = 'User'
 
 export enum AdminStaffPermissions {
-    USERS = "users",
+    USERS = "user",
     HELPERS = "helpers",
     REVIEW = "review",
     FEEDBACK = "feedback"
@@ -28,4 +28,11 @@ export enum AdminDashboardAnalyticsFilterBy {
     WEEKLY = "weekly",
     YEARLY = "yearly",
     MONTHLY = "monthly",
+}
+
+export enum RouteActions {
+    GET = "GET",
+    POST = "POST",
+    DELETE = "DELETE",
+    PUT = "PUT"
 }

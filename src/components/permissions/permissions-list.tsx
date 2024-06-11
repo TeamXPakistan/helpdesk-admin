@@ -8,7 +8,8 @@ import Icon from '@components/common/icon/icon';
 import { Box } from '@mui/system';
 import { useModal } from '@store/apps/modal';
 import CustomChip from 'src/@core/components/mui/chip'
-import { useDeleteRoleMutation } from '@data/roles/delete-role-mutation';
+import { mapRouteActionToLabel } from '@utils/helper-functions';
+import { useDeletePermissionMutation } from '@data/permissions/delete-permission-mutation';
 
 type PropTypes = {
     data: Permission[];
@@ -18,7 +19,7 @@ type PropTypes = {
 
 const PermissionsList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
     const { openModal } = useModal();
-    const { mutate: deleteRole } = useDeleteRoleMutation()
+    const { mutate: deleteRole } = useDeletePermissionMutation()
 
     const permissionColumns: GridColDef[] = [
 
@@ -56,15 +57,15 @@ const PermissionsList = ({ data, onPaginationChange, paginatorInfo }: PropTypes)
             renderCell: ({ row }: { row: Permission }) => {
                 return (
                     <Box >
-                        {row?.actions?.map(permission => <CustomChip label={permission} color="secondary" sx={{ m: 1 }} />)}
+                        {row?.actions?.map(permission => <CustomChip label={mapRouteActionToLabel(permission)} color="secondary" sx={{ m: 1 }} />)}
                     </Box>
                 )
             }
         },
         {
             flex: 0.1,
-            field: 'title4',
-            headerName: 'Action',
+            field: 'action',
+            headerName: 'Actions',
             sortable: false,
             headerAlign: "right",
             align: "right",
@@ -75,7 +76,7 @@ const PermissionsList = ({ data, onPaginationChange, paginatorInfo }: PropTypes)
                             title='Delete'
                             color='inherit'
                             aria-haspopup='true'
-                            onClick={() => openModal({ view: "GENERAL_DELETE_VIEW", data: { handelDelete: () => deleteRole({ roleId: row?.id }) } })}
+                            onClick={() => openModal({ view: "GENERAL_DELETE_VIEW", data: { handelDelete: () => deleteRole({ permissionId: row?.id }) } })}
                         >
                             <Icon color='red' fontSize='1.225rem' icon={'octicon:trash-24'} />
                         </IconButton>

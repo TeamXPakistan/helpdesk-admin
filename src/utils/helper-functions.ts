@@ -1,3 +1,5 @@
+import { RouteActions } from "./constants";
+
 export const downloadPDF = (trade_license_image: string, shopName: string) => {
     fetch(trade_license_image, {
         method: 'GET',
@@ -20,6 +22,21 @@ export const downloadPDF = (trade_license_image: string, shopName: string) => {
             console.log(err);
         });
 }
+
+export const mapRouteActionToLabel = (val: string) => {
+    switch (val) {
+        case RouteActions.GET:
+            return 'READ';
+        case RouteActions.POST:
+            return 'CREATE';
+        case RouteActions.PUT:
+            return 'UPDATE';
+        case RouteActions.DELETE:
+            return 'DELETE';
+        default:
+            return 'UNKNOWN';
+    }
+};
 
 export const fullName = (firstName: string | null | undefined, lastName: string | null | undefined) => {
     if (firstName || lastName) {

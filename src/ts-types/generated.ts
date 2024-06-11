@@ -178,6 +178,12 @@ export type CreateRoleInput = {
   permissions: Maybe<Scalars['String'][]>;
 };
 
+export type PermissionInput = {
+  name: Scalars['String'],
+  moduleName?: Scalars['String'] | null,
+  actions?: Array<string> | null
+}
+
 export type UpdateRoleInput = {
   _id: Scalars['ID'];
   name: Scalars['String'];
