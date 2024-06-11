@@ -11,6 +11,10 @@ class Permissions extends Base<any, any> {
         return this.create(url, variables)
     }
 
+    updatePermission = async (url: string, variables: PermissionInput) => {
+        return this.update(url, variables)
+    }
+
     getSinglePermission = async (url: string) => {
         return this.find(url)
     }

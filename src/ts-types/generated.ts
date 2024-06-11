@@ -179,6 +179,7 @@ export type CreateRoleInput = {
 };
 
 export type PermissionInput = {
+  id?: Scalars['ID'],
   name: Scalars['String'],
   moduleName?: Scalars['String'] | null,
   actions?: Array<string> | null

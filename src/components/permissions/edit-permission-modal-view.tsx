@@ -7,6 +7,7 @@ import { useRoleQuery } from '@data/roles/role-query'
 import Spinner from '@components/common/spinner/spinner'
 import CustomError from '@components/common/error/custom-error'
 import { useSinglePermissionQuery } from '@data/permissions/single-permission-query'
+import EditPermissionForm from './edit-permission-form'
 
 const EditPermissionView = () => {
     const { closeModal, modalState } = useModal();
@@ -35,7 +36,7 @@ const EditPermissionView = () => {
                     <>
                         <DialogTitle align='center' typography={"h5"} id='alert-dialog-title'>Edit Permission</DialogTitle>
                         <DialogContent>
-                            {/* <EditRoleForm closeModal={handleClose} formData={data} /> */}
+                            <EditPermissionForm closeModal={handleClose} formData={data} />
                         </DialogContent>
                     </>
                 }

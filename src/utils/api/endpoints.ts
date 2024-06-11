@@ -89,5 +89,6 @@ export const API_ENDPOINTS = {
   CREATE_PERMISSION: 'permission/create',
   DELETE_PERMISSION: '/permission/delete',
   PERMISSIONS: '/permission/all',
-  SINGLE_PERMISSION: '/permission/get'
+  SINGLE_PERMISSION: '/permission/get',
+  UPDATE_PERMISSION: '/permission/update'
 }
