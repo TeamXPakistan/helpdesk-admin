@@ -53,7 +53,7 @@ const EditStaffForm = ({ formData }: PropType) => {
                 id: formData?.id,
                 email: values?.email,
                 phone: values?.phone,
-                role: values?.role?.value,
+                roleId: values?.role?.value,
                 username: values?.username,
                 firstName: values?.firstName,
                 lastName: values?.lastName,

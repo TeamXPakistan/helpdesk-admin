@@ -221,6 +221,7 @@ export type UpdateAdminStaffInput = {
   email?: Scalars['String'],
   phone?: Scalars['String'] | null,
   role?: Scalars['String'],
+  roleId?: Scalars['String'],
   username?: Scalars['String'],
   firstName?: Scalars['String'],
   lastName?: Scalars['String'],
