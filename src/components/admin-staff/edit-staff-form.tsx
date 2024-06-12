@@ -40,9 +40,9 @@ const EditStaffForm = ({ formData }: PropType) => {
         lastName: formData?.lastName,
     }
 
-
     const { handleSubmit, errors, getFieldProps, setFieldValue, values } = useFormik({
         initialValues,
+        enableReinitialize: true,
         validationSchema: updateStaffSchema,
         onSubmit: (values, { resetForm }) => handelUpdateStaff(values, resetForm)
     })
@@ -86,6 +86,7 @@ const EditStaffForm = ({ formData }: PropType) => {
                 <CustomTextField1
                     errorMsg={t(errors?.username as string)}
                     fullWidth
+                    disabled
                     sx={{ mb: 5 }}
                     label={t(`User Name`)}
                     {...getFieldProps('username')}
