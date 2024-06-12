@@ -12,7 +12,7 @@ const fetchStaff = async ({ queryKey }: QueryParamsType) => {
         page,
         text,
     } = queryKey[1] as QueryParamType;
-    const url = `${API_ENDPOINTS.ADMIN_STAFFS}?limit=${limit}&page=${page}&${text ? `text=${text}` : ""}`
+    const url = `${API_ENDPOINTS.ADMIN_STAFFS}?limit=${limit}&page=${page}${text ? `&text=${text}` : ""}`
     const { data } = await adminStaff.getAllStaff(url)
     return { staffs: { data: data?.data, paginatorInfo: data?.meta } }
 }
