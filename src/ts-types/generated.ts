@@ -219,7 +219,7 @@ export type CreateAdminStaffInput = {
 export type UpdateAdminStaffInput = {
   id: Scalars['ID'] | undefined;
   email?: Scalars['String'],
-  contact?: Scalars['String'] | null,
+  phone?: Scalars['String'] | null,
   role?: Scalars['String'],
   username?: Scalars['String'],
   firstName?: Scalars['String'],

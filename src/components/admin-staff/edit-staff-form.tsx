@@ -15,7 +15,7 @@ type PropType = {
 
 type FormValues = {
     email: string | undefined;
-    contact: string | null | undefined;
+    phone: string | null | undefined;
     role: { label: string; value: string } | null;
     username: string | undefined;
     firstName: string | undefined;
@@ -33,7 +33,7 @@ const EditStaffForm = ({ formData }: PropType) => {
 
     const initialValues: FormValues = {
         email: formData?.email,
-        contact: formData?.phone,
+        phone: formData?.phone,
         role: { label: formData?.role?.name as string, value: formData?.role?.id as string },
         username: formData?.username,
         firstName: formData?.firstName,
@@ -52,7 +52,7 @@ const EditStaffForm = ({ formData }: PropType) => {
             {
                 id: formData?.id,
                 email: values?.email,
-                contact: values?.contact,
+                phone: values?.phone,
                 role: values?.role?.value,
                 username: values?.username,
                 firstName: values?.firstName,
@@ -93,16 +93,17 @@ const EditStaffForm = ({ formData }: PropType) => {
                 <CustomTextField1
                     errorMsg={t(errors?.email as string)}
                     fullWidth
+                    disabled
                     sx={{ mb: 4 }}
                     label={t(`Email`)}
                     {...getFieldProps('email')}
                 />
                 <PhoneNumberField
                     label={t(`form:form-register-phone-label`)}
-                    errorMsg={t(errors?.contact as string)}
-                    value={values?.contact}
+                    errorMsg={t(errors?.phone as string)}
+                    value={values?.phone}
                     placeholder={t(`form:form-register-phone-label`)}
-                    onChange={value => setFieldValue('contact', value)}
+                    onChange={value => setFieldValue('phone', value)}
                 />
 
                 <CustomSelect

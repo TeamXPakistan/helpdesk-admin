@@ -4,7 +4,7 @@ const updateStaffSchema = Yup.object().shape({
     email: Yup.string()
         .required('Email is required')
         .email('Invalid email address'),
-    contact: Yup.string()
+    phone: Yup.string()
         .required('Phone number is required')
         .min(12, 'Phone number must be at least 12 characters')
         .max(15, 'Phone number can be at most 15 characters')

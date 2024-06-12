@@ -25,7 +25,7 @@ const StaffList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
     const staffColumn: GridColDef[] = [
 
         {
-            width: 200,
+            width: 250,
             field: 'name',
             headerName: 'Name',
             sortable: false,
@@ -34,21 +34,21 @@ const StaffList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
             renderCell: ({ row }: { row: User }) => <Typography sx={{ color: 'text.secondary' }}>{fullName(row?.firstName, row?.lastName)}</Typography>
         },
         {
-            width: 200,
+            width: 250,
             field: 'email',
             headerName: 'Email',
             sortable: false,
             renderCell: ({ row }: { row: User }) => <Typography sx={{ color: 'text.secondary' }}>{row?.email ?? "-"}</Typography>
         },
         {
-            width: 200,
+            width: 250,
             field: 'contact',
             headerName: 'Phone',
             sortable: false,
-            renderCell: ({ row }: { row: User }) => <Typography sx={{ color: 'text.secondary' }}>{row?.contact ?? "-"}</Typography>
+            renderCell: ({ row }: { row: User }) => <Typography sx={{ color: 'text.secondary' }}>{row?.phone ?? "-"}</Typography>
         },
         {
-            width: 200,
+            width: 250,
             field: 'dynamicRole',
             headerName: 'Role',
             sortable: false,
@@ -56,7 +56,7 @@ const StaffList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
         },
 
         {
-            width: 200,
+            width: 250,
             field: 'action',
             headerName: 'Action',
             sortable: false,
