@@ -9,6 +9,7 @@ import { Box } from '@mui/system';
 import { useModal } from '@store/apps/modal';
 import { useRouter } from 'next/router'
 import { useDeleteStaffMutation } from '@data/admin-staff/delete-staff-mutation';
+import { fullName } from '@utils/helper-functions';
 
 type PropTypes = {
     data: User[];
@@ -21,7 +22,7 @@ const StaffList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
     const router = useRouter()
     const { mutate: deleteStaff } = useDeleteStaffMutation()
 
-    const defaultColumns2: GridColDef[] = [
+    const staffColumn: GridColDef[] = [
 
         {
             width: 200,
@@ -30,15 +31,13 @@ const StaffList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
             sortable: false,
             headerAlign: "left",
             align: "left",
-            renderCell: ({ row }: { row: Role }) => <Typography sx={{ color: 'text.secondary' }}>{row?.name ?? "-"}</Typography>
+            renderCell: ({ row }: { row: User }) => <Typography sx={{ color: 'text.secondary' }}>{fullName(row?.firstName, row?.lastName)}</Typography>
         },
         {
             width: 200,
             field: 'email',
             headerName: 'Email',
             sortable: false,
-            headerAlign: "center",
-            align: "center",
             renderCell: ({ row }: { row: User }) => <Typography sx={{ color: 'text.secondary' }}>{row?.email ?? "-"}</Typography>
         },
         {
@@ -46,8 +45,6 @@ const StaffList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
             field: 'contact',
             headerName: 'Phone',
             sortable: false,
-            headerAlign: "center",
-            align: "center",
             renderCell: ({ row }: { row: User }) => <Typography sx={{ color: 'text.secondary' }}>{row?.contact ?? "-"}</Typography>
         },
         {
@@ -55,14 +52,12 @@ const StaffList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
             field: 'dynamicRole',
             headerName: 'Role',
             sortable: false,
-            headerAlign: "center",
-            align: "center",
-            renderCell: ({ row }: { row: User }) => <Typography sx={{ color: 'text.secondary' }}>{row?.dynamicRole?.name ?? "-"}</Typography>
+            renderCell: ({ row }: { row: User }) => <Typography sx={{ color: 'text.secondary' }}>{row?.role?.name ?? "-"}</Typography>
         },
 
         {
             width: 200,
-            field: 'title4',
+            field: 'action',
             headerName: 'Action',
             sortable: false,
             headerAlign: "right",
@@ -74,7 +69,7 @@ const StaffList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
                             title='Delete'
                             color='inherit'
                             aria-haspopup='true'
-                            onClick={() => openModal({ view: "GENERAL_DELETE_VIEW", data: { handelDelete: () => deleteStaff({ staffId: row?._id }) } })}
+                            onClick={() => openModal({ view: "GENERAL_DELETE_VIEW", data: { handelDelete: () => deleteStaff({ staffId: row?.id }) } })}
                         >
                             <Icon color='red' fontSize='1.225rem' icon={'octicon:trash-24'} />
                         </IconButton>
@@ -83,7 +78,7 @@ const StaffList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
                             color='inherit'
                             title='Edit'
                             aria-haspopup='true'
-                            onClick={() => router.push(`${router.asPath}/edit/${row._id}`)}
+                            onClick={() => router.push(`${router.asPath}/edit/${row.id}`)}
                         >
                             <Icon color='green' fontSize='1.225rem' icon={'nimbus:edit'} />
                         </IconButton>
@@ -95,20 +90,21 @@ const StaffList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
 
     return <>
         <DataGrid
-            sx={{ "& .css-q360zr-MuiDataGrid-columnHeaders": { backgroundColor: "transparent" }, height: "80vh" }}
+            autoHeight
             disableColumnMenu
-            rowHeight={54}
-            rows={data.map((value) => ({ id: value._id, ...value })) ?? []}
-            columns={defaultColumns2}
+            rows={data.map((value) => ({ ...value })) ?? []}
+            columns={staffColumn}
             hideFooterPagination={true}
+            hideFooter={true}
         />
         <Stack
             spacing={2}
+            mt={5}
             sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center' }}
         >
             <Pagination
                 color="primary"
-                count={paginatorInfo.totalPages}
+                count={paginatorInfo.lastPage}
                 page={paginatorInfo.page}
                 onChange={onPaginationChange}
             />

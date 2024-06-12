@@ -16,7 +16,7 @@ const CreateStaff = () => {
                     <Grid item xs={12} md={5} lg={4}>
                         <CardHeader
                             title='Create Staff'
-                            subheader="Create staff by assigning role and permissions from here"
+                            subheader="Create staff by assigning role from here"
                             sx={{ p: 0 }}
                             titleTypographyProps={{ fontSize: "1.1rem !important" }}
                         />
@@ -31,8 +31,11 @@ const CreateStaff = () => {
         </Card >
     </>
 }
+
 CreateStaff.authProps = {
     allowedRoles: superAdminOnly
 }
+
 CreateStaff.getLayout = (page: ReactNode) => <AdminLayout>{page}</AdminLayout>
+
 export default CreateStaff;

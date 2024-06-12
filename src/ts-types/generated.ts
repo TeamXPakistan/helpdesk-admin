@@ -204,11 +204,14 @@ export type UpdateRoleInput = {
 };
 
 export type CreateAdminStaffInput = {
-  name: Scalars['String'];
-  email: Scalars['String'];
-  contact: Scalars['String'];
-  dynamicRole: Maybe<Scalars['ID']>;
-};
+  email: Scalars['String'],
+  contact: Scalars['String']
+  role?: Scalars['ID']
+  password: Scalars['String']
+  username: Scalars['String']
+  firstName: Scalars['String']
+  lastName: Scalars['String']
+}
 
 export type UpdateAdminStaffInput = {
   id: Scalars['ID'] | undefined;

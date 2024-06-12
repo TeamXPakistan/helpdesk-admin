@@ -10,23 +10,30 @@ import { useCreateStaffMutation } from "@data/admin-staff/create-staff-mutation"
 
 
 type FormValues = {
-    name: string;
     email: string;
     contact: string;
-    dynamicRole: { label: string; value: string } | null
+    role: { label: string; value: string } | null;
+    password: string;
+    username: string;
+    firstName: string;
+    lastName: string;
 }
 
 const initialValues: FormValues = {
-    name: "",
     email: "",
     contact: "",
-    dynamicRole: null,
+    role: null,
+    password: "",
+    username: "",
+    firstName: "",
+    lastName: "",
 }
 
 const CreateStaffForm = () => {
 
     const { t } = useTranslation(['form'])
-    const { mutate, isLoading } = useCreateStaffMutation()
+    const { mutate: createStaff, isLoading } = useCreateStaffMutation();
+
     const { data: allRoles, isLoading: fetchingRoles } = useRolesQuery({
         limit: 9999,
         page: 1,
@@ -39,14 +46,15 @@ const CreateStaffForm = () => {
     })
 
     const handelCreateStaff = (values: FormValues, resetForm: any) => {
-
-        console.log(values)
-        mutate(
+        createStaff(
             {
-                name: values?.name,
-                contact: values?.contact,
                 email: values?.email,
-                dynamicRole: values?.dynamicRole?.value
+                contact: values?.contact,
+                role: values?.role?.value,
+                password: values?.password,
+                username: values?.username,
+                firstName: values?.firstName,
+                lastName: values?.lastName,
             },
             {
                 onSuccess: () => {
@@ -61,22 +69,40 @@ const CreateStaffForm = () => {
         <>
             <form noValidate autoComplete='off' onSubmit={handleSubmit}>
                 <CustomTextField1
-                    errorMsg={t(errors?.name as string)}
+                    errorMsg={t(errors?.firstName as string)}
                     fullWidth
                     sx={{ mb: 5 }}
-                    label={t(`Name`)}
-                    placeholder={t(`Full Name`) as string}
-                    {...getFieldProps('name')}
+                    label={t(`First Name`)}
+                    {...getFieldProps('firstName')}
+                />
+                <CustomTextField1
+                    errorMsg={t(errors?.lastName as string)}
+                    fullWidth
+                    sx={{ mb: 5 }}
+                    label={t(`Last Name`)}
+                    {...getFieldProps('lastName')}
+                />
+                <CustomTextField1
+                    errorMsg={t(errors?.username as string)}
+                    fullWidth
+                    sx={{ mb: 5 }}
+                    label={t(`User Name`)}
+                    {...getFieldProps('username')}
                 />
                 <CustomTextField1
                     errorMsg={t(errors?.email as string)}
                     fullWidth
                     sx={{ mb: 4 }}
-                    label={t(`form:form-register-email-label`)}
-                    placeholder={t(`form:form-register-email-label`) as string}
+                    label={t(`Email`)}
                     {...getFieldProps('email')}
                 />
-
+                <CustomTextField1
+                    errorMsg={t(errors?.password as string)}
+                    fullWidth
+                    sx={{ mb: 4 }}
+                    label={t(`Password`)}
+                    {...getFieldProps('password')}
+                />
                 <PhoneNumberField
                     label={t(`form:form-register-phone-label`)}
                     errorMsg={t(errors?.contact as string)}
@@ -86,18 +112,19 @@ const CreateStaffForm = () => {
                 />
 
                 <CustomSelect
-                    name="dynamicRole"
-                    list={allRoles?.roles.data.map((role) => ({ label: role.name, value: role._id }))}
-                    value={values?.dynamicRole}
+                    name="role"
+                    list={allRoles?.roles.data.map((role) => ({ label: role.name, value: role.id }))}
+                    value={values?.role}
+                    //@ts-ignore
                     onChange={(val, { action }) => {
                         if (action === "clear") {
-                            setFieldValue("dynamicRole", null)
+                            setFieldValue("role", null)
                         }
-                        setFieldValue("dynamicRole", val)
+                        setFieldValue("role", val)
                     }}
                     isMulti={false}
                     label={"Role"}
-                    errorMsg={t(errors?.dynamicRole as string)}
+                    errorMsg={t(errors?.role as string)}
                     placeHolder='Select role'
                     isLoading={fetchingRoles}
                 />
