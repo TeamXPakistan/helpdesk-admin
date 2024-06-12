@@ -232,3 +232,47 @@ export type ExcelExport = {
   startDate: Scalars['Date'] | null
   endDate: Scalars['Date'] | null
 }
+export type FEEDBACK = {
+  id?: Scalars['ID']
+  feedbackType?: Scalars['String']
+  message?: Scalars['String']
+  reviewee?: {
+    id?: Scalars['ID']
+    username?: Scalars['String']
+    email?: Scalars['String']
+    phone?: Scalars['String']
+  }
+  revieweeId?: Scalars['String']
+  updatedAt?: Scalars['Date']
+  createdAt?: Scalars['Date']
+  user?: {
+    id?: Scalars['ID']
+    username?: Scalars['String']
+    email?: Scalars['String']
+    phone?: Scalars['String']
+  }
+  userId?: Scalars['ID']
+
+}
+export type REVIEW = {
+  id?: Scalars['ID']
+  rating?: Scalars['String']
+  message?: Scalars['String']
+  reviewee?: {
+    id?: Scalars['ID']
+    username?: Scalars['String']
+    email?: Scalars['String']
+    phone?: Scalars['String']
+  }
+  revieweeId?: Scalars['String']
+  updatedAt?: Scalars['Date']
+  createdAt?: Scalars['Date']
+  user?: {
+    id?: Scalars['ID']
+    username?: Scalars['String']
+    email?: Scalars['String']
+    phone?: Scalars['String']
+  }
+  userId?: Scalars['ID']
+
+}

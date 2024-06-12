@@ -43,7 +43,8 @@ const UsersList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
             field: 'email',
             headerName: 'Email',
             sortable: false,
-            renderCell: ({ row }: { row: User }) => <Typography sx={{ color: 'text.secondary' }}>{row?.email ?? "-"}</Typography>
+            renderCell: ({ row }: { row: User }) =>
+                <Typography sx={{ color: 'text.secondary' }}>{row?.email ?? "-"}</Typography>
         },
         {
             flex: 0.25,

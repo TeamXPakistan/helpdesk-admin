@@ -86,5 +86,8 @@ export const API_ENDPOINTS = {
   USER_STATUS: 'users/ban',
   HELPERS_LIST: 'helpers/findAll',
   SINGLE_HELPER: 'helpers/find',
-  HELPER_STATUS: 'helper/ban'
+  HELPER_STATUS: 'helper/ban',
+  FEEDBACK: 'feedback/getFeedback',
+  REVIEWS: 'feedback/getReviews'
+
 }
