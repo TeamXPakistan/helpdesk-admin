@@ -88,16 +88,19 @@ export type User = {
   email?: Scalars['String']
   firstName?: Scalars['String'],
   lastName?: Scalars['String']
+  password?: Scalars['String']
+  username?: Scalars['String']
   contact?: Scalars['String']
   roles?: Scalars['String']
   token?: Scalars['String']
   verified?: Scalars['String']
   profilePic: Scalars['String']
-  phone?: Scalars['Int']
+  phone?: Scalars['String']
   genderPreference?: Scalars['String']
   isActive?: Scalars['Boolean']
   location?: Scalars['String']
   role?: {
+    id?: Scalars['ID']
     name?: Scalars['String']
     roles?: Array<string>
   }
@@ -215,8 +218,12 @@ export type CreateAdminStaffInput = {
 
 export type UpdateAdminStaffInput = {
   id: Scalars['ID'] | undefined;
-  name: Scalars['String'] | undefined;
-  dynamicRole: Scalars['ID'];
+  email?: Scalars['String'],
+  contact?: Scalars['String'] | null,
+  role?: Scalars['String'],
+  username?: Scalars['String'],
+  firstName?: Scalars['String'],
+  lastName?: Scalars['String'],
 };
 
 export type UserAnalytics = {

@@ -10,9 +10,10 @@ export const useUpdateStaffMutation = () => {
     const { t } = useTranslation();
     const router = useRouter();
     const queryClient = useQueryClient();
+
     return useMutation(
         (staffInput: UpdateAdminStaffInput) =>
-            adminStaff.updateStaff(API_ENDPOINTS.UPDATE_ADMIN_STAFF, staffInput),
+            adminStaff.updateStaff(`${API_ENDPOINTS.UPDATE_ADMIN_STAFF}/${staffInput?.id}`, staffInput),
         {
             onSuccess: () => {
                 toast.success(t("Staff updated successfully"), { duration: 4000 });

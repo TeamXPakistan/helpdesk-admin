@@ -1,7 +1,7 @@
 import { CreateAdminStaffInput, UpdateAdminStaffInput } from "@ts-types/generated";
 import Base from "./base";
 
-class AdminStaff extends Base<CreateAdminStaffInput, UpdateAdminStaffInput>{
+class AdminStaff extends Base<CreateAdminStaffInput, UpdateAdminStaffInput> {
 
     getAllStaff = async (url: string) => {
         return this.all(url)
@@ -13,7 +13,7 @@ class AdminStaff extends Base<CreateAdminStaffInput, UpdateAdminStaffInput>{
         return this.create(url, variables)
     }
     updateStaff = async (url: string, variables: UpdateAdminStaffInput) => {
-        return this.http<UpdateAdminStaffInput>(url, "patch", variables)
+        return this.http<UpdateAdminStaffInput>(url, "put", variables)
     }
     deleteStaff = async (url: string) => {
         return this.delete(url);
