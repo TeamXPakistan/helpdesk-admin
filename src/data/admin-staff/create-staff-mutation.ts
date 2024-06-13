@@ -12,7 +12,7 @@ export const useCreateStaffMutation = () => {
     const queryClient = useQueryClient();
     return useMutation(
         (staffInput: CreateAdminStaffInput) =>
-            adminStaff.createStaff(API_ENDPOINTS.CREATE_ADMIN_STAFF, staffInput),
+            adminStaff.createStaff(`${API_ENDPOINTS.CREATE_ADMIN_STAFF}/${staffInput?.role}`, staffInput),
         {
             onSuccess: () => {
                 toast.success(t("Staff created successfully"), { duration: 4000 });

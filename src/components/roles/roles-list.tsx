@@ -20,7 +20,7 @@ const RolesList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
     const { openModal } = useModal();
     const { mutate: deleteRole } = useDeleteRoleMutation()
 
-    const defaultColumns2: GridColDef[] = [
+    const roleColumns: GridColDef[] = [
 
         {
             flex: 0.1,
@@ -41,15 +41,15 @@ const RolesList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
             renderCell: ({ row }: { row: Role }) => {
                 return (
                     <Box >
-                        {row?.permissions?.map(permission => <CustomChip key={permission?._id} label={permission?.name} color="secondary" sx={{ m: 1 }} />)}
+                        {row?.roles?.map(val => <CustomChip key={val?.permission?.id} label={val?.permission?.name} color="secondary" sx={{ m: 1 }} />)}
                     </Box>
                 )
             }
         },
         {
             flex: 0.1,
-            field: 'title4',
-            headerName: 'Action',
+            field: 'actions',
+            headerName: 'Actions',
             sortable: false,
             headerAlign: "right",
             align: "right",
@@ -60,7 +60,7 @@ const RolesList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
                             title='Delete'
                             color='inherit'
                             aria-haspopup='true'
-                            onClick={() => openModal({ view: "GENERAL_DELETE_VIEW", data: { handelDelete: () => deleteRole({ roleId: row?._id }) } })}
+                            onClick={() => openModal({ view: "GENERAL_DELETE_VIEW", data: { handelDelete: () => deleteRole({ roleId: row?.id }) } })}
                         >
                             <Icon color='red' fontSize='1.225rem' icon={'octicon:trash-24'} />
                         </IconButton>
@@ -69,7 +69,7 @@ const RolesList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
                             color='inherit'
                             title='Edit'
                             aria-haspopup='true'
-                            onClick={() => openModal({ view: "EDIT_ROLE_VIEW", data: { roleId: row?._id } })}
+                            onClick={() => openModal({ view: "EDIT_ROLE_VIEW", data: { roleId: row?.id } })}
                         >
                             <Icon color='green' fontSize='1.225rem' icon={'nimbus:edit'} />
                         </IconButton>
@@ -81,25 +81,21 @@ const RolesList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
 
     return <>
         <DataGrid
-            sx={{
-                "& .css-q360zr-MuiDataGrid-columnHeaders": { backgroundColor: "transparent" }, height: "80vh",
-                '&.MuiDataGrid-root--densityCompact .MuiDataGrid-cell': { py: '4px' },
-                '&.MuiDataGrid-root--densityStandard .MuiDataGrid-cell': { py: '8px' },
-                '&.MuiDataGrid-root--densityComfortable .MuiDataGrid-cell': { py: '11px' },
-            }}
+            autoHeight
             disableColumnMenu
-            getRowHeight={() => 'auto'}
-            rows={data.map((value) => ({ id: value._id, ...value })) ?? []}
-            columns={defaultColumns2}
+            rows={data.map((value) => ({ ...value })) ?? []}
+            columns={roleColumns}
             hideFooterPagination={true}
+            hideFooter={true}
         />
         <Stack
             spacing={2}
+            mt={5}
             sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center' }}
         >
             <Pagination
                 color="primary"
-                count={paginatorInfo.totalPages}
+                count={paginatorInfo.lastPage}
                 page={paginatorInfo.page}
                 onChange={onPaginationChange}
             />

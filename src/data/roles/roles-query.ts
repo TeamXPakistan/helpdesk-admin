@@ -13,8 +13,8 @@ const fetchRoles = async ({ queryKey }: QueryParamsType) => {
         text,
     } = queryKey[1] as QueryParamType;
     const url = `${API_ENDPOINTS.ROLES}?limit=${limit}&page=${page}${text ? `&text=${text}` : ""}`
-    const { data: { docs, ...rest } } = await roles.getAllRoles(url)
-    return { roles: { data: docs, paginatorInfo: rest } }
+    const { data } = await roles.getAllRoles(url)
+    return { roles: { data: data?.data, paginatorInfo: data?.meta } }
 }
 
 const useRolesQuery = (options: QueryParamType) => {

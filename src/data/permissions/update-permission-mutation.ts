@@ -1,24 +1,24 @@
-import { UpdateRoleInput } from "@ts-types/generated";
+import { PermissionInput } from "@ts-types/generated";
 import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { API_ENDPOINTS } from "@utils/api/endpoints";
-import roles from "@repositories/roles";
+import permissions from "@repositories/permissions";
 
-
-export const useUpdateRoleMutation = () => {
+export const useUpdatePermissionMutation = () => {
     const { t } = useTranslation();
     const queryClient = useQueryClient();
+
     return useMutation(
-        (roleInput: UpdateRoleInput) =>
-            roles.updateRole(`${API_ENDPOINTS.UPDATE_ROLE}/${roleInput.id}`, roleInput),
+        (permissionInput: PermissionInput) =>
+            permissions.updatePermission(`${API_ENDPOINTS.UPDATE_PERMISSION}/${permissionInput.id}`, permissionInput),
         {
             onSuccess: () => {
-                toast.success(t("Role updated successfully"), { duration: 4000 });
+                toast.success(t("Permission updated successfully"), { duration: 4000 });
             },
             onSettled: () => {
                 queryClient.invalidateQueries({
-                    queryKey: [API_ENDPOINTS.ROLES]
+                    queryKey: [API_ENDPOINTS.PERMISSIONS]
                 });
             },
             onError: (error: any) => {

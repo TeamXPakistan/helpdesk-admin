@@ -13,8 +13,7 @@ import { useRouter } from 'next/router'
 import StaffList from '@components/admin-staff/staff-list'
 import { useStaffsQuery } from '@data/admin-staff/staffs-query'
 
-
-const VendorsPage = () => {
+const Staff = () => {
     const [page, setPage] = useState<number>(1)
     const router = useRouter();
 
@@ -23,13 +22,13 @@ const VendorsPage = () => {
         page: page,
     });
 
-
     const onPageChange = (event: React.ChangeEvent<unknown>, value: number) => {
         setPage(value);
     };
 
     if (isLoading) return <Spinner />
     if (error) return <CustomError errorMsg={error.message} />
+
     return <>
         <Box
             sx={{ gap: 4, display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', mb: 8 }}
@@ -41,6 +40,7 @@ const VendorsPage = () => {
                     variant='contained'
                     fullWidth={false}
                     onClick={() => router.push(router.asPath + "/create")}
+                    //@ts-ignore
                     startIcon={<Icon color='white' fontSize='1.625rem' icon={'mdi:add-bold'} />}
                 >
                     Create Staff
@@ -60,9 +60,10 @@ const VendorsPage = () => {
     </>
 }
 
-VendorsPage.authProps = {
+Staff.authProps = {
     allowedRoles: superAdminOnly
 }
-VendorsPage.getLayout = (page: ReactNode) => <Adminlayout>{page}</Adminlayout>
 
-export default VendorsPage
+Staff.getLayout = (page: ReactNode) => <Adminlayout>{page}</Adminlayout>
+
+export default Staff

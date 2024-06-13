@@ -27,6 +27,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 import { useQueryClient } from '@tanstack/react-query'
 import { API_ENDPOINTS } from '@utils/api/endpoints'
 import { useTranslation } from 'react-i18next'
+import { fullName } from '@utils/helper-functions'
 
 
 interface Props {
@@ -119,7 +120,7 @@ const UserDropdown = (props: Props) => {
               <Avatar alt={authValues.user?.name} src={authValues?.user?.profilePic} sx={{ width: '2.5rem', height: '2.5rem', borderRadius: "20%" }} />
             </Badge>
             <Box sx={{ display: 'flex', ml: 2.5, alignItems: 'flex-start', flexDirection: 'column' }}>
-              <Typography sx={{ fontWeight: 500 }}>{authValues.user?.name}</Typography>
+              <Typography sx={{ fontWeight: 500 }}>{fullName(authValues?.user?.firstName, authValues?.user?.lastName)}</Typography>
             </Box>
           </Box>
         </Box>

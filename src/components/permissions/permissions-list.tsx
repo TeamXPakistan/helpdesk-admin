@@ -2,74 +2,81 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import Typography from '@mui/material/Typography'
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import { IPaginatorInfo, Role, User } from '@ts-types/generated';
+import { IPaginatorInfo, Permission } from '@ts-types/generated';
 import { IconButton } from '@mui/material';
 import Icon from '@components/common/icon/icon';
 import { Box } from '@mui/system';
 import { useModal } from '@store/apps/modal';
-import { useRouter } from 'next/router'
-import { useDeleteStaffMutation } from '@data/admin-staff/delete-staff-mutation';
-import { fullName } from '@utils/helper-functions';
+import CustomChip from 'src/@core/components/mui/chip'
+import { mapRouteActionToLabel } from '@utils/helper-functions';
+import { useDeletePermissionMutation } from '@data/permissions/delete-permission-mutation';
 
 type PropTypes = {
-    data: User[];
+    data: Permission[];
     onPaginationChange: any;
     paginatorInfo: IPaginatorInfo
 };
 
-const StaffList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
+const PermissionsList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
     const { openModal } = useModal();
-    const router = useRouter()
-    const { mutate: deleteStaff } = useDeleteStaffMutation()
+    const { mutate: deleteRole } = useDeletePermissionMutation()
 
-    const staffColumn: GridColDef[] = [
+    const permissionColumns: GridColDef[] = [
 
         {
-            width: 250,
+            flex: 0.1,
             field: 'name',
             headerName: 'Name',
             sortable: false,
             headerAlign: "left",
             align: "left",
-            renderCell: ({ row }: { row: User }) => <Typography sx={{ color: 'text.secondary' }}>{fullName(row?.firstName, row?.lastName)}</Typography>
+            renderCell: ({ row }: { row: Permission }) => <Typography sx={{ color: 'text.secondary' }}>{row?.name ?? "-"}</Typography>
         },
         {
-            width: 250,
-            field: 'email',
-            headerName: 'Email',
+            flex: 0.1,
+            field: 'moduleName',
+            headerName: 'Module Name',
             sortable: false,
-            renderCell: ({ row }: { row: User }) => <Typography sx={{ color: 'text.secondary' }}>{row?.email ?? "-"}</Typography>
+            headerAlign: "left",
+            align: "left",
+            renderCell: ({ row }: { row: Permission }) => {
+                return (
+                    <Box>
+                        <Typography>{row?.moduleName}</Typography>
+                    </Box>
+                )
+            }
         },
         {
-            width: 250,
-            field: 'contact',
-            headerName: 'Phone',
+            flex: 0.1,
+            field: 'permissions',
+            headerName: 'Permissions',
             sortable: false,
-            renderCell: ({ row }: { row: User }) => <Typography sx={{ color: 'text.secondary' }}>{row?.phone ?? "-"}</Typography>
+            headerAlign: "left",
+            align: "left",
+            renderCell: ({ row }: { row: Permission }) => {
+                return (
+                    <Box >
+                        {row?.actions?.map(permission => <CustomChip label={mapRouteActionToLabel(permission)} color="secondary" sx={{ m: 1 }} />)}
+                    </Box>
+                )
+            }
         },
         {
-            width: 250,
-            field: 'dynamicRole',
-            headerName: 'Role',
-            sortable: false,
-            renderCell: ({ row }: { row: User }) => <Typography sx={{ color: 'text.secondary' }}>{row?.role?.name ?? "-"}</Typography>
-        },
-
-        {
-            width: 250,
+            flex: 0.1,
             field: 'action',
-            headerName: 'Action',
+            headerName: 'Actions',
             sortable: false,
             headerAlign: "right",
             align: "right",
-            renderCell: ({ row }: { row: User }) => {
+            renderCell: ({ row }: { row: Permission }) => {
                 return (<>
                     <Box>
                         <IconButton
                             title='Delete'
                             color='inherit'
                             aria-haspopup='true'
-                            onClick={() => openModal({ view: "GENERAL_DELETE_VIEW", data: { handelDelete: () => deleteStaff({ staffId: row?.id }) } })}
+                            onClick={() => openModal({ view: "GENERAL_DELETE_VIEW", data: { handelDelete: () => deleteRole({ permissionId: row?.id }) } })}
                         >
                             <Icon color='red' fontSize='1.225rem' icon={'octicon:trash-24'} />
                         </IconButton>
@@ -78,7 +85,7 @@ const StaffList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
                             color='inherit'
                             title='Edit'
                             aria-haspopup='true'
-                            onClick={() => router.push(`${router.asPath}/edit/${row.id}`)}
+                            onClick={() => openModal({ view: "EDIT_PERMISSION_VIEW", data: { permissionId: row?.id } })}
                         >
                             <Icon color='green' fontSize='1.225rem' icon={'nimbus:edit'} />
                         </IconButton>
@@ -93,7 +100,7 @@ const StaffList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
             autoHeight
             disableColumnMenu
             rows={data.map((value) => ({ ...value })) ?? []}
-            columns={staffColumn}
+            columns={permissionColumns}
             hideFooterPagination={true}
             hideFooter={true}
         />
@@ -112,4 +119,4 @@ const StaffList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
     </>
 }
 
-export default StaffList;
+export default PermissionsList;
