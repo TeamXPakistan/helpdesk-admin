@@ -48,6 +48,12 @@ const adminNavigation = (): VerticalNavItemsType => {
         }
       ]
     },
+    {
+      title: 'common:nav-admin-text-subscriptions',
+      icon: 'wpf:renew-subscription',
+      path: ROUTES.SUBSCRIPTIONS,
+      allowedRoles: superAdmin_and_AdminStaff,
+    },
   ]
 }
 

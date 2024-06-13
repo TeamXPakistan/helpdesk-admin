@@ -127,6 +127,7 @@ export type Helpers = {
   lastName: Scalars['String']
 }
 
+
 export type LoginUserDynamicRole = {
   _id: Scalars["ID"]
   name: Scalars['String'];

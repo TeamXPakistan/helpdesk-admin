@@ -1,5 +1,4 @@
-// ** React Import
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
@@ -22,9 +21,14 @@ const LanguageDropdown = ({ settings, saveSettings }: Props) => {
   // ** Hook
   const { i18n } = useTranslation()
 
-  const handleLangItemClick = (lang: 'en' | 'fr' | 'ar') => {
+  // ** State to keep track of the selected language
+  const [selectedLanguage, setSelectedLanguage] = useState('English')
+
+  const handleLangItemClick = (lang: 'en' | 'ar') => {
     i18n.changeLanguage(lang)
+    setSelectedLanguage((lang === 'en' ? 'English' : 'Arabic'))
   }
+
 
   // ** Change html `lang` attribute when changing locale
   useEffect(() => {
@@ -34,8 +38,10 @@ const LanguageDropdown = ({ settings, saveSettings }: Props) => {
   return (
     <OptionsMenu
       iconButtonProps={{ color: 'inherit' }}
-      icon={<><span className='language-selected'>English</span>
-        <Icon fontSize='18px' icon='tabler:chevron-down' /></>}
+      icon={< >
+        <span className='language-selected'>{selectedLanguage}</span>
+        <Icon fontSize='18px' icon='tabler:chevron-down' />
+      </>}
       menuProps={{ sx: { '& .MuiMenu-paper': { mt: 4.25, minWidth: 130 } } }}
       options={[
         {
@@ -49,17 +55,6 @@ const LanguageDropdown = ({ settings, saveSettings }: Props) => {
             }
           }
         },
-        // {
-        //   text: 'French',
-        //   menuItemProps: {
-        //     sx: { py: 2 },
-        //     selected: i18n.language === 'fr',
-        //     onClick: () => {
-        //       handleLangItemClick('fr')
-        //       saveSettings({ ...settings, direction: 'ltr' })
-        //     }
-        //   }
-        // },
         {
           text: 'Arabic',
           menuItemProps: {
@@ -73,9 +68,8 @@ const LanguageDropdown = ({ settings, saveSettings }: Props) => {
         }
       ]}
     />
-
-
   )
 }
 
 export default LanguageDropdown
+

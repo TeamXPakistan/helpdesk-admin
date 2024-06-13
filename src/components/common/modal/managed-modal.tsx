@@ -1,3 +1,4 @@
+
 import { useModal } from '@store/apps/modal';
 import dynamic from 'next/dynamic';
 
@@ -6,6 +7,8 @@ const EditRoleView = dynamic(() => import('@components/roles/edit-role-modal-vie
 const GeneralDeleteView = dynamic(() => import('./general-delete-view'))
 const UserStatusModal = dynamic(() => import('@components/users/user-status-modal'));
 const HelperStatusModal = dynamic(() => import('@components/helpers/helper-status-modal'));
+const SubscriptionsEditModal = dynamic(() => import('@components/subscriptions/subscriptionEditModal'));
+const SubscriptionsDeleteModal = dynamic(() => import('@components/subscriptions/subscriptionDeleteModal'));
 const CreatePermissionView = dynamic(() => import('@components/permissions/create-permission-modal-view'));
 const EditPermissionView = dynamic(() => import('@components/permissions/edit-permission-modal-view'));
 
@@ -21,6 +24,8 @@ const ManagedModal = () => {
             {view === "EDIT_PERMISSION_VIEW" && <EditPermissionView />}
             {view === "USER_STATUS_MODAL" && <UserStatusModal />}
             {view === "HELPER_STATUS_MODAL" && <HelperStatusModal />}
+            {view === "SUBSCRIPTIONS_STATUS_MODAL" && <SubscriptionsEditModal />}
+            {view === "SUBSCRIPTIONS_DELETE_MODAL" && <SubscriptionsDeleteModal />}
         </>
     );
 };
