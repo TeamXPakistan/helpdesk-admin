@@ -12,7 +12,6 @@ import NotificationDropdown, {
   NotificationsType
 } from 'src/@core/layouts/components/shared-components/NotificationDropdown'
 import Typography from '@mui/material/Typography'
-import ModeToggler from 'src/@core/layouts/components/shared-components/ModeToggler'
 
 interface Props {
   hidden: boolean
