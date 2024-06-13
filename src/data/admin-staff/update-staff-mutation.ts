@@ -10,9 +10,15 @@ export const useUpdateStaffMutation = () => {
     const { t } = useTranslation();
     const router = useRouter();
     const queryClient = useQueryClient();
+
     return useMutation(
-        (staffInput: UpdateAdminStaffInput) =>
-            adminStaff.updateStaff(API_ENDPOINTS.UPDATE_ADMIN_STAFF, staffInput),
+        (staffInput: UpdateAdminStaffInput) => {
+            const newInput = JSON.parse(JSON.stringify(staffInput));
+            delete newInput?.id;
+
+            return adminStaff.updateStaff(`${API_ENDPOINTS.UPDATE_ADMIN_STAFF}/${staffInput?.id}`, newInput)
+        },
+
         {
             onSuccess: () => {
                 toast.success(t("Staff updated successfully"), { duration: 4000 });

@@ -23,6 +23,7 @@
     "nav-admin-text-dashboard": "Dashboard",
     "nav-admin-text-users": "Users",
     "nav-admin-text-vendors": "Vendors",
+    "nav-admin-text-subscriptions": "Subscriptions",
     "nav-admin-text-drivers": "Drivers",
     "nav-admin-text-drivers-all-drivers": "All Drivers",
     "nav-admin-text-drivers-parcels": "Parcels",
@@ -114,5 +115,9 @@
     "placeholder-image-upload": "Upload an image or drag and drop PNG, JPG",
     "view-file": "View File",
     "nav-admin-text-user": "User",
-    "nav-admin-text-helper": "Helper"
+    "nav-admin-text-helper": "Helper",
+    "nav-admin-text-role-based": "Role-Based Access Control",
+    "nav-admin-text-permissions": "Create Permissions",
+    "nav-admin-text-roles": "Create Roles",
+    "nav-admin-text-staff": "Create Staff"
 }

@@ -73,7 +73,7 @@ const HelpersPage = () => {
 
 HelpersPage.authProps = {
     allowedRoles: superAdmin_and_AdminStaff,
-    adminStaffPermissions: [AdminStaffPermissions.USERS]
+    adminStaffPermissions: [AdminStaffPermissions.HELPERS]
 }
 
 HelpersPage.getLayout = (page: ReactNode) => <Adminlayout>{page}</Adminlayout>

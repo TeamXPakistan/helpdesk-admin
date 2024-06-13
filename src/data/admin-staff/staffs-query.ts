@@ -4,18 +4,17 @@ import { GeneralQueryParam, QueryParamsType } from "@ts-types/custom.types"
 import { IPaginator, User } from "@ts-types/generated"
 import { API_ENDPOINTS } from "@utils/api/endpoints"
 
-
 type QueryParamType = GeneralQueryParam
 
 const fetchStaff = async ({ queryKey }: QueryParamsType) => {
     const {
-        limit = 20,
-        page = 1,
+        limit,
+        page,
         text,
     } = queryKey[1] as QueryParamType;
-    const url = `${API_ENDPOINTS.ADMIN_STAFFS}?limit=${limit}&page=${page}&${text ? `text=${text}` : ""}`
-    const { data: { docs, ...rest } } = await adminStaff.getAllStaff(url)
-    return { staffs: { data: docs, paginatorInfo: rest } }
+    const url = `${API_ENDPOINTS.ADMIN_STAFFS}?limit=${limit}&page=${page}${text ? `&text=${text}` : ""}`
+    const { data } = await adminStaff.getAllStaff(url)
+    return { staffs: { data: data?.data, paginatorInfo: data?.meta } }
 }
 
 const useStaffsQuery = (options: QueryParamType, fetchOPtions?: Object) => {
