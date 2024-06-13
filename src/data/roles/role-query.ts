@@ -12,7 +12,7 @@ const fetchRole = async (id: string) => {
 
 const useRoleQuery = (id: string) => {
     return useQuery<Role, Error>(
-        [API_ENDPOINTS.ROLES, id], () => fetchRole(id),
+        [API_ENDPOINTS.SINGLE_ROLE, id], () => fetchRole(id),
     )
 }
 

@@ -28,7 +28,7 @@ const EditProfile = () => {
 
     const initialValues: FormValues = {
         name: authValues.user?.name,
-        profileImage: authValues.user?.profileImage,
+        profileImage: authValues.user?.profilePic,
     }
 
     const { handleSubmit, errors, getFieldProps, setFieldValue } = useFormik({
@@ -41,7 +41,7 @@ const EditProfile = () => {
         mutate(values,
             {
                 onSuccess: ({ data }) => {
-                    setCredentials({ user: { ...authValues.user, name: data.name, contact: data.contact, email: data.email, profileImage: data.profileImage }, role: data.role, token: authValues.token })
+                    setCredentials({ user: { ...authValues.user, name: data.name, contact: data.contact, email: data.email, profilePic: data.profileImage }, role: data.role, token: authValues.token })
                 },
             }
         )

@@ -1,9 +1,8 @@
 import users from "@repositories/users"
 import { useQuery } from "@tanstack/react-query"
-import { GeneralQueryParam, QueryParamsType, UsersQueryParam } from "@ts-types/custom.types"
+import { GeneralQueryParam, QueryParamsType } from "@ts-types/custom.types"
 import { IPaginator, User } from "@ts-types/generated"
 import { API_ENDPOINTS } from "@utils/api/endpoints"
-
 
 type QueryParamType = GeneralQueryParam;
 
@@ -14,7 +13,7 @@ const fetchUsers = async ({ queryKey }: QueryParamsType) => {
         text
     } = queryKey[1] as QueryParamType;
     const url = `${API_ENDPOINTS.USERS}?limit=${limit}&page=${page}${text && `&search=${text}`}`
-    const { data: { data } } = await users.getAllUsers(url)
+    const { data } = await users.getAllUsers(url)
     return { users: { data: data?.data, paginatorInfo: data?.meta } }
 }
 

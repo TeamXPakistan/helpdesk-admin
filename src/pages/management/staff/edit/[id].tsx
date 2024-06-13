@@ -11,13 +11,13 @@ import AdminLayout from "@layouts/admin-layout";
 import { useStaffQuery } from "@data/admin-staff/staff-query";
 import EditStaffForm from "@components/admin-staff/edit-staff-form";
 
-
-const CreateShopCategory = () => {
+const EditStaffPage = () => {
     const router = useRouter()
     const { data, isLoading, error } = useStaffQuery(router?.query?.id as string)
 
     if (isLoading) return <Spinner />
     if (error) return <CustomError errorMsg={error.message} />
+
     return <>
         <Card sx={{ borderRadius: 2, height: "90vh" }}>
             <CardContent >
@@ -25,7 +25,7 @@ const CreateShopCategory = () => {
                     <Grid item xs={12} md={5} lg={4}>
                         <CardHeader
                             title='Edit Staff'
-                            subheader="Edit staff permissions from here"
+                            subheader="Edit staff roles from here"
                             sx={{ p: 0 }}
                             titleTypographyProps={{ fontSize: "1.1rem !important" }}
                         />
@@ -40,8 +40,10 @@ const CreateShopCategory = () => {
     </>
 }
 
-CreateShopCategory.authProps = {
+EditStaffPage.authProps = {
     allowedRoles: superAdminOnly,
 }
-CreateShopCategory.getLayout = (page: ReactNode) => <AdminLayout>{page}</AdminLayout>
-export default CreateShopCategory;
+
+EditStaffPage.getLayout = (page: ReactNode) => <AdminLayout>{page}</AdminLayout>
+
+export default EditStaffPage;
