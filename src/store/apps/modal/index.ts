@@ -23,7 +23,8 @@ type ModalStatetypes = {
     "PROCESS_WITHDRAW_REQUEST" |
     "USER_STATUS_MODAL" |
     "HELPER_STATUS_MODAL" |
-    "",
+    "SUBSCRIPTIONS_STATUS_MODAL"|
+    "SUBSCRIPTIONS_DELETE_MODAL",
 }
 
 const initialState: ModalStatetypes = { view: '', data: null }
