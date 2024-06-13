@@ -43,6 +43,12 @@ const adminNavigation = (): VerticalNavItemsType => {
     //     }
     //   ]
     // },
+    {
+      title: 'common:nav-admin-text-helper',
+      icon: 'fa-solid:hands-helping',
+      path: ROUTES.CONTENT_MANAGEMENT,
+      allowedRoles: superAdmin_and_AdminStaff,
+    },
   ]
 }
 
