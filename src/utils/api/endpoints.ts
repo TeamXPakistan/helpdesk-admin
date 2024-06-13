@@ -10,7 +10,7 @@ export const API_ENDPOINTS = {
   CHECK_NETWORK: '/auth/merchant/ok',
   ROLES: '/role/all',
   CREATE_ROLE: '/role/create',
-  UPDATE_ROLE: '/role/update/role',
+  UPDATE_ROLE: '/role/update',
   DELETE_ROLE: '/role/delete',
   SINGLE_ROLE: '/role/get',
   ADMIN_STAFFS: '/admin/findAll',

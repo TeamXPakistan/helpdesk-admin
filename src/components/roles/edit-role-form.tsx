@@ -33,7 +33,7 @@ const EditRoleForm = ({ closeModal, formData }: propTypes) => {
 
     const initialValues: FormValues = {
         name: formData?.name,
-        permissions: formData?.permissions?.map((permission) => ({ label: permission.name, value: permission.id }))
+        permissions: formData?.roles?.map((val) => ({ label: val?.permission?.name, value: val?.permission?.id }))
     }
 
     const { handleSubmit, errors, getFieldProps, setFieldValue, values } = useFormik({
@@ -54,6 +54,7 @@ const EditRoleForm = ({ closeModal, formData }: propTypes) => {
         updatedRole({
             id: formData.id,
             name: values.name,
+            isEnabled: true,
             permissions: values.permissions?.map(permission => permission?.value)
         },
             {

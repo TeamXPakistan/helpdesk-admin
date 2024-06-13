@@ -204,6 +204,7 @@ export type UpdateRoleInput = {
   id?: Scalars['ID'];
   name: Scalars['String'];
   permissions: Maybe<Scalars['String'][]>;
+  isEnabled?: Scalars['Boolean']
 };
 
 export type CreateAdminStaffInput = {
