@@ -21,12 +21,12 @@ const AuthGuard = ({ children, authProps }: PropTypes) => {
   let hasPermission: boolean | null
 
   isUser = !!authValues.token
-  hasPermission = hasAccess(authProps.allowedRoles, authValues.role) &&
-    (authValues?.role === ADMIN_STAFF && authProps.adminStaffPermissions ? staffHasPermission(authProps.adminStaffPermissions, authValues?.user?.role?.roles) : true)
+  hasPermission = hasAccess(authProps.allowedRoles, authValues?.user?.role?.name) &&
+    (authValues?.user?.role?.name === ADMIN_STAFF && authProps.adminStaffPermissions ? staffHasPermission(authProps.adminStaffPermissions, authValues?.user?.role?.roles) : true)
 
 
   // checking if the logged in user has proper role. 
-  if (authValues.role && !allRoles?.includes(authValues.role as string)) {
+  if (authValues?.user?.role?.name && !allRoles?.includes(authValues?.user?.role?.name as string)) {
     removeLocalForageAuthToken()
     router.push(ROUTES.LOGIN)
   }
