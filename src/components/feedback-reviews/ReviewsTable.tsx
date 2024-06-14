@@ -107,7 +107,7 @@ const ReviewsTable = ({ userHelpersId }: any) => {
                 return (
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <IconButton
-                            onClick={() => openModal({ view: "HELPERS_USERS_FEEDBACK_REVIEWS_MODAL", data: row })}
+                            onClick={() => openModal({ view: "HELPERS_USERS_FEEDBACK_REVIEWS_MODAL", data: row?.message })}
                             title='View' color='inherit' aria-haspopup='true'
                         >
                             <Icon fontSize='1.625rem' icon={'ph:eye'} />
@@ -117,18 +117,6 @@ const ReviewsTable = ({ userHelpersId }: any) => {
             }
         }
     ]
-
-    const rows = [
-        { id: 1, reviews: 'Nice', rating: 5, from: "Tooba gwd wed", to: "Rimsha", view: "View" },
-        { id: 2, reviews: 'Satisfied', rating: 2, from: "Tooba", to: "Rimsha", view: "View" },
-        { id: 3, reviews: 'Good', rating: 3, from: "Tooba", to: "Rimsha", view: "View" },
-        { id: 4, reviews: 'Very Good', rating: 5, from: "Tooba", to: "Rimsha", view: "View" },
-        { id: 5, reviews: 'Satisfied', rating: 1, from: "Tooba", to: "Rimsha", view: "View" },
-        { id: 6, reviews: 'Good', rating: 4, from: "Tooba", to: "Rimsha", view: "View" },
-        { id: 7, reviews: 'Not Satisfied', rating: 5, from: "Tooba", to: "Rimsha", view: "View" },
-        { id: 8, reviews: 'Satisfied', rating: 3, from: "Tooba", to: "Rimsha", view: "View" },
-        { id: 9, reviews: 'Need to improve', rating: 3, from: "Tooba", to: "Rimsha", view: "View" }
-    ];
 
 
     return <>

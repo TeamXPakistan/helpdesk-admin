@@ -1,4 +1,3 @@
-import HelpersUsersFeedbackReviewsModal from '@components/helpers/helpers-users-feedback-reviews-modal';
 import { useModal } from '@store/apps/modal';
 import dynamic from 'next/dynamic';
 
@@ -11,6 +10,7 @@ const SubscriptionsEditModal = dynamic(() => import('@components/subscriptions/s
 const SubscriptionsDeleteModal = dynamic(() => import('@components/subscriptions/subscriptionDeleteModal'));
 const CreatePermissionView = dynamic(() => import('@components/permissions/create-permission-modal-view'));
 const EditPermissionView = dynamic(() => import('@components/permissions/edit-permission-modal-view'));
+const HelpersUsersFeedbackReviewsModal = dynamic(() => import('@components/helpers/helpers-users-feedback-reviews-modal'));
 
 const ManagedModal = () => {
     const { modalState: { view } } = useModal();

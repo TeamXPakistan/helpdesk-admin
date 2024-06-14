@@ -8,11 +8,15 @@ import DialogActions from '@mui/material/DialogActions';
 import CustomButton from '@components/common/Button/custom-button';
 import Button from '@mui/material/Button';
 import { useTranslation } from 'react-i18next';
+import { User_Helper_Message } from '@ts-types/generated';
+import CustomTextField from 'src/@core/components/mui/text-field';
 
 const HelpersUsersFeedbackReviewsModal = () => {
     const { t } = useTranslation(['form']);
     const [open, setOpen] = useState<boolean>(true);
-    const { closeModal } = useModal();
+    const { closeModal, modalState } = useModal();
+
+    const userHelperData: User_Helper_Message = modalState?.data
 
     const handleClose = () => {
         setOpen(false);
@@ -40,7 +44,9 @@ const HelpersUsersFeedbackReviewsModal = () => {
                             '& svg': { mb: 6, color: 'warning.main' }
                         }}
                     >
-                        <Typography>User feedback Details</Typography>
+                        <h2>User feedback</h2>
+
+                        <CustomTextField label="Message" fullWidth defaultValue={userHelperData} />
                     </Box>
                 </DialogContent>
                 <DialogActions
@@ -50,9 +56,6 @@ const HelpersUsersFeedbackReviewsModal = () => {
                         pb: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
                     }}
                 >
-                    <CustomButton fullWidth={false} variant='contained' sx={{ mr: 2 }} type={'button'}>
-                        {t('OK')}
-                    </CustomButton>
                     <Button variant='tonal' color='secondary' onClick={handleClose}>
                         {t('Close')}
                     </Button>

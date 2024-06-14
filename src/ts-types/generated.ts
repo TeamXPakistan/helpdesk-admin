@@ -312,3 +312,7 @@ export type REVIEW = {
   userId?: Scalars['ID']
 
 }
+export type User_Helper_Message = {
+  rating?: Scalars['String']
+  message?: Scalars['String']
+}

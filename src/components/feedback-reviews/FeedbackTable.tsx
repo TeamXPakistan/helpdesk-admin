@@ -113,7 +113,7 @@ const FeedbackTable = ({ userHelpersId }: any) => {
                 return (
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <IconButton
-                            onClick={() => openModal({ view: "HELPERS_USERS_FEEDBACK_REVIEWS_MODAL", data: row })}
+                            onClick={() => openModal({ view: "HELPERS_USERS_FEEDBACK_REVIEWS_MODAL", data: row?.message })}
                             title='View' color='inherit' aria-haspopup='true'
                         >
                             <Icon fontSize='1.625rem' icon={'ph:eye'} />
@@ -123,18 +123,6 @@ const FeedbackTable = ({ userHelpersId }: any) => {
             }
         }
     ]
-
-    const rows = [
-        { id: 1, feedback: 'Good', positive: 34223, from: "Tooba gwd wed", to: "Rimsha", view: "View" },
-        { id: 2, feedback: 'Satisfied', positive: 343, from: "Tooba", to: "Rimsha", view: "View" },
-        { id: 3, feedback: 'Good', positive: 23214, from: "Tooba", to: "Rimsha", view: "View" },
-        { id: 4, feedback: 'Very Good', positive: 4233, from: "Tooba", to: "Rimsha", view: "View" },
-        { id: 5, feedback: 'Satisfied', positive: 24, from: "Tooba", to: "Rimsha", view: "View" },
-        { id: 6, feedback: 'Good', positive: 32323, from: "Tooba", to: "Rimsha", view: "View" },
-        { id: 7, feedback: 'Not Satisfied', positive: 320, from: "Tooba", to: "Rimsha", view: "View" },
-        { id: 8, feedback: 'Satisfied', positive: 33, from: "Tooba", to: "Rimsha", view: "View" },
-        { id: 9, feedback: 'Need to improve', positive: 332345, from: "Tooba", to: "Rimsha", view: "View" }
-    ];
 
     return <>
         <DataGrid
