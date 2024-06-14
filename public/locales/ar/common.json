@@ -148,5 +148,11 @@
     "nav-admin-text-role-based": "Role-Based Access Control",
     "nav-admin-text-permissions": "Create Permissions",
     "nav-admin-text-roles": "Create Roles",
-    "nav-admin-text-staff": "Create Staff"
+    "nav-admin-text-staff": "Create Staff",
+    "nav-admin-text-content-management": "Content Management",
+    "nav-admin-text-faq-entries": "Faq Entries",
+    "nav-admin-text-tutorials": "Tutorials",
+    "nav-admin-text-term-of-services-privacy-policy": "Term of Services & Privacy Policy",
+    "nav-admin-news-articles": "News Articles",
+    "nav-admin-content-policies": "Content Policies"
 }

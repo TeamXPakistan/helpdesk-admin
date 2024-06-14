@@ -55,10 +55,36 @@ const adminNavigation = (): VerticalNavItemsType => {
       allowedRoles: superAdmin_and_AdminStaff,
     },
     {
-      title: 'common:nav-admin-text-helper',
-      icon: 'fa-solid:hands-helping',
-      path: ROUTES.CONTENT_MANAGEMENT,
+      title: 'common:nav-admin-text-content-management',
+      icon: 'fluent:content-view-gallery-16-regular',
       allowedRoles: superAdmin_and_AdminStaff,
+      children: [
+        {
+          title: 'common:nav-admin-text-faq-entries',
+          path: ROUTES.FAQ_ENTRIES,
+          allowedRoles: superAdminOnly,
+        },
+        {
+          title: 'common:nav-admin-text-tutorials',
+          path: ROUTES.TUTORIALS,
+          allowedRoles: superAdminOnly,
+        },
+        {
+          title: 'common:nav-admin-text-term-of-services-privacy-policy',
+          path: ROUTES.TERM_OF_SERVICES_PRIVACY_POLICY,
+          allowedRoles: superAdminOnly,
+        },
+        {
+          title: 'common:nav-admin-news-articles',
+          path: ROUTES.NEWS_ARTICLES,
+          allowedRoles: superAdminOnly,
+        },
+        {
+          title: 'common:nav-admin-content-policies',
+          path: ROUTES.CONTENT_POLICIES,
+          allowedRoles: superAdminOnly,
+        }
+      ]
     },
   ]
 }

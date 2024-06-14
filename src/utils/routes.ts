@@ -9,9 +9,15 @@ export const ROUTES = {
   ACCESS_DENIED: '/401',
   SETTINGS: '/settings',
   HELPER: '/helpers',
-  CONTENT_MANAGEMENT: '/content-management',
   SUBSCRIPTIONS: '/subscriptions',
   PERMISSIONS: '/management/permissions',
   ROLES: '/management/roles',
-  STAFF: '/management/staff'
+  STAFF: '/management/staff',
+  FAQ_ENTRIES: '/content-management/faq-entries',
+  TUTORIALS: '/content-management/tutorials',
+  ANNOUCEMENTS: '/content-management/announcements',
+  TERM_OF_SERVICES_PRIVACY_POLICY: '/content-management/term-of-services-privacy-policy',
+  NEWS_ARTICLES: '/content-management/news-articles',
+  CONTENT_POLICIES: '/content-management/content-policies',
 }
+

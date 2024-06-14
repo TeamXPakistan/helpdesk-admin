@@ -22,7 +22,6 @@ export const fetchData = createAsyncThunk('appUsers/fetchData', async (params: D
   const response = await axios.get('/apps/users/list', {
     params
   })
-
   return response.data
 })
 

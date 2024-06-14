@@ -9,7 +9,8 @@ export enum AdminStaffPermissions {
     USERS = "user",
     HELPERS = "helpers",
     REVIEW = "review",
-    FEEDBACK = "feedback"
+    FEEDBACK = "feedback",
+    FAQ_ENTRIES = "Faq Entries"
 }
 
 export const adminStaffPermissionsList = [
