@@ -8,11 +8,11 @@ type QueryParamType = GeneralQueryParam;
 
 const fetchRoles = async ({ queryKey }: QueryParamsType) => {
     const {
-        limit = 20,
-        page = 1,
+        limit,
+        page,
         text,
     } = queryKey[1] as QueryParamType;
-    const url = `${API_ENDPOINTS.ROLES}?limit=${limit}&page=${page}${text ? `&text=${text}` : ""}`
+    const url = `${API_ENDPOINTS.ROLES}?limit=${limit}&page=${page}${text ? `&search=${text}` : ""}`
     const { data } = await roles.getAllRoles(url)
     return { roles: { data: data?.data, paginatorInfo: data?.meta } }
 }

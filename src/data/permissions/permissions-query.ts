@@ -12,7 +12,7 @@ const fetchPermissions = async ({ queryKey }: QueryParamsType) => {
         page,
         text,
     } = queryKey[1] as QueryParamType;
-    const url = `${API_ENDPOINTS.PERMISSIONS}?limit=${limit}&page=${page}${text ? `&text=${text}` : ""}`
+    const url = `${API_ENDPOINTS.PERMISSIONS}?limit=${limit}&page=${page}${text ? `&search=${text}` : ""}`
     const { data } = await permissions.getAllPermissions(url)
     return { permissions: { data: data?.data, paginatorInfo: data?.meta } }
 }
