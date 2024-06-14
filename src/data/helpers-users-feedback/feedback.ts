@@ -12,15 +12,10 @@ const fetchHelpersUsersFeedback = async ({ queryKey }: QueryParamsType) => {
     const {
         limit,
         page,
-        text
+        role
     } = queryKey[1] as QueryParamType;
-    // const url = `${API_ENDPOINTS.FEEDBACK}?limit=${limit}&page=${page}${numb && `&search=${text}`}`
-
-    const url = `${API_ENDPOINTS.FEEDBACK}/${text}`
-
-
+    const url = `${API_ENDPOINTS.FEEDBACK}/${role}?limit=${limit}&page=${page}`
     const { data } = await feedback.getAllFeedback(url);
-    console.log(data, "...back Feedback Data");
     return { feedback: { data: data?.data, paginatorInfo: data?.meta } }
 }
 

@@ -2,8 +2,7 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import { IPaginatorInfo, User } from '@ts-types/generated';
-import { Avatar, Grid, IconButton } from '@mui/material';
+import { Grid, IconButton } from '@mui/material';
 import Icon from '@components/common/icon/icon';
 import { Box } from '@mui/system';
 import { useRouter } from 'next/router';
@@ -13,28 +12,20 @@ import Spinner from '@components/common/spinner/spinner';
 import CustomError from '@components/common/error/custom-error';
 import { useHelpersUsersFeedbackQuery } from '@data/helpers-users-feedback/feedback';
 
-// type PropTypes = {
-//     data: User[];
-//     onPaginationChange: any;
-//     paginatorInfo: IPaginatorInfo
-// };
-
-
 
 const FeedbackTable = ({ userHelpersId }: any) => {
     const router = useRouter();
     const { openModal } = useModal();
 
     const [page, setPage] = useState<number>(1)
-    const [text, setText] = useState<string>(userHelpersId)
+    const [role, setRole] = useState<number>(userHelpersId)
 
 
     const { data: feedbacks, isLoading, error } = useHelpersUsersFeedbackQuery({
         limit: Number(process.env.NEXT_PUBLIC_PAGINATED_QUERY_LIMIT),
         page: page,
-        text
+        role
     })
-    console.log(feedbacks, "...front Feedback Data");
 
     const onPageChange = (event: React.ChangeEvent<unknown>, value: number) => {
         setPage(value);

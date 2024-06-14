@@ -12,15 +12,10 @@ const fetchHelpersUsersReviews = async ({ queryKey }: QueryParamsType) => {
     const {
         limit,
         page,
-        text
+        role
     } = queryKey[1] as QueryParamType;
-    // const url = `${API_ENDPOINTS.REVIEWS}?limit=${limit}&page=${page}${text && `&search=${text}`}`
-
-    const url = `${API_ENDPOINTS.REVIEWS}/${text}`
+    const url = `${API_ENDPOINTS.REVIEWS}/${role}?limit=${limit}&page=${page}`
     const { data } = await reviews.getAllReviews(url);
-
-    // console.log(data?.data, "...back Reviews Data");
-
     return { reviews: { data: data?.data, paginatorInfo: data?.meta } }
 }
 

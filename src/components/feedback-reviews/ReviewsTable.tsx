@@ -2,38 +2,29 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import { IPaginatorInfo, User } from '@ts-types/generated';
-import { Avatar, Grid, IconButton } from '@mui/material';
+import { Grid, IconButton } from '@mui/material';
 import Icon from '@components/common/icon/icon';
 import { Box } from '@mui/system';
 import { useRouter } from 'next/router';
-import { fullName } from '@utils/helper-functions';
-import CustomButton from '@components/common/Button/custom-button';
 import { useModal } from '@store/apps/modal';
 import Spinner from '@components/common/spinner/spinner';
 import CustomError from '@components/common/error/custom-error';
 import { useState } from 'react';
 import { useHelpersUsersReviewsQuery } from '@data/helpers-users-reviews/reviews';
 
-type PropTypes = {
-    data: User[];
-    onPaginationChange: any;
-    paginatorInfo: IPaginatorInfo
-};
 
 const ReviewsTable = ({ userHelpersId }: any) => {
     const router = useRouter();
     const { openModal } = useModal();
 
     const [page, setPage] = useState<number>(1)
-    const [text, setText] = useState<string>(userHelpersId)
+    const [role, setRole] = useState<number>(userHelpersId)
 
     const { data: reviews, isLoading, error } = useHelpersUsersReviewsQuery({
         limit: Number(process.env.NEXT_PUBLIC_PAGINATED_QUERY_LIMIT),
         page: page,
-        text
+        role
     })
-    console.log(reviews, "...front Reviews Data");
 
     const onPageChange = (event: React.ChangeEvent<unknown>, value: number) => {
         setPage(value);
@@ -144,8 +135,7 @@ const ReviewsTable = ({ userHelpersId }: any) => {
         <DataGrid
             autoHeight
             disableColumnMenu
-            // rows={reviews?.reviews?.data?.map((value) => ({ id: value?.id, ...value })) ?? []}
-            rows={reviews?.reviews?.data?.data?.map((value) => ({ id: value?.id, ...value })) ?? []}
+            rows={reviews?.reviews?.data?.map((value) => ({ id: value?.id, ...value })) ?? []}
             columns={columns}
             hideFooterPagination={true}
             hideFooter={true}
@@ -155,12 +145,12 @@ const ReviewsTable = ({ userHelpersId }: any) => {
             spacing={2}
             sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center' }}
         >
-            {/* <Pagination
+            <Pagination
                 color="primary"
-                count={reviews?.reviews?.data?.paginatorInfo.lastPage}
-                page={reviews?.reviews?.data?.paginatorInfo.page}
+                count={reviews?.reviews?.paginatorInfo.lastPage}
+                page={reviews?.reviews?.paginatorInfo.page}
                 onChange={onPageChange}
-            /> */}
+            />
         </Stack>
     </>
 }

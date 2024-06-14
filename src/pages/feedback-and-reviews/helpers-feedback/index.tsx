@@ -1,11 +1,10 @@
-import CustomError from '@components/common/error/custom-error'
-import Spinner from '@components/common/spinner/spinner'
+
 import Adminlayout from '@layouts/admin-layout'
 import { Card, CardContent, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { superAdmin_and_AdminStaff } from '@utils/auth-utils'
-import { AdminStaffPermissions } from '@utils/constants'
-import React, { ReactNode, useState } from 'react'
+import { AdminStaffPermissions, UserHelpDeskId } from '@utils/constants'
+import React, { ReactNode } from 'react'
 import UsersHelpersFeedbackTabs from 'src/views/components/tabs/UsersHelpersFeedbackTabs'
 
 const HelpersFeedbackPage = () => {
@@ -21,7 +20,7 @@ const HelpersFeedbackPage = () => {
                     <UsersHelpersFeedbackTabs
                         feedbackTable="Feedback Table"
                         reviewsTable="Reviews Table"
-                        userHelpersId="2"
+                        userHelpersId={UserHelpDeskId.HELP_DESK}
                     />
                 </CardContent>
             </Card>

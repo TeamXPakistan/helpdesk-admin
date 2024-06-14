@@ -20,3 +20,7 @@ export enum AdminDashboardAnalyticsFilterBy {
     YEARLY = "yearly",
     MONTHLY = "monthly",
 }
+export enum UserHelpDeskId {
+    USER = 1,
+    HELP_DESK = 2
+}
