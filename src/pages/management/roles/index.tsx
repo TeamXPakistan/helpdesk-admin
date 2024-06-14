@@ -13,10 +13,9 @@ import { useRolesQuery } from '@data/roles/roles-query'
 import { useModal } from '@store/apps/modal'
 import RolesList from '@components/roles/roles-list'
 
-const VendorsPage = () => {
+const Roles = () => {
     const [page, setPage] = useState<number>(1)
     const { openModal } = useModal()
-
 
     const { data: roles, isLoading, error } = useRolesQuery({
         limit: Number(process.env.NEXT_PUBLIC_PAGINATED_QUERY_LIMIT),
@@ -27,9 +26,9 @@ const VendorsPage = () => {
         setPage(value);
     };
 
-
     if (isLoading) return <Spinner />
     if (error) return <CustomError errorMsg={error.message} />
+
     return <>
         <Box
             sx={{ gap: 4, display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', mb: 8 }}
@@ -41,6 +40,7 @@ const VendorsPage = () => {
                     variant='contained'
                     fullWidth={false}
                     onClick={() => openModal({ view: "CREATE_ROLE_VIEW" })}
+                    //@ts-ignore
                     startIcon={<Icon color='white' fontSize='1.625rem' icon={'mdi:add-bold'} />}
                 >
                     Create Role
@@ -60,9 +60,10 @@ const VendorsPage = () => {
     </>
 }
 
-VendorsPage.authProps = {
+Roles.authProps = {
     allowedRoles: superAdminOnly
 }
-VendorsPage.getLayout = (page: ReactNode) => <Adminlayout>{page}</Adminlayout>
 
-export default VendorsPage
+Roles.getLayout = (page: ReactNode) => <Adminlayout>{page}</Adminlayout>
+
+export default Roles

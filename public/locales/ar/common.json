@@ -146,5 +146,10 @@
     "nav-admin-text-helper": "Helper",
     "nav-admin-text-feedback-and-review": "Feedback and Review",
     "nav-admin-text-users-feedback": "Users Feedback",
-    "nav-admin-text-helpers-feedback": "Helpers Feedback"
+    "nav-admin-text-helpers-feedback": "Helpers Feedback",
+    "nav-admin-text-subscriptions": "Subscriptions",
+    "nav-admin-text-role-based": "Role-Based Access Control",
+    "nav-admin-text-permissions": "Create Permissions",
+    "nav-admin-text-roles": "Create Roles",
+    "nav-admin-text-staff": "Create Staff"
 }

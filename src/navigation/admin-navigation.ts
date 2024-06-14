@@ -1,5 +1,6 @@
 // ** Type import
-import { superAdmin_and_AdminStaff } from '@utils/auth-utils'
+import { superAdminOnly, superAdmin_and_AdminStaff } from '@utils/auth-utils'
+import { AdminStaffPermissions } from '@utils/constants'
 import { ROUTES } from '@utils/routes'
 import { VerticalNavItemsType } from 'src/@core/layouts/types'
 
@@ -16,11 +17,41 @@ const adminNavigation = (): VerticalNavItemsType => {
       icon: 'clarity:users-solid',
       path: ROUTES.USERS,
       allowedRoles: superAdmin_and_AdminStaff,
+      adminStaffPermissions: [AdminStaffPermissions.USERS],
     },
     {
       title: 'common:nav-admin-text-helper',
       icon: 'fa-solid:hands-helping',
       path: ROUTES.HELPER,
+      allowedRoles: superAdmin_and_AdminStaff,
+      adminStaffPermissions: [AdminStaffPermissions.HELPERS],
+    },
+    {
+      title: 'common:nav-admin-text-role-based',
+      icon: 'flowbite:user-settings-solid',
+      allowedRoles: superAdminOnly,
+      children: [
+        {
+          title: 'common:nav-admin-text-permissions',
+          path: ROUTES.PERMISSIONS,
+          allowedRoles: superAdminOnly,
+        },
+        {
+          title: 'common:nav-admin-text-roles',
+          path: ROUTES.ROLES,
+          allowedRoles: superAdminOnly,
+        },
+        {
+          title: 'common:nav-admin-text-staff',
+          path: ROUTES.STAFF,
+          allowedRoles: superAdminOnly,
+        }
+      ]
+    },
+    {
+      title: 'common:nav-admin-text-subscriptions',
+      icon: 'wpf:renew-subscription',
+      path: ROUTES.SUBSCRIPTIONS,
       allowedRoles: superAdmin_and_AdminStaff,
     },
     {

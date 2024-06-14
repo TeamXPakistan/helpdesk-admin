@@ -5,7 +5,7 @@ import 'react-phone-number-input/style.css'
 type PropTypes = {
   label?: string | null
   errorMsg?: string | null
-  value: string | null
+  value: string | null | undefined
   placeholder?: string | null
   onChange: (value: any) => any,
   disabled?: boolean

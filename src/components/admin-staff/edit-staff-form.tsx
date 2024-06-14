@@ -4,53 +4,59 @@ import CustomTextField1 from "@components/common/text-field/custom-text-field-1"
 import { useRolesQuery } from "@data/roles/roles-query";
 import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
-import createStaffSchema from "./create-staff-schema";
 import PhoneNumberField from "@components/common/text-field/phone-number-field";
 import { User } from "@ts-types/generated";
 import { useUpdateStaffMutation } from "@data/admin-staff/update-staff-mutation";
-
+import updateStaffSchema from "./update-staff-schema";
 
 type PropType = {
     formData: User
 }
 
 type FormValues = {
-    name: string | undefined;
     email: string | undefined;
-    contact: string | undefined;
-    dynamicRole: { label: string; value: string }
+    phone: string | null | undefined;
+    role: { label: string; value: string } | null;
+    username: string | undefined;
+    firstName: string | undefined;
+    lastName: string | undefined;
 }
 
 const EditStaffForm = ({ formData }: PropType) => {
-
     const { t } = useTranslation(['form'])
-    const { mutate, isLoading } = useUpdateStaffMutation();
+    const { mutate: updateStaff, isLoading } = useUpdateStaffMutation();
+
     const { data: allRoles, isLoading: fetchingRoles } = useRolesQuery({
         limit: 9999,
         page: 1,
     });
 
     const initialValues: FormValues = {
-        name: formData?.name,
         email: formData?.email,
-        contact: formData?.contact,
-        dynamicRole: { label: formData?.dynamicRole?.name as string, value: formData?.dynamicRole?._id as string },
+        phone: formData?.phone,
+        role: { label: formData?.role?.name as string, value: formData?.role?.id as string },
+        username: formData?.username,
+        firstName: formData?.firstName,
+        lastName: formData?.lastName,
     }
-
 
     const { handleSubmit, errors, getFieldProps, setFieldValue, values } = useFormik({
         initialValues,
-        validationSchema: createStaffSchema,
-        onSubmit: (values, { resetForm }) => handelCreateStaff(values, resetForm)
+        enableReinitialize: true,
+        validationSchema: updateStaffSchema,
+        onSubmit: (values, { resetForm }) => handelUpdateStaff(values, resetForm)
     })
 
-    const handelCreateStaff = (values: FormValues, resetForm: any) => {
-        const { name, dynamicRole } = values
-        mutate(
+    const handelUpdateStaff = (values: FormValues, resetForm: any) => {
+        updateStaff(
             {
-                id: formData?._id,
-                name: name,
-                dynamicRole: dynamicRole?.value
+                id: formData?.id,
+                email: values?.email,
+                phone: values?.phone,
+                roleId: values?.role?.value,
+                username: values?.username,
+                firstName: values?.firstName,
+                lastName: values?.lastName,
             },
             {
                 onSuccess: () => {
@@ -64,45 +70,57 @@ const EditStaffForm = ({ formData }: PropType) => {
         <>
             <form noValidate autoComplete='off' onSubmit={handleSubmit}>
                 <CustomTextField1
-                    errorMsg={t(errors?.name as string)}
+                    errorMsg={t(errors?.firstName as string)}
                     fullWidth
                     sx={{ mb: 5 }}
-                    label={t(`Name`)}
-                    placeholder={t(`Full Name`) as string}
-                    {...getFieldProps('name')}
+                    label={t(`First Name`)}
+                    {...getFieldProps('firstName')}
                 />
                 <CustomTextField1
-                    disabled={true}
+                    errorMsg={t(errors?.lastName as string)}
+                    fullWidth
+                    sx={{ mb: 5 }}
+                    label={t(`Last Name`)}
+                    {...getFieldProps('lastName')}
+                />
+                <CustomTextField1
+                    errorMsg={t(errors?.username as string)}
+                    fullWidth
+                    disabled
+                    sx={{ mb: 5 }}
+                    label={t(`User Name`)}
+                    {...getFieldProps('username')}
+                />
+                <CustomTextField1
                     errorMsg={t(errors?.email as string)}
                     fullWidth
-                    sx={{ mb: 4, "& .css-cn1auu-MuiInputBase-input-MuiFilledInput-input.Mui-disabled": { background: "white" } }}
-                    label={t(`Email (Disabled)`)}
-                    placeholder={t(`form:form-register-email-label`) as string}
+                    disabled
+                    sx={{ mb: 4 }}
+                    label={t(`Email`)}
                     {...getFieldProps('email')}
                 />
-
                 <PhoneNumberField
-                    disabled={true}
-                    label={t(`Phone (Disabled)`)}
-                    errorMsg={t(errors?.contact as string)}
-                    value={values?.contact as string}
+                    label={t(`form:form-register-phone-label`)}
+                    errorMsg={t(errors?.phone as string)}
+                    value={values?.phone}
                     placeholder={t(`form:form-register-phone-label`)}
-                    onChange={value => setFieldValue('contact', value)}
+                    onChange={value => setFieldValue('phone', value)}
                 />
 
                 <CustomSelect
-                    name="dynamicRole"
-                    list={allRoles?.roles.data.map((role) => ({ label: role.name, value: role._id }))}
-                    value={values?.dynamicRole as FormValues["dynamicRole"]}
+                    name="role"
+                    list={allRoles?.roles.data.map((role) => ({ label: role.name, value: role.id }))}
+                    value={values?.role}
+                    //@ts-ignore
                     onChange={(val, { action }) => {
                         if (action === "clear") {
-                            setFieldValue("dynamicRole", null)
+                            setFieldValue("role", null)
                         }
-                        setFieldValue("dynamicRole", val)
+                        setFieldValue("role", val)
                     }}
                     isMulti={false}
                     label={"Role"}
-                    errorMsg={t(errors?.dynamicRole as string)}
+                    errorMsg={t(errors?.role as string)}
                     placeHolder='Select role'
                     isLoading={fetchingRoles}
                 />
@@ -119,6 +137,5 @@ const EditStaffForm = ({ formData }: PropType) => {
             </form>
         </>)
 }
-
 
 export default EditStaffForm;

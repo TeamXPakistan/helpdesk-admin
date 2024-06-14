@@ -88,17 +88,21 @@ export type User = {
   email?: Scalars['String']
   firstName?: Scalars['String'],
   lastName?: Scalars['String']
+  password?: Scalars['String']
+  username?: Scalars['String']
   contact?: Scalars['String']
   roles?: Scalars['String']
   token?: Scalars['String']
   verified?: Scalars['String']
   profilePic: Scalars['String']
-  phone?: Scalars['Int']
+  phone?: Scalars['String']
   genderPreference?: Scalars['String']
   isActive?: Scalars['Boolean']
   location?: Scalars['String']
   role?: {
+    id?: Scalars['ID']
     name?: Scalars['String']
+    roles?: Array<string>
   }
 }
 
@@ -122,6 +126,7 @@ export type Helpers = {
   firstName: Scalars['String'],
   lastName: Scalars['String']
 }
+
 
 export type LoginUserDynamicRole = {
   _id: Scalars["ID"]
@@ -159,13 +164,28 @@ export type Notification = {
 
 
 export type Permission = {
-  name: Scalars["String"]
-  _id: Scalars["ID"]
+  id: Scalars['ID'],
+  name: Scalars['String'],
+  moduleName: Scalars['String'],
+  actions: Array<string>
+  createdAt: Scalars['DateTime'],
 }
 
 export type Role = {
-  _id: Scalars["ID"]
+  id: Scalars["ID"]
   name: Scalars['String'];
+  roles: Array<{
+    roleId: Scalars['ID'],
+    permissionId: Scalars['ID'],
+    permission: {
+      id: Scalars['ID'],
+      name: Scalars['String'],
+      moduleName: Scalars['String'],
+      actions: Array<string>,
+      isEnabled: Scalars['Boolean'],
+      createdAt: Scalars['DateTime'],
+    }
+  }>;
   permissions: Array<Permission>;
 };
 
@@ -174,23 +194,39 @@ export type CreateRoleInput = {
   permissions: Maybe<Scalars['String'][]>;
 };
 
+export type PermissionInput = {
+  id?: Scalars['ID'],
+  name: Scalars['String'],
+  moduleName?: Scalars['String'] | null,
+  actions?: Array<string> | null
+}
+
 export type UpdateRoleInput = {
-  _id: Scalars['ID'];
+  id?: Scalars['ID'];
   name: Scalars['String'];
   permissions: Maybe<Scalars['String'][]>;
+  isEnabled?: Scalars['Boolean']
 };
 
 export type CreateAdminStaffInput = {
-  name: Scalars['String'];
-  email: Scalars['String'];
-  contact: Scalars['String'];
-  dynamicRole: Maybe<Scalars['ID']>;
-};
+  email: Scalars['String'],
+  contact: Scalars['String']
+  role?: Scalars['ID']
+  password: Scalars['String']
+  username: Scalars['String']
+  firstName: Scalars['String']
+  lastName: Scalars['String']
+}
 
 export type UpdateAdminStaffInput = {
   id: Scalars['ID'] | undefined;
-  name: Scalars['String'] | undefined;
-  dynamicRole: Scalars['ID'];
+  email?: Scalars['String'],
+  phone?: Scalars['String'] | null,
+  role?: Scalars['String'],
+  roleId?: Scalars['String'],
+  username?: Scalars['String'],
+  firstName?: Scalars['String'],
+  lastName?: Scalars['String'],
 };
 
 export type UserAnalytics = {
