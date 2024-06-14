@@ -19,5 +19,5 @@ export const ROUTES = {
   TERM_OF_SERVICES_PRIVACY_POLICY: '/content-management/term-of-services-privacy-policy',
   NEWS_ARTICLES: '/content-management/news-articles',
   CONTENT_POLICIES: '/content-management/content-policies',
+  ANNOUNCEMENT: '/content-management/Announcement',
 }
-

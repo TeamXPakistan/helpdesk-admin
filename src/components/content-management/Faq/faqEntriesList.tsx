@@ -2,60 +2,60 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import { Helpers, IPaginatorInfo } from '@ts-types/generated';
-import { Avatar, Grid, IconButton } from '@mui/material';
+import { FaqEntries, Helpers, IPaginatorInfo } from '@ts-types/generated';
+import { IconButton } from '@mui/material';
 import Icon from '@components/common/icon/icon';
 import { Box } from '@mui/system';
 import { useRouter } from 'next/router';
-import { fullName } from '@utils/helper-functions';
 import CustomButton from '@components/common/Button/custom-button';
 import { useModal } from '@store/apps/modal';
 
-
-
 type PropTypes = {
-  data: Helpers[];
-  onPaginationChange: any;
-  paginatorInfo: IPaginatorInfo
+    data?: FaqEntries[];
+    onPaginationChange: any;
+    paginatorInfo?: IPaginatorInfo;  // Make paginatorInfo optional
 };
 
-
-const FaqEntries = ({ data = [], onPaginationChange}: PropTypes) => {
-  console.log(data)
+const FaqEntriesList = ({ data = [], onPaginationChange, paginatorInfo = { lastPage: 1, page: 1, totalDocs: 0, limit: 10, totalPages: 1, pagingCounter: 1, hasPrevPage: false, hasNextPage: false, prevPage: null, nextPage: null } }: PropTypes) => {
     const router = useRouter();
     const { openModal } = useModal();
 
-    const helpersListColumn: GridColDef[] = [
+    // Ensure data is always an array
+    const faqEntriesData = Array.isArray(data) ? data : [];
+console.log(data)
+    const FaqEntriesListColumn: GridColDef[] = [
         {
             flex: 0.25,
             minWidth: 200,
-            field: 'email',
-            headerName: 'Questions',
+            field: 'title',
+            headerName: 'Question',
             sortable: false,
-            renderCell: ({ row }: { row: Helpers }) => <Typography sx={{ color: 'text.secondary' }}>{row?.email ?? "-"}</Typography>
+            renderCell: ({ row }: { row: FaqEntries }) => <Typography sx={{ color: 'text.secondary' }}>{row?.title ?? "-"}</Typography>
         },
+   
         {
             flex: 0.25,
             minWidth: 200,
-            field: 'ohone',
+            field: 'description',
             headerName: 'Answer',
             sortable: false,
-            renderCell: ({ row }: { row: Helpers }) => <Typography sx={{ color: 'text.secondary' }}>{row?.phone ?? "-"}</Typography>
+            renderCell: ({ row }: { row: FaqEntries }) => <Typography sx={{ color: 'text.secondary' }}>{row?.description ?? "-"}</Typography>
         },
+        
         {
             flex: 0.25,
             minWidth: 200,
-            field: 'Is',
+            field: 'Action',
             headerName: 'Action',
             sortable: false,
-            renderCell: ({ row }: { row: Helpers }) => {
+            renderCell: ({ row }: { row: FaqEntries }) => {
                 return (
                     <Box>
                         <CustomButton
                             type={'button'}
                             variant='contained'
                             onClick={() => openModal({ view: "HELPER_STATUS_MODAL", data: row })}
-                            sx={{ width: "10px", p: 1 }}
+                            sx={{ width: '8px', ml:2}}
                         >
                             Edit
                         </CustomButton>
@@ -63,7 +63,7 @@ const FaqEntries = ({ data = [], onPaginationChange}: PropTypes) => {
                             type={'button'}
                             variant='contained'
                             onClick={() => openModal({ view: "HELPER_STATUS_MODAL", data: row })}
-                            sx={{ width: "10px", ml: 2, p: 1 }}
+                            sx={{ width: '8px', ml:2, m:2 }}
                         >
                             Delete
                         </CustomButton>
@@ -71,7 +71,7 @@ const FaqEntries = ({ data = [], onPaginationChange}: PropTypes) => {
                             <Icon fontSize='1.625rem' icon={'ph:eye'} />
                         </IconButton>
                     </Box>
-                );
+                )
             }
         },
     ];
@@ -81,8 +81,8 @@ const FaqEntries = ({ data = [], onPaginationChange}: PropTypes) => {
             <DataGrid
                 autoHeight
                 disableColumnMenu
-                rows={data?.map((value) => ({ ...value }))}
-                columns={helpersListColumn}
+                rows={data?.data?.map((value) => ({ ...value }))}
+                columns={FaqEntriesListColumn}
                 hideFooterPagination={true}
                 hideFooter={true}
             />
@@ -93,13 +93,13 @@ const FaqEntries = ({ data = [], onPaginationChange}: PropTypes) => {
             >
                 <Pagination
                     color="primary"
-                    count={3}
-                    page={1}
+                    count={paginatorInfo.lastPage}
+                    page={paginatorInfo.page}
                     onChange={onPaginationChange}
                 />
             </Stack>
         </>
     );
-};
+}
 
-export default FaqEntries;
+export default FaqEntriesList;

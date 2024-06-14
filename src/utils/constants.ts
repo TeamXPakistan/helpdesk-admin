@@ -21,7 +21,8 @@ export const permissionModuleList = [
     AdminStaffPermissions.USERS,
     AdminStaffPermissions.HELPERS,
     AdminStaffPermissions.FEEDBACK,
-    AdminStaffPermissions.REVIEW
+    AdminStaffPermissions.REVIEW,
+    AdminStaffPermissions.FAQ_ENTRIES,
 ]
 
 export enum AdminDashboardAnalyticsFilterBy {

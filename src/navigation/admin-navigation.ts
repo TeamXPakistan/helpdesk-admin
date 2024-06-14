@@ -62,27 +62,32 @@ const adminNavigation = (): VerticalNavItemsType => {
         {
           title: 'common:nav-admin-text-faq-entries',
           path: ROUTES.FAQ_ENTRIES,
-          allowedRoles: superAdminOnly,
+          allowedRoles: superAdmin_and_AdminStaff,
         },
         {
           title: 'common:nav-admin-text-tutorials',
           path: ROUTES.TUTORIALS,
-          allowedRoles: superAdminOnly,
+          allowedRoles: superAdmin_and_AdminStaff,
+        },
+        {
+          title: 'common:nav-admin-text-Announcements',
+          path: ROUTES.ANNOUCEMENTS,
+          allowedRoles: superAdmin_and_AdminStaff,
         },
         {
           title: 'common:nav-admin-text-term-of-services-privacy-policy',
           path: ROUTES.TERM_OF_SERVICES_PRIVACY_POLICY,
-          allowedRoles: superAdminOnly,
+          allowedRoles: superAdmin_and_AdminStaff,
         },
         {
           title: 'common:nav-admin-news-articles',
           path: ROUTES.NEWS_ARTICLES,
-          allowedRoles: superAdminOnly,
+          allowedRoles: superAdmin_and_AdminStaff,
         },
         {
           title: 'common:nav-admin-content-policies',
           path: ROUTES.CONTENT_POLICIES,
-          allowedRoles: superAdminOnly,
+          allowedRoles: superAdmin_and_AdminStaff,
         }
       ]
     },

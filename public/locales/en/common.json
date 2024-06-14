@@ -125,5 +125,6 @@
     "nav-admin-text-role-based": "Role-Based Access Control",
     "nav-admin-text-permissions": "Create Permissions",
     "nav-admin-text-roles": "Create Roles",
-    "nav-admin-text-staff": "Create Staff"
+    "nav-admin-text-staff": "Create Staff",
+     "nav-admin-text-Announcements": "Announcement"
 }

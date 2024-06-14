@@ -106,6 +106,17 @@ export type User = {
   }
 }
 
+export type FaqEntries ={
+  id: Scalars['ID'],
+  title: Scalars['String'];
+  type: Scalars['String'],
+  description: Scalars['String'];
+  translations: Scalars['String'],
+  createdAt: Scalars['DateTime']
+  updatedAt: Scalars['DateTime']
+}
+
+
 export type Helpers = {
   id: Scalars['ID'],
   email: Scalars['String'],

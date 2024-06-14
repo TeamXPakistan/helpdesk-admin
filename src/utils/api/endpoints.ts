@@ -40,5 +40,6 @@ export const API_ENDPOINTS = {
   PERMISSIONS: '/permission/all',
   SINGLE_PERMISSION: '/permission/get',
   UPDATE_PERMISSION: '/permission/update',
+  FAQ_ENTRIES : '/content/findFaq'
  
 }
