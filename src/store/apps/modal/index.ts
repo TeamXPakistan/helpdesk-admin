@@ -16,6 +16,7 @@ type ModalStatetypes = {
     "SUBSCRIPTIONS_DELETE_MODAL" |
     "CREATE_PERMISSION_VIEW" |
     "EDIT_PERMISSION_VIEW" |
+    "BAN_UNBAN_USER_MODAL" |
     "",
 }
 
