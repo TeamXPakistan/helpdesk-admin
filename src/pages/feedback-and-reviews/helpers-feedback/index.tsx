@@ -24,11 +24,11 @@ const HelpersFeedbackPage = () => {
                         type="button"
                         variant='contained'
                         fullWidth={false}
-                        onClick={() => openModal({ view: "BAN_UNBAN_USER_MODAL" })}
+                        onClick={() => openModal({ view: "BAN_UNBAN_HELPER_MODAL" })}
                         //@ts-ignore
                         startIcon={<Icon color='white' fontSize='1.625rem' icon={'mdi:add-bold'} />}
                     >
-                        Ban/UnBan User
+                        Ban/UnBan Helper
                     </CustomButton>
                 </Box>
             </Box>
