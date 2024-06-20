@@ -7,7 +7,6 @@ import { IconButton } from '@mui/material';
 import Icon from '@components/common/icon/icon';
 import { Box } from '@mui/system';
 import { useRouter } from 'next/router';
-import CustomButton from '@components/common/Button/custom-button';
 import { useModal } from '@store/apps/modal';
 
 type PropTypes = {
@@ -41,39 +40,39 @@ console.log(data)
             sortable: false,
             renderCell: ({ row }: { row: FaqEntries }) => <Typography sx={{ color: 'text.secondary' }}>{row?.description ?? "-"}</Typography>
         },
-        
         {
-            flex: 0.25,
-            minWidth: 200,
-            field: 'Action',
+            width: 250,
+            field: 'action',
             headerName: 'Action',
             sortable: false,
+            headerAlign: "right",
+            align: "right",
             renderCell: ({ row }: { row: FaqEntries }) => {
-                return (
+                return (<>
                     <Box>
-                        <CustomButton
-                            type={'button'}
-                            variant='contained'
-                            onClick={() => openModal({ view: "HELPER_STATUS_MODAL", data: row })}
-                            sx={{ width: '8px', ml:2}}
+                        <IconButton
+                            title='Delete'
+                            color='inherit'
+                            aria-haspopup='true'
+                            onClick={() => openModal({ view: "DELETE_FAQ_ENTRY", data: row})}
                         >
-                            Edit
-                        </CustomButton>
-                        <CustomButton
-                            type={'button'}
-                            variant='contained'
-                            onClick={() => openModal({ view: "HELPER_STATUS_MODAL", data: row })}
-                            sx={{ width: '8px', ml:2, m:2 }}
-                        >
-                            Delete
-                        </CustomButton>
-                        <IconButton title='View' color='inherit' aria-haspopup='true' onClick={() => router.push(`${router.asPath}/details/${row?.id}`)}>
-                            <Icon fontSize='1.625rem' icon={'ph:eye'} />
+                            <Icon color='red' fontSize='1.225rem' icon={'octicon:trash-24'} />
                         </IconButton>
-                    </Box>
-                )
+
+                        <IconButton
+                            color='inherit'
+                            title='Edit'
+                            aria-haspopup='true'
+                            onClick={() => openModal({ view: "UPDATE_FAQ_ENTRY", data: row})}
+                        >
+                            <Icon color='green' fontSize='1.225rem' icon={'nimbus:edit'} />
+                        </IconButton>
+                        
+                    </Box >
+                </>)
             }
-        },
+        }, 
+   
     ];
 
     return (

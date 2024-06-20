@@ -5,12 +5,12 @@ import users from '@repositories/users';
 import { useTranslation } from 'react-i18next';
 import { UserBanPayload } from '@ts-types/generated';
 
-export const useUpdateHelperMutation = () => {
+export const UseFaqEntryUpdateMutation = () => {
     const queryClient = useQueryClient();
     const { t } = useTranslation("form")
 
     return useMutation(
-        (input: UserBanPayload) => users.update(`${API_ENDPOINTS.HELPER_STATUS}`, input),
+        (input: UserBanPayload) => users.update(`${API_ENDPOINTS.UPDATE_FAQ_ENTRY}`, input),
         {
             onSuccess: () => {
                 toast.success(t("Successfully Updated"))
@@ -25,7 +25,7 @@ export const useUpdateHelperMutation = () => {
 
             // Always refetch after error or success:
             onSettled: () => {
-                queryClient.invalidateQueries([API_ENDPOINTS.HELPERS_LIST]);
+                queryClient.invalidateQueries([API_ENDPOINTS.FAQ_ENTRIES]);
             },
         }
     );
