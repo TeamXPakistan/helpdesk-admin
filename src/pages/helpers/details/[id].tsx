@@ -21,6 +21,7 @@ const UserDetailPage = () => {
 
     return (
         <>
+        
             <Box
                 sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', mb: 5 }}
             >

@@ -237,7 +237,11 @@ export type CreateFaqEntryInput = {
   title: Scalars['String'],
   description: Scalars['String'],
   type: Scalars['String'],
- 
+}
+export type UpdateFaqEntryInput = {
+  title: Scalars['String'],
+  description: Scalars['String'],
+  id: Scalars['ID'],
 }
 
 export type UpdateAdminStaffInput = {

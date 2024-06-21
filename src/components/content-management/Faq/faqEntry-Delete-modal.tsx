@@ -18,6 +18,7 @@ const FaqEntriesDeleteModal = () => {
     const { closeModal, modalState } = useModal();
     const FaqEntriesData: Faq = modalState?.data;
     console.log(FaqEntriesData)
+    
     const { mutate: deleteFaqEntry, isLoading } = useDeleteFaqEntryMutation();
      
     const handleDelete = () => {

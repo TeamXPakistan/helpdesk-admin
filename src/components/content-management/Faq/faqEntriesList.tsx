@@ -57,7 +57,7 @@ const FaqEntriesList = ({ data = [], onPaginationChange, paginatorInfo = { lastP
                             color='inherit'
                             aria-haspopup='true'
                             onClick={() => {
-                                openModal({ view: "DELETE_FAQ_ENTRY", data: row.id });
+                                openModal({ view: "DELETE_FAQ_ENTRY", data: row });
                             }}
                             
                         >
@@ -72,7 +72,9 @@ const FaqEntriesList = ({ data = [], onPaginationChange, paginatorInfo = { lastP
                         >
                             <Icon color='green' fontSize='1.225rem' icon={'nimbus:edit'} />
                         </IconButton>
-                        
+                        <IconButton title='View' color='inherit' aria-haspopup='true' onClick={() => router.push(`${router.asPath}/details/${row?.id}`)}>
+                            <Icon fontSize='1.625rem' icon={'ph:eye'} />
+                        </IconButton>
                     </Box >
                 </>)
             }
