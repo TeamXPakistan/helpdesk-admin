@@ -2,12 +2,13 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import { FaqEntries, Helpers, IPaginatorInfo } from '@ts-types/generated';
+import { FaqEntries, IPaginatorInfo } from '@ts-types/generated';
 import { IconButton } from '@mui/material';
 import Icon from '@components/common/icon/icon';
 import { Box } from '@mui/system';
 import { useRouter } from 'next/router';
 import { useModal } from '@store/apps/modal';
+import { useDeleteFaqEntryMutation } from '@data/faq-entries/faq-entry-delete.mutate';
 
 type PropTypes = {
     data?: FaqEntries[];
@@ -18,10 +19,11 @@ type PropTypes = {
 const FaqEntriesList = ({ data = [], onPaginationChange, paginatorInfo = { lastPage: 1, page: 1, totalDocs: 0, limit: 10, totalPages: 1, pagingCounter: 1, hasPrevPage: false, hasNextPage: false, prevPage: null, nextPage: null } }: PropTypes) => {
     const router = useRouter();
     const { openModal } = useModal();
+    const { mutate: deleteFaq } = useDeleteFaqEntryMutation()
 
     // Ensure data is always an array
     const faqEntriesData = Array.isArray(data) ? data : [];
-console.log(data)
+   
     const FaqEntriesListColumn: GridColDef[] = [
         {
             flex: 0.25,
@@ -54,7 +56,10 @@ console.log(data)
                             title='Delete'
                             color='inherit'
                             aria-haspopup='true'
-                            onClick={() => openModal({ view: "DELETE_FAQ_ENTRY", data: row})}
+                            onClick={() => {
+                                openModal({ view: "DELETE_FAQ_ENTRY", data: row.id });
+                            }}
+                            
                         >
                             <Icon color='red' fontSize='1.225rem' icon={'octicon:trash-24'} />
                         </IconButton>

@@ -5,7 +5,7 @@ import { useModal } from '@store/apps/modal';
 import Box from '@mui/system/Box';
 import Typography from '@mui/material/Typography';
 import Icon from 'src/@core/components/icon';
-import { Helpers } from '@ts-types/generated';
+import { Faq } from '@ts-types/generated';
 import DialogActions from '@mui/material/DialogActions';
 import CustomButton from '@components/common/Button/custom-button';
 import Button from '@mui/material/Button';
@@ -16,15 +16,16 @@ const FaqEntriesDeleteModal = () => {
     const { t } = useTranslation(['form']);
     const [open, setOpen] = useState<boolean>(true);
     const { closeModal, modalState } = useModal();
-    const FaqEntriesData: Helpers = modalState?.data;
-
-    const { mutate: toggleHelperStatus, isLoading } = useDeleteFaqEntryMutation();
-
+    const FaqEntriesData: Faq = modalState?.data;
+    console.log(FaqEntriesData)
+    const { mutate: deleteFaqEntry, isLoading } = useDeleteFaqEntryMutation();
+     
     const handleDelete = () => {
-        toggleHelperStatus(
+        deleteFaqEntry(
             {
-                ...(FaqEntriesData?.email ? { email: FaqEntriesData?.email } : { phone: FaqEntriesData?.contact }),
-                isActive: !FaqEntriesData?.isActive,
+                title: FaqEntriesData.description, 
+                description: FaqEntriesData.title,
+                id: FaqEntriesData.id
             },
             {
                 onSuccess: () => {

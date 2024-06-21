@@ -15,9 +15,11 @@ type ModalStatetypes = {
     "SUBSCRIPTIONS_DELETE_MODAL" |
     "CREATE_PERMISSION_VIEW" |
     "EDIT_PERMISSION_VIEW" |
-    "EDIT_FAQ_ENTRY"|
-    "DELETE_FAQ_ENTRY"|
-    "UPDATE_FAQ_ENTRY"
+    "EDIT_FAQ_ENTRY" |
+    "DELETE_FAQ_ENTRY" |
+    "UPDATE_FAQ_ENTRY" |
+    "CREATE_FAQ_ENTRY" |
+    ""
 }
 
 const initialState: ModalStatetypes = { view: '', data: null }

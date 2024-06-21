@@ -1,25 +1,31 @@
+import {CreateFaqEntryInput } from "@ts-types/generated";
+import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { API_ENDPOINTS } from "@utils/api/endpoints";
+import adminStaff from "@repositories/admin-staff";
 import faqEntries from "@repositories/faq-entries";
 
-export const useDeleteFaqEntryMutation = () => {
+export const useCreateFaqMutation = () => {
     const { t } = useTranslation();
+    const router = useRouter();
     const queryClient = useQueryClient();
-
     return useMutation(
-        ({ id, title, description }: { title: string, description: string, id: string }) =>
-            faqEntries.deleteFaq(`${API_ENDPOINTS.DELETE_FAQ_ENTRY}/${id}`,),
+        (faqInput: CreateFaqEntryInput) =>
+            faqEntries.createFaq(`${API_ENDPOINTS.CREATE_FAQ_ENTRY}`, faqInput), 
         {
+            
             onSuccess: () => {
-                toast.success(t("FAQ Entry deleted successfully"), { duration: 4000 });
+                toast.success(t("FAQ created successfully"), { duration: 4000 });
+             
             },
             onSettled: () => {
                 queryClient.invalidateQueries({
                     queryKey: [API_ENDPOINTS.FAQ_ENTRIES]
                 });
             },
+            
             onError: (error: any) => {
                 toast.error(
                     error?.response?.data?.message

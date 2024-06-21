@@ -26,7 +26,8 @@ const useFaqEntriesQuery = (options: QueryParamType) => {
             keepPreviousData: true,
             staleTime: 270000 // 270000ms is 4.5 minutes while cache time is 5 minutes by default
         }
+        
     )
 }
-
+ 
 export { fetchFaqEntries, useFaqEntriesQuery }

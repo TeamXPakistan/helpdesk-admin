@@ -12,20 +12,32 @@ import { AdminStaffPermissions } from '@utils/constants';
 import CustomError from '@components/common/error/custom-error'
 import FaqEntriesList from '@components/content-management/Faq/faqEntriesList'
 import { useFaqEntriesQuery } from '@data/faq-entries/faq-entries-query'
+import { Icon, PropTypes } from '@mui/material'
+import { useRouter } from 'next/router'
+import { useModal } from '@store/apps/modal'
+import { FaqEntries, IPaginatorInfo } from '@ts-types/generated'
+
+type PropTypes = {
+    data?: FaqEntries[];
+    onPaginationChange: any;
+    paginatorInfo?: IPaginatorInfo;  // Make paginatorInfo optional
+};
 
 const FaqEntriesPage = () => {
+    const router = useRouter();
     const [text, setText] = useState<string>('')
-    const [searchVal, setSearchVal] = useState<string>('')
+    const [setSearchVal] = useState<string>('')
     const [page, setPage] = useState<number>(1)
+    const { openModal } = useModal();
 
     const { data: faqEntries, isLoading, error } = useFaqEntriesQuery({
         limit: Number(process.env.NEXT_PUBLIC_PAGINATED_QUERY_LIMIT),
         page: page,
         text
     });
-    
+
     console.log(faqEntries)
-       const onPageChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    const onPageChange = (event: React.ChangeEvent<unknown>, value: number) => {
         setPage(value);
     };
 
@@ -40,22 +52,17 @@ const FaqEntriesPage = () => {
         <Box
             sx={{ gap: 4, display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', mb: 8 }}
         >
-            <Typography variant='h4' sx={{ color: "text.primary" }}>Helpers List</Typography>
+            <Typography variant='h4' sx={{ color: "text.primary" }}>FAQ Entries</Typography>
             <Box sx={{ gap: 4, display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
-                <form onSubmit={(e) => {
-                    e.preventDefault()
-                    setText(searchVal)
-                }}>
-                    <CustomTextField1 value={searchVal} placeholder='Search by name, email and contact ' onChange={e => setSearchVal(e.target.value)} />
-                </form>
-
                 <CustomButton
                     type="button"
                     variant='contained'
                     fullWidth={false}
-                    onClick={() => onReset()}
+                    onClick={() => openModal({ view: "CREATE_FAQ_ENTRY"})}
+                    //@ts-ignore
+                    startIcon={<Icon color='white' fontSize='1.625rem' icon={'mdi:add-bold'} />}
                 >
-                    Reset
+                    Create FAQ
                 </CustomButton>
             </Box>
         </Box>
