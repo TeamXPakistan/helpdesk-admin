@@ -4,7 +4,7 @@ import { API_ENDPOINTS } from "@utils/api/endpoints";
 
 const fetchSearchUser = async (text: string) => {
     const url = `${API_ENDPOINTS.USERS}?search=${text}`
-    const { data } = await users.getSingleUser(url)
+    const { data } = await users.getSingleUser(url);
     return data?.data;
 }
 const useSearchUserQuery = (text: string) => {

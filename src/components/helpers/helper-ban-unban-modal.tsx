@@ -9,9 +9,9 @@ import CustomButton from '@components/common/Button/custom-button';
 import Button from '@mui/material/Button';
 import { useTranslation } from 'react-i18next';
 import CustomTextField1 from '@components/common/text-field/custom-text-field-1';
-import { useSearchUserQuery } from '@data/helpers-users-feedback/search-user-query';
 import { Grid } from '@mui/material';
 import Image from 'next/image';
+import { useSearchHelperQuery } from '@data/helpers-users-feedback/search-helper-query';
 
 const HelperBanUnBanModal = () => {
     const { t } = useTranslation(['form']);
@@ -21,7 +21,7 @@ const HelperBanUnBanModal = () => {
     const [text, setText] = useState<string>('');
     const [searchVal, setSearchVal] = useState<string>('');
     const [showResult, setShowResult] = useState<boolean>(false);
-    const { data: user } = useSearchUserQuery(text);
+    const { data: user } = useSearchHelperQuery(text);
 
     const handleClose = () => {
         setOpen(false);
@@ -140,7 +140,7 @@ const HelperBanUnBanModal = () => {
                                 data: user[0]
                             })}
                         >
-                            {`${user[0]?.isActive ? 'Ban' : 'Un-Ban'} User`}
+                            {`${user[0]?.isActive ? 'Ban' : 'Un-Ban'} Helper`}
                         </CustomButton>
                     </Box>
                     }

@@ -3,14 +3,14 @@ import { useQuery } from "@tanstack/react-query"
 import { API_ENDPOINTS } from "@utils/api/endpoints"
 
 const fetchSearchHelper = async (text: string) => {
-    const url = `${API_ENDPOINTS.USERS}?search=${text}`
+    const url = `${API_ENDPOINTS.HELPERS_LIST}?search=${text}`
     const { data } = await users.getSingleUser(url)
-    return data?.data
+    return data?.data?.data
 }
 
 const useSearchHelperQuery = (text: string) => {
     return useQuery<any, Error>(
-        [API_ENDPOINTS.USERS, text], () => fetchSearchHelper(text)
+        [API_ENDPOINTS.HELPERS_LIST, text], () => fetchSearchHelper(text)
     )
 }
 export { fetchSearchHelper, useSearchHelperQuery }
