@@ -1,10 +1,9 @@
 
 import feedback from "@repositories/feedback"
 import { useQuery } from "@tanstack/react-query"
-import { GeneralQueryParam, QueryParamsType, UsersQueryParam } from "@ts-types/custom.types"
-import { FEEDBACK, IPaginator, User } from "@ts-types/generated"
+import { GeneralQueryParam, QueryParamsType } from "@ts-types/custom.types"
+import { FEEDBACK, IPaginator } from "@ts-types/generated"
 import { API_ENDPOINTS } from "@utils/api/endpoints"
-
 
 type QueryParamType = GeneralQueryParam;
 

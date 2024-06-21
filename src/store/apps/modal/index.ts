@@ -4,7 +4,8 @@ import { RootState } from '@store/index'
 
 
 type ModalStatetypes = {
-    data?: any
+    data?: any,
+    heading?: string,
     view:
     "GENERAL_DELETE_VIEW" |
     "CREATE_ROLE_VIEW" |
@@ -21,7 +22,7 @@ type ModalStatetypes = {
     "",
 }
 
-const initialState: ModalStatetypes = { view: '', data: null }
+const initialState: ModalStatetypes = { view: '', data: null, heading: '' }
 
 const modalSlice = createSlice({
     name: 'modalSlice',
@@ -30,10 +31,12 @@ const modalSlice = createSlice({
         setModalState: (state: ModalStatetypes, action: PayloadAction<ModalStatetypes>) => {
             state.view = action.payload.view;
             state.data = action.payload.data;
+            state.heading = action.payload.heading;
         },
         removeModalState: (state: ModalStatetypes) => {
             state.view = ""
             state.data = null;
+            state.heading = "";
         }
     }
 })
@@ -42,8 +45,8 @@ export const useModal = () => {
     const modalState: ModalStatetypes = useSelector((state: RootState) => state.modal);
     const dispatch = useDispatch();
 
-    const openModal = ({ view, data }: ModalStatetypes) => {
-        dispatch(setModalState({ view, data }));
+    const openModal = ({ view, data, heading }: ModalStatetypes) => {
+        dispatch(setModalState({ view, data, heading }));
     }
     const closeModal = () => {
         dispatch(removeModalState());

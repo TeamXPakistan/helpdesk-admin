@@ -5,7 +5,6 @@ import { useModal } from '@store/apps/modal';
 import Box from '@mui/system/Box';
 import Typography from '@mui/material/Typography';
 import DialogActions from '@mui/material/DialogActions';
-import CustomButton from '@components/common/Button/custom-button';
 import Button from '@mui/material/Button';
 import { useTranslation } from 'react-i18next';
 import { User_Helper_Message } from '@ts-types/generated';
@@ -44,9 +43,14 @@ const HelpersUsersFeedbackReviewsModal = () => {
                             '& svg': { mb: 6, color: 'warning.main' }
                         }}
                     >
-                        <h2>User feedback</h2>
-
-                        <CustomTextField label="Message" fullWidth defaultValue={userHelperData} />
+                        <h2>{modalState?.heading?.slice(0, modalState?.heading?.length - 1)}</h2>
+                        <CustomTextField
+                            label="Message"
+                            multiline
+                            rows={4}
+                            fullWidth
+                            defaultValue={userHelperData}
+                        />
                     </Box>
                 </DialogContent>
                 <DialogActions

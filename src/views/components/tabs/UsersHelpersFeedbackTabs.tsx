@@ -4,8 +4,8 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import FeedbackTable from '../../../components/feedback-reviews/FeedbackTable';
-import ReviewsTable from '../../../components/feedback-reviews/ReviewsTable';
+import FeedbackTable from '@components/feedback-reviews/FeedbackTable';
+import ReviewsTable from '@components/feedback-reviews/ReviewsTable';
 
 type feedBackAndReviews = {
     feedbackTable: string,
@@ -32,7 +32,6 @@ export default function UsersHelpersFeedbackTabs({ feedbackTable, reviewsTable, 
                                 width: '200px',
                                 borderRadius: '10px',
                                 padding: '12px',
-
                                 '&.Mui-selected': {
                                     backgroundColor: 'rgba(21, 1, 1, 0.06);',
                                     color: 'black',
@@ -54,8 +53,8 @@ export default function UsersHelpersFeedbackTabs({ feedbackTable, reviewsTable, 
                         />
                     </TabList>
                 </Box>
-                <TabPanel value="1"><FeedbackTable userHelpersId={userHelpersId} /></TabPanel>
-                <TabPanel value="2"><ReviewsTable userHelpersId={userHelpersId} /></TabPanel>
+                <TabPanel value="1"><FeedbackTable userHelpersId={userHelpersId} feedbackHeading={feedbackTable} /></TabPanel>
+                <TabPanel value="2"><ReviewsTable userHelpersId={userHelpersId} reviewsHeading={reviewsTable} /></TabPanel>
             </TabContext>
         </Box>
     );

@@ -5,7 +5,6 @@ import Stack from '@mui/material/Stack';
 import { Grid, IconButton } from '@mui/material';
 import Icon from '@components/common/icon/icon';
 import { Box } from '@mui/system';
-import { useRouter } from 'next/router';
 import { useModal } from '@store/apps/modal';
 import Spinner from '@components/common/spinner/spinner';
 import CustomError from '@components/common/error/custom-error';
@@ -13,8 +12,7 @@ import { useState } from 'react';
 import { useHelpersUsersReviewsQuery } from '@data/helpers-users-reviews/reviews';
 
 
-const ReviewsTable = ({ userHelpersId }: any) => {
-    const router = useRouter();
+const ReviewsTable = ({ userHelpersId, reviewsHeading }: any) => {
     const { openModal } = useModal();
 
     const [page, setPage] = useState<number>(1)
@@ -107,7 +105,11 @@ const ReviewsTable = ({ userHelpersId }: any) => {
                 return (
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <IconButton
-                            onClick={() => openModal({ view: "HELPERS_USERS_FEEDBACK_REVIEWS_MODAL", data: row?.message })}
+                            onClick={() => openModal({
+                                view: "HELPERS_USERS_FEEDBACK_REVIEWS_MODAL",
+                                data: row?.message,
+                                heading: userHelpersId == 1 ? `User ${reviewsHeading}` : `Helper ${reviewsHeading}`
+                            })}
                             title='View' color='inherit' aria-haspopup='true'
                         >
                             <Icon fontSize='1.625rem' icon={'ph:eye'} />
@@ -117,7 +119,6 @@ const ReviewsTable = ({ userHelpersId }: any) => {
             }
         }
     ]
-
 
     return <>
         <DataGrid

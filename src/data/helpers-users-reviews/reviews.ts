@@ -1,10 +1,9 @@
 
 import reviews from "@repositories/reviews"
 import { useQuery } from "@tanstack/react-query"
-import { GeneralQueryParam, QueryParamsType, UsersQueryParam } from "@ts-types/custom.types"
-import { IPaginator, REVIEW, User } from "@ts-types/generated"
+import { GeneralQueryParam, QueryParamsType } from "@ts-types/custom.types"
+import { IPaginator, REVIEW } from "@ts-types/generated"
 import { API_ENDPOINTS } from "@utils/api/endpoints"
-
 
 type QueryParamType = GeneralQueryParam;
 
@@ -18,7 +17,6 @@ const fetchHelpersUsersReviews = async ({ queryKey }: QueryParamsType) => {
     const { data } = await reviews.getAllReviews(url);
     return { reviews: { data: data?.data, paginatorInfo: data?.meta } }
 }
-
 const useHelpersUsersReviewsQuery = (options: QueryParamType) => {
     return useQuery<{ reviews: IPaginator<REVIEW> }, Error>(
         [API_ENDPOINTS.REVIEWS, options],

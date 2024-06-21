@@ -5,7 +5,6 @@ import Stack from '@mui/material/Stack';
 import { Grid, IconButton } from '@mui/material';
 import Icon from '@components/common/icon/icon';
 import { Box } from '@mui/system';
-import { useRouter } from 'next/router';
 import { useModal } from '@store/apps/modal';
 import { useState } from 'react';
 import Spinner from '@components/common/spinner/spinner';
@@ -13,13 +12,11 @@ import CustomError from '@components/common/error/custom-error';
 import { useHelpersUsersFeedbackQuery } from '@data/helpers-users-feedback/feedback';
 
 
-const FeedbackTable = ({ userHelpersId }: any) => {
-    const router = useRouter();
+const FeedbackTable = ({ userHelpersId, feedbackHeading }: any) => {
     const { openModal } = useModal();
 
     const [page, setPage] = useState<number>(1)
     const [role, setRole] = useState<number>(userHelpersId)
-
 
     const { data: feedbacks, isLoading, error } = useHelpersUsersFeedbackQuery({
         limit: Number(process.env.NEXT_PUBLIC_PAGINATED_QUERY_LIMIT),
@@ -30,7 +27,6 @@ const FeedbackTable = ({ userHelpersId }: any) => {
     const onPageChange = (event: React.ChangeEvent<unknown>, value: number) => {
         setPage(value);
     };
-
 
     if (isLoading) return <Spinner />
     if (error) return <CustomError errorMsg={error.message} />
@@ -113,7 +109,11 @@ const FeedbackTable = ({ userHelpersId }: any) => {
                 return (
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <IconButton
-                            onClick={() => openModal({ view: "HELPERS_USERS_FEEDBACK_REVIEWS_MODAL", data: row?.message })}
+                            onClick={() => openModal({
+                                view: "HELPERS_USERS_FEEDBACK_REVIEWS_MODAL",
+                                data: row?.message,
+                                heading: userHelpersId == 1 ? `User ${feedbackHeading}` : `Helper ${feedbackHeading}`
+                            })}
                             title='View' color='inherit' aria-haspopup='true'
                         >
                             <Icon fontSize='1.625rem' icon={'ph:eye'} />
