@@ -10,18 +10,23 @@ import Spinner from '@components/common/spinner/spinner';
 import CustomError from '@components/common/error/custom-error';
 import { useState } from 'react';
 import { useHelpersUsersReviewsQuery } from '@data/helpers-users-reviews/reviews';
+import { UserHelpDeskId } from '@utils/constants';
 
+type Props = {
+    userHelpersId: number;
+    reviewsHeading: string;
+};
 
-const ReviewsTable = ({ userHelpersId, reviewsHeading }: any) => {
+const ReviewsTable = ({ userHelpersId, reviewsHeading }: Props) => {
     const { openModal } = useModal();
 
     const [page, setPage] = useState<number>(1)
-    const [role, setRole] = useState<number>(userHelpersId)
+    const [roleId, setRoleId] = useState<number>(userHelpersId)
 
     const { data: reviews, isLoading, error } = useHelpersUsersReviewsQuery({
         limit: Number(process.env.NEXT_PUBLIC_PAGINATED_QUERY_LIMIT),
         page: page,
-        role
+        roleId
     })
 
     const onPageChange = (event: React.ChangeEvent<unknown>, value: number) => {
@@ -108,7 +113,7 @@ const ReviewsTable = ({ userHelpersId, reviewsHeading }: any) => {
                             onClick={() => openModal({
                                 view: "HELPERS_USERS_FEEDBACK_REVIEWS_MODAL",
                                 data: row?.message,
-                                heading: userHelpersId == 1 ? `User ${reviewsHeading}` : `Helper ${reviewsHeading}`
+                                heading: userHelpersId == UserHelpDeskId.USER ? `User ${reviewsHeading}` : `Helper ${reviewsHeading}`
                             })}
                             title='View' color='inherit' aria-haspopup='true'
                         >

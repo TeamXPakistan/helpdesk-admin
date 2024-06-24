@@ -268,7 +268,7 @@ export type ExcelExport = {
   startDate: Scalars['Date'] | null
   endDate: Scalars['Date'] | null
 }
-export type FEEDBACK = {
+export type Feedback = {
   id?: Scalars['ID']
   feedbackType?: Scalars['String']
   message?: Scalars['String']
@@ -290,7 +290,7 @@ export type FEEDBACK = {
   userId?: Scalars['ID']
 
 }
-export type REVIEW = {
+export type Review = {
   id?: Scalars['ID']
   rating?: Scalars['String']
   message?: Scalars['String']
@@ -312,7 +312,7 @@ export type REVIEW = {
   userId?: Scalars['ID']
 
 }
-export type User_Helper_Message = {
+export type UserHelperMessage = {
   rating?: Scalars['String']
   message?: Scalars['String']
 }

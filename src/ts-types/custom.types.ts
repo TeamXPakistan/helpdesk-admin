@@ -25,7 +25,7 @@ export type GeneralQueryParam = {
     limit?: Scalars["Int"]
     text?: Scalars["String"];
     shopId?: Scalars["String"];
-    role?: Scalars["Int"]
+    roleId?: Scalars["Int"];
 }
 
 export type UsersQueryParam = {

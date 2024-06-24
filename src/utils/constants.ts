@@ -40,3 +40,7 @@ export enum RouteActions {
     DELETE = "DELETE",
     PUT = "PUT"
 }
+export enum ReviewFeedbackTabs {
+    FEEDBACK_TAB = '1',
+    REVIEW_TAB = '2'
+}

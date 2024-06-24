@@ -3,11 +3,10 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import { useModal } from '@store/apps/modal';
 import Box from '@mui/system/Box';
-import Typography from '@mui/material/Typography';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import { useTranslation } from 'react-i18next';
-import { User_Helper_Message } from '@ts-types/generated';
+import { UserHelperMessage } from '@ts-types/generated';
 import CustomTextField from 'src/@core/components/mui/text-field';
 
 const HelpersUsersFeedbackReviewsModal = () => {
@@ -15,7 +14,7 @@ const HelpersUsersFeedbackReviewsModal = () => {
     const [open, setOpen] = useState<boolean>(true);
     const { closeModal, modalState } = useModal();
 
-    const userHelperData: User_Helper_Message = modalState?.data
+    const userHelperData: UserHelperMessage = modalState?.data
 
     const handleClose = () => {
         setOpen(false);

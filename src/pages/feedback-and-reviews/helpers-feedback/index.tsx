@@ -39,10 +39,10 @@ const HelpersFeedbackPage = () => {
     )
 }
 
-HelpersFeedbackPage.authProps = {
-    allowedRoles: superAdmin_and_AdminStaff,
-    adminStaffPermissions: [AdminStaffPermissions.USERS]
-}
+// HelpersFeedbackPage.authProps = {
+//     allowedRoles: superAdmin_and_AdminStaff,
+//     adminStaffPermissions: [AdminStaffPermissions.USERS]
+// }
 
 HelpersFeedbackPage.getLayout = (page: ReactNode) => <Adminlayout>{page}</Adminlayout>
 

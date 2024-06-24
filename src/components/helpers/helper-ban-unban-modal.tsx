@@ -41,6 +41,16 @@ const HelperBanUnBanModal = () => {
         }
     };
 
+
+    function getInitials(name: string): string {
+        if (!name) return '';
+        const words = name.split(' ');
+        const initials = words.slice(0, 2).map(word => word[0]).join('');
+        return initials.toUpperCase();
+    }
+    const userFirstName = user?.firstName || 'User';
+    const initials = getInitials(userFirstName);
+
     return (
         <Fragment>
             <Dialog
@@ -90,13 +100,31 @@ const HelperBanUnBanModal = () => {
                             <Grid xs={2}>
                             </Grid>
                             <Grid item xs={3}>
-                                <Image
-                                    src={`${user[0]?.img ?? '/images/avatars/6.png'}`}
+                                {user[0]?.img ? <Image
+                                    src={user[0]?.img}
                                     alt={'Logo'}
                                     width={100}
                                     height={100}
                                     style={{ borderRadius: '100%' }}
                                 />
+                                    :
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            width: '100px',
+                                            height: '100px',
+                                            borderRadius: '50%',
+                                            backgroundColor: '#fff',
+                                            color: '#000',
+                                            fontSize: '20px',
+                                            fontWeight: 'bold',
+                                        }}
+                                    >
+                                        {initials}
+                                    </div>
+                                }
                             </Grid>
                             <Grid item xs={7} sx={{ mb: 5 }}>
                                 <div style={{ display: 'flex', alignItems: 'center' }}>

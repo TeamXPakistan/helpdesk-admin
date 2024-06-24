@@ -10,18 +10,22 @@ import { useState } from 'react';
 import Spinner from '@components/common/spinner/spinner';
 import CustomError from '@components/common/error/custom-error';
 import { useHelpersUsersFeedbackQuery } from '@data/helpers-users-feedback/feedback';
+import { UserHelpDeskId } from '@utils/constants';
 
-
-const FeedbackTable = ({ userHelpersId, feedbackHeading }: any) => {
+type Props = {
+    userHelpersId: number;
+    feedbackHeading: string;
+};
+const FeedbackTable = ({ userHelpersId, feedbackHeading }: Props) => {
     const { openModal } = useModal();
 
     const [page, setPage] = useState<number>(1)
-    const [role, setRole] = useState<number>(userHelpersId)
+    const [roleId, setRoleId] = useState<number>(userHelpersId)
 
     const { data: feedbacks, isLoading, error } = useHelpersUsersFeedbackQuery({
         limit: Number(process.env.NEXT_PUBLIC_PAGINATED_QUERY_LIMIT),
         page: page,
-        role
+        roleId
     })
 
     const onPageChange = (event: React.ChangeEvent<unknown>, value: number) => {
@@ -112,7 +116,7 @@ const FeedbackTable = ({ userHelpersId, feedbackHeading }: any) => {
                             onClick={() => openModal({
                                 view: "HELPERS_USERS_FEEDBACK_REVIEWS_MODAL",
                                 data: row?.message,
-                                heading: userHelpersId == 1 ? `User ${feedbackHeading}` : `Helper ${feedbackHeading}`
+                                heading: userHelpersId == UserHelpDeskId.USER ? `User ${feedbackHeading}` : `Helper ${feedbackHeading}`
                             })}
                             title='View' color='inherit' aria-haspopup='true'
                         >

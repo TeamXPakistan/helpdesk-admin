@@ -2,7 +2,7 @@
 import feedback from "@repositories/feedback"
 import { useQuery } from "@tanstack/react-query"
 import { GeneralQueryParam, QueryParamsType } from "@ts-types/custom.types"
-import { FEEDBACK, IPaginator } from "@ts-types/generated"
+import { Feedback, IPaginator } from "@ts-types/generated"
 import { API_ENDPOINTS } from "@utils/api/endpoints"
 
 type QueryParamType = GeneralQueryParam;
@@ -11,15 +11,15 @@ const fetchHelpersUsersFeedback = async ({ queryKey }: QueryParamsType) => {
     const {
         limit,
         page,
-        role
+        roleId
     } = queryKey[1] as QueryParamType;
-    const url = `${API_ENDPOINTS.FEEDBACK}/${role}?limit=${limit}&page=${page}`
+    const url = `${API_ENDPOINTS.FEEDBACK}/${roleId}?limit=${limit}&page=${page}`
     const { data } = await feedback.getAllFeedback(url);
     return { feedback: { data: data?.data, paginatorInfo: data?.meta } }
 }
 
 const useHelpersUsersFeedbackQuery = (options: QueryParamType) => {
-    return useQuery<{ feedback: IPaginator<FEEDBACK> }, Error>(
+    return useQuery<{ feedback: IPaginator<Feedback> }, Error>(
         [API_ENDPOINTS.FEEDBACK, options],
         fetchHelpersUsersFeedback,
         {

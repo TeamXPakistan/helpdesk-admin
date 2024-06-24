@@ -6,11 +6,12 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import FeedbackTable from '@components/feedback-reviews/FeedbackTable';
 import ReviewsTable from '@components/feedback-reviews/ReviewsTable';
+import { ReviewFeedbackTabs } from '@utils/constants';
 
 type feedBackAndReviews = {
     feedbackTable: string,
     reviewsTable: string,
-    userHelpersId: any
+    userHelpersId: number
 }
 
 export default function UsersHelpersFeedbackTabs({ feedbackTable, reviewsTable, userHelpersId }: feedBackAndReviews) {
@@ -27,7 +28,7 @@ export default function UsersHelpersFeedbackTabs({ feedbackTable, reviewsTable, 
                     <TabList onChange={handleChange}>
                         <Tab
                             label={feedbackTable}
-                            value="1"
+                            value={ReviewFeedbackTabs.FEEDBACK_TAB}
                             sx={{
                                 width: '200px',
                                 borderRadius: '10px',
@@ -40,7 +41,7 @@ export default function UsersHelpersFeedbackTabs({ feedbackTable, reviewsTable, 
                         />
                         <Tab
                             label={reviewsTable}
-                            value="2"
+                            value={ReviewFeedbackTabs.REVIEW_TAB}
                             sx={{
                                 width: '200px',
                                 borderRadius: '10px',
@@ -53,8 +54,8 @@ export default function UsersHelpersFeedbackTabs({ feedbackTable, reviewsTable, 
                         />
                     </TabList>
                 </Box>
-                <TabPanel value="1"><FeedbackTable userHelpersId={userHelpersId} feedbackHeading={feedbackTable} /></TabPanel>
-                <TabPanel value="2"><ReviewsTable userHelpersId={userHelpersId} reviewsHeading={reviewsTable} /></TabPanel>
+                <TabPanel value={ReviewFeedbackTabs.FEEDBACK_TAB}><FeedbackTable userHelpersId={userHelpersId} feedbackHeading={feedbackTable} /></TabPanel>
+                <TabPanel value={ReviewFeedbackTabs.REVIEW_TAB}><ReviewsTable userHelpersId={userHelpersId} reviewsHeading={reviewsTable} /></TabPanel>
             </TabContext>
         </Box>
     );
