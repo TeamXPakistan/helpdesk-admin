@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
 import { useCreateFaqMutation } from "@data/faq-entries/faq-entry-create-mutate";
 import { DialogActions } from "@mui/material";
-import { FaqEntry } from "@utils/constants";
+import { FaqEntry, TUTORIAL } from "@utils/constants";
 import { Box } from "@mui/system";
 
 type FormValues = {
@@ -26,17 +26,18 @@ const CreateFaqForm = () => {
     const { handleSubmit, errors, getFieldProps, setFieldValue, values } = useFormik({
         initialValues,
         // validationSchema: createFaqSchema,
-        onSubmit: (values, { resetForm }) => handelCreateFAQ(values, resetForm)
+        onSubmit: (values, { resetForm }) => handelCreateTutorial(values, resetForm)
     })
 
-    const handelCreateFAQ = (values: FormValues, resetForm: any) => {
+    const handelCreateTutorial = (values: FormValues, resetForm: any) => {
         createFaq(
             {
                 title: values?.title,
                 description: values?.description,
-                type: FaqEntry.FAQ,
+                type: TUTORIAL.TUTORIAL,
 
             },
+            
             {
                 onSuccess: () => {
                     resetForm({ values: '' })

@@ -5,7 +5,9 @@ import React, { ReactNode } from 'react'
 
 const index = () => {
   return (
-    <div>index</div>
+    <div>
+      
+    </div>
   )
 }
 

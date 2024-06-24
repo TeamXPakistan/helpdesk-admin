@@ -16,6 +16,10 @@ export enum FaqEntry {
     FAQ = "FAQ",
 }
 
+export enum TUTORIAL {
+    TUTORIAL = "TUTORIAL",
+}
+
 export const adminStaffPermissionsList = [
     AdminStaffPermissions.USERS,
 ]
