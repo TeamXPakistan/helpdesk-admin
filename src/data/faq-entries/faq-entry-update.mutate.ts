@@ -3,7 +3,7 @@ import { API_ENDPOINTS } from '@utils/api/endpoints';
 import toast from 'react-hot-toast'
 import users from '@repositories/users';
 import { useTranslation } from 'react-i18next';
-import { UpdateFaqEntryInput, UserBanPayload } from '@ts-types/generated';
+import { UpdateFaqEntryInput } from '@ts-types/generated';
 
 export const UseFaqEntryUpdateMutation = () => {
     const queryClient = useQueryClient();

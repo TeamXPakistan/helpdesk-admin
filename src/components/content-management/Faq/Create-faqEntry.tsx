@@ -1,9 +1,7 @@
 import CustomButton from "@components/common/Button/custom-button";
 import CustomTextField1 from "@components/common/text-field/custom-text-field-1";
-import { useRolesQuery } from "@data/roles/roles-query";
 import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
-import createFaqSchema from "./create-schema";
 import { useCreateFaqMutation } from "@data/faq-entries/faq-entry-create-mutate";
 import { Typography } from "@mui/material";
 import { useFaqEntriesQuery } from "@data/faq-entries/faq-entries-query";
@@ -23,14 +21,8 @@ const initialValues: FormValues = {
 }
 
 const CreateFaqForm = () => {
-
     const { t } = useTranslation(['form'])
     const { mutate: createFaq, isLoading } = useCreateFaqMutation();
-
-    const { data: allFaq, isLoading: fetchingFaq } = useFaqEntriesQuery({
-        limit: 9999,
-        page: 1,
-    });
 
     const { handleSubmit, errors, getFieldProps, setFieldValue, values } = useFormik({
         initialValues,
