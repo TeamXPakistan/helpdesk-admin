@@ -3,14 +3,14 @@ import { API_ENDPOINTS } from '@utils/api/endpoints';
 import toast from 'react-hot-toast'
 import users from '@repositories/users';
 import { useTranslation } from 'react-i18next';
-import { UserBanPayload } from '@ts-types/generated';
+import { UpdateFaqEntryInput, UserBanPayload } from '@ts-types/generated';
 
 export const UseFaqEntryUpdateMutation = () => {
     const queryClient = useQueryClient();
     const { t } = useTranslation("form")
 
     return useMutation(
-        (input: UserBanPayload) => users.update(`${API_ENDPOINTS.UPDATE_FAQ_ENTRY}`, input),
+        (input: UpdateFaqEntryInput) => users.update(`${API_ENDPOINTS.UPDATE_FAQ_ENTRY}/${input?.id}`, input),
         {
             onSuccess: () => {
                 toast.success(t("Successfully Updated"))

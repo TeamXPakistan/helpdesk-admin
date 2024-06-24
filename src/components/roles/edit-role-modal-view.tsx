@@ -16,7 +16,6 @@ const EditRoleView = () => {
     const { closeModal, modalState } = useModal();
     const [open, setOpen] = useState<boolean>(true)
 
-
     const handleClose = () => {
         setOpen(false)
         closeModal()

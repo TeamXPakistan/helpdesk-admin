@@ -68,8 +68,6 @@ const CreateFaqForm = () => {
                 <Typography
                     variant="h3"
                     sx={{ display: "flex", justifyContent: "center", p: 4 }}
-                    
-                
                 >
                     Create FAQ
                 </Typography>

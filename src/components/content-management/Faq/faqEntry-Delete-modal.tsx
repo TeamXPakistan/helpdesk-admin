@@ -17,15 +17,13 @@ const FaqEntriesDeleteModal = () => {
     const [open, setOpen] = useState<boolean>(true);
     const { closeModal, modalState } = useModal();
     const FaqEntriesData: Faq = modalState?.data;
-    console.log(FaqEntriesData)
-    
     const { mutate: deleteFaqEntry, isLoading } = useDeleteFaqEntryMutation();
-     
+    
     const handleDelete = () => {
         deleteFaqEntry(
             {
-                title: FaqEntriesData.description, 
-                description: FaqEntriesData.title,
+                title: FaqEntriesData.title, 
+                description: FaqEntriesData.description,
                 id: FaqEntriesData.id
             },
             {

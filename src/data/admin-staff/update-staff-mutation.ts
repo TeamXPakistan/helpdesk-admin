@@ -29,6 +29,7 @@ export const useUpdateStaffMutation = () => {
                     queryKey: [API_ENDPOINTS.ADMIN_STAFFS]
                 });
             },
+            
             onError: (error: any) => {
                 toast.error(
                     error?.response?.data?.message

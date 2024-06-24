@@ -20,7 +20,7 @@ const FaqEntriesList = ({ data = [], onPaginationChange, paginatorInfo = { lastP
     const router = useRouter();
     const { openModal } = useModal();
     const { mutate: deleteFaq } = useDeleteFaqEntryMutation()
-
+    
     // Ensure data is always an array
     const faqEntriesData = Array.isArray(data) ? data : [];
    

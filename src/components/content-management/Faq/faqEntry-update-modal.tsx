@@ -26,6 +26,7 @@ const FaqEntriesUpdateModal = () => {
                 ...(FaqEntriesData?.email ? { email: FaqEntriesData?.email } : { phone: FaqEntriesData?.contact }),
                 isActive: !FaqEntriesData?.isActive,
             },
+            
             {
                 onSuccess: () => {
                     handleClose();

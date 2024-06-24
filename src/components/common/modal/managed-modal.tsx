@@ -1,6 +1,4 @@
 
-
-
 import { useModal } from '@store/apps/modal';
 import dynamic from 'next/dynamic';
 
@@ -14,7 +12,7 @@ const SubscriptionsDeleteModal = dynamic(() => import('@components/subscriptions
 const CreatePermissionView = dynamic(() => import('@components/permissions/create-permission-modal-view'));
 const EditPermissionView = dynamic(() => import('@components/permissions/edit-permission-modal-view'));
 const FaqEntriesDeleteModal = dynamic(() => import('@components/content-management/Faq/faqEntry-Delete-modal'));
-const FaqEntriesUpdateModal = dynamic(() => import('@components/content-management/Faq/faqEntry-update-modal'));
+const EditFaqModal = dynamic(() => import('@components/content-management/Faq/faqEditModal'));
 const FaqEntriesCreateModal = dynamic(() => import('@components/content-management/Faq/faqEntry-create-modal'));
 
 const ManagedModal = () => {
@@ -32,7 +30,7 @@ const ManagedModal = () => {
             {view === "SUBSCRIPTIONS_STATUS_MODAL" && <SubscriptionsEditModal />}
             {view === "SUBSCRIPTIONS_DELETE_MODAL" && <SubscriptionsDeleteModal />}
             {view === "DELETE_FAQ_ENTRY" && <FaqEntriesDeleteModal />}
-            {view === "UPDATE_FAQ_ENTRY" && <FaqEntriesUpdateModal />}
+            {view === "UPDATE_FAQ_ENTRY" && <EditFaqModal />}
             {view === "CREATE_FAQ_ENTRY" && <FaqEntriesCreateModal />}
        
         </>
