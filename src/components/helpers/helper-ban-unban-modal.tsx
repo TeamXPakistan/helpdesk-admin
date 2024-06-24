@@ -12,6 +12,7 @@ import CustomTextField1 from '@components/common/text-field/custom-text-field-1'
 import { Grid } from '@mui/material';
 import Image from 'next/image';
 import { useSearchHelperQuery } from '@data/helpers-users-feedback/search-helper-query';
+import { fullName, getUserInitials } from '@utils/helper-functions';
 
 const HelperBanUnBanModal = () => {
     const { t } = useTranslation(['form']);
@@ -40,16 +41,8 @@ const HelperBanUnBanModal = () => {
             setShowResult(false)
         }
     };
-
-
-    function getInitials(name: string): string {
-        if (!name) return '';
-        const words = name.split(' ');
-        const initials = words.slice(0, 2).map(word => word[0]).join('');
-        return initials.toUpperCase();
-    }
-    const userFirstName = user?.firstName || 'User';
-    const initials = getInitials(userFirstName);
+    const userFirstName = user?.length && fullName(user[0]?.firstName, user[0]?.lastName) || "User"
+    const initials = getUserInitials(userFirstName);
 
     return (
         <Fragment>
@@ -95,10 +88,10 @@ const HelperBanUnBanModal = () => {
                             padding: '10px 0px',
                             backgroundColor: '#F8F7FA',
                             display: 'flex',
-                            alignItems: 'center'
+                            alignItems: 'center',
+                            border: '2px solid red',
+                            justifyContent: 'center'
                         }}>
-                            <Grid xs={2}>
-                            </Grid>
                             <Grid item xs={3}>
                                 {user[0]?.img ? <Image
                                     src={user[0]?.img}
@@ -108,20 +101,7 @@ const HelperBanUnBanModal = () => {
                                     style={{ borderRadius: '100%' }}
                                 />
                                     :
-                                    <div
-                                        style={{
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            width: '100px',
-                                            height: '100px',
-                                            borderRadius: '50%',
-                                            backgroundColor: '#fff',
-                                            color: '#000',
-                                            fontSize: '20px',
-                                            fontWeight: 'bold',
-                                        }}
-                                    >
+                                    <div className='name-initials'>
                                         {initials}
                                     </div>
                                 }
@@ -129,15 +109,15 @@ const HelperBanUnBanModal = () => {
                             <Grid item xs={7} sx={{ mb: 5 }}>
                                 <div style={{ display: 'flex', alignItems: 'center' }}>
                                     <Typography>Username: </Typography>
-                                    <Typography>{user[0]?.firstName ?? 'null'}</Typography>
+                                    <Typography className='show-dot-long-text'>{'\u00A0' + (fullName(user[0]?.firstName, user[0]?.lastName) ?? 'null')}</Typography>
                                 </div>
                                 <div style={{ display: 'flex', alignItems: 'center' }}>
                                     <Typography>Email:</Typography>
-                                    <Typography>{user[0]?.email}</Typography>
+                                    <Typography className='show-dot-long-text'>{'\u00A0' + (user[0]?.email)}</Typography>
                                 </div>
                                 <div style={{ display: 'flex', alignItems: 'center' }}>
                                     <Typography>Contact:</Typography>
-                                    <Typography>{user[0]?.contact ?? 'null'}</Typography>
+                                    <Typography className='show-dot-long-text'>{'\u00A0' + (user[0]?.contact ?? 'null')}</Typography>
                                 </div>
                             </Grid>
                         </Grid>)

@@ -3,9 +3,8 @@ import Adminlayout from '@layouts/admin-layout'
 import { Card, CardContent, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { useModal } from '@store/apps/modal'
-import { superAdmin_and_AdminStaff } from '@utils/auth-utils'
-import { AdminStaffPermissions, UserHelpDeskId } from '@utils/constants'
-import React, { ReactNode, useState } from 'react'
+import { UserHelpDeskId } from '@utils/constants'
+import React, { ReactNode } from 'react'
 import UsersHelpersFeedbackTabs from 'src/views/components/tabs/UsersHelpersFeedbackTabs'
 
 const UsersFeedbackPage = () => {

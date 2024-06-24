@@ -117,11 +117,21 @@ code[class*='language-'] {
   border-radius: 10px;
 }
 
-.FeedbackTabsDesign {
-  border: 2px solid red !important;
-  align-items: center !important;
-  margin: auto !important;
-  display: flex !important;
-  justify-content: center !important;
+.show-dot-long-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
+.name-initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  background-color: #fff;
+  color: #000;
+  font-size: 24px;
+  font-weight: 500;
+  border-radius: 100px;
 }

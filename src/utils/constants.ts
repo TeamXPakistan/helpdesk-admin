@@ -41,6 +41,6 @@ export enum RouteActions {
     PUT = "PUT"
 }
 export enum ReviewFeedbackTabs {
-    FEEDBACK_TAB = '1',
-    REVIEW_TAB = '2'
+    FEEDBACK_TAB = "1",
+    REVIEW_TAB = "2"
 }

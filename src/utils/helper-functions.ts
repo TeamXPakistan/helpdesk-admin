@@ -43,3 +43,9 @@ export const fullName = (firstName: string | null | undefined, lastName: string 
         return `${firstName || ''} ${lastName || ''}`;
     }
 }
+export const getUserInitials = (name: string | null | undefined) => {
+    if (!name) return '';
+    const nameWords = name.split(' ');
+    const initials = nameWords.slice(0, 2).map(word => word[0]).join('');
+    return initials.toUpperCase();
+}
