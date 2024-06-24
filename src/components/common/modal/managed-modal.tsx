@@ -32,7 +32,7 @@ const ManagedModal = () => {
             {view === "DELETE_FAQ_ENTRY" && <FaqEntriesDeleteModal />}
             {view === "UPDATE_FAQ_ENTRY" && <EditFaqModal />}
             {view === "CREATE_FAQ_ENTRY" && <FaqEntriesCreateModal />}
-       
+
         </>
     )
 };

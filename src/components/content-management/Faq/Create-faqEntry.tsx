@@ -3,7 +3,7 @@ import CustomTextField1 from "@components/common/text-field/custom-text-field-1"
 import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
 import { useCreateFaqMutation } from "@data/faq-entries/faq-entry-create-mutate";
-import { Typography } from "@mui/material";
+import { DialogActions, Typography } from "@mui/material";
 import { useFaqEntriesQuery } from "@data/faq-entries/faq-entries-query";
 import { FaqEntry } from "@utils/constants";
 import { Box } from "@mui/system";
@@ -47,68 +47,60 @@ const CreateFaqForm = () => {
     }
 
     return (
-        <>
+        
             <form noValidate autoComplete='off' onSubmit={handleSubmit}
-           
             >
                 <Box
-                   sx={{ 
-                     width: "40vh",
-                     marginLeft:"100px"
-                }}
-                >
-                <Typography
-                    variant="h3"
-                    sx={{ display: "flex", justifyContent: "center", p: 4 }}
-                >
-                    Create FAQ
-                </Typography>
-                <CustomTextField1
-                    errorMsg={t(errors?.title as string)}
-                    fullWidth
-                    sx={{ 
-                        mt: "4px"
-                     }}
-                    label={t(`Question`)}
-                    {...getFieldProps('title')}
-                
-                />
-                <CustomTextField1
-                    errorMsg={t(errors?.description as string)}
-                    fullWidth
-                    sx={{ 
-                        mt: "4px"
-                     }}
-                    label={t(`Answer`)}
-                    {...getFieldProps('description')}
-                />
-                <CustomTextField1
-                    errorMsg={t(errors?.type as string)}
-                    fullWidth
-                    sx={{ 
-                       mt: "4px"
-                    }}
-                    label={t(`Type`)}
-                    {...getFieldProps('type')}
-                />
-
-                <CustomButton
-                    variant='contained'
                     sx={{
                         display: 'flex',
+                        textAlign: 'center',
+                        alignItems: 'center',
+                        flexDirection: 'column',
                         justifyContent: 'center',
-                        alignItems: 'center', 
-                        width: "10vh" 
+                        '& svg': { mb: 6, color: 'warning.main' },
                     }}
-                    disabled={isLoading}
-                    loading={isLoading}
-                    type='submit'
                 >
-                    {t(`Create`)}
-                </CustomButton>
+                    <Box>
+                        <CustomTextField1
+                            errorMsg={t(errors?.title as string)}
+                            fullWidth
+                            sx={{
+                                mt: "4px"
+                            }}
+                            label={t(`Question`)}
+                            {...getFieldProps('title')}
+
+                        />
+                        <CustomTextField1
+                            errorMsg={t(errors?.description as string)}
+                            fullWidth
+                            sx={{
+                                mt: "4px"
+                            }}
+                            label={t(`Answer`)}
+                            {...getFieldProps('description')}
+                        />
+                        <CustomTextField1
+                            errorMsg={t(errors?.type as string)}
+                            fullWidth
+                            label={t(`Type`)}
+                            {...getFieldProps('type')}
+                        />
+                    </Box>
+                    <DialogActions>
+
+                        <CustomButton
+                            variant='contained'
+                            disabled={isLoading}
+                            loading={isLoading}
+                            type='submit'
+                        >
+                            {t(`Create`)}
+                        </CustomButton>
+                    </DialogActions>
                 </Box>
             </form>
-        </>)
+    )
 }
 
 export default CreateFaqForm;
