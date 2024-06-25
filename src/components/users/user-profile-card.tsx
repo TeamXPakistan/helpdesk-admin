@@ -17,7 +17,6 @@ type PropType = {
 const UserProfileCard = ({ userDetails }: PropType) => {
   //@ts-ignore
   const { profilePic, firstName, lastName, isActive, email, contact, location, genderPreference, username } = userDetails?.data;
-
   return (
     <Grid container spacing={6}>
       <Grid item xs={12}>

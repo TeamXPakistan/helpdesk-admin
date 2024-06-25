@@ -116,6 +116,7 @@ export type FaqEntries ={
   createdAt: Scalars['DateTime']
   updatedAt: Scalars['DateTime']
 }
+
 export type Tutorial ={
   id: Scalars['ID'],
   title: Scalars['String'];
@@ -249,6 +250,11 @@ export type CreateFaqEntryInput = {
   type: Scalars['String'],
 }
 export type UpdateFaqEntryInput = {
+  title: Scalars['String'],
+  description: Scalars['String'],
+  id: Scalars['ID'],
+}
+export type DeleteTutorial = {
   title: Scalars['String'],
   description: Scalars['String'],
   id: Scalars['ID'],

@@ -14,6 +14,8 @@ const EditPermissionView = dynamic(() => import('@components/permissions/edit-pe
 const FaqEntriesDeleteModal = dynamic(() => import('@components/content-management/Faq/faqEntry-Delete-modal'));
 const EditFaqModal = dynamic(() => import('@components/content-management/Faq/faqEditModal'));
 const FaqEntriesCreateModal = dynamic(() => import('@components/content-management/Faq/faqEntry-create-modal'));
+const TutorialDeleteModal = dynamic(() => import('@components/content-management/tutorial/tutorial-delete-modal'));
+const ViewFaqModal = dynamic(() => import('@components/content-management/Faq/faq-view-modal'));
 
 const ManagedModal = () => {
     const { modalState: { view } } = useModal();
@@ -32,7 +34,8 @@ const ManagedModal = () => {
             {view === "DELETE_FAQ_ENTRY" && <FaqEntriesDeleteModal />}
             {view === "UPDATE_FAQ_ENTRY" && <EditFaqModal />}
             {view === "CREATE_FAQ_ENTRY" && <FaqEntriesCreateModal />}
-
+            {view === "VIEW_FAQ_ENTRY" && <ViewFaqModal />}
+            {view === "DELETE_TUTORIAL" && <TutorialDeleteModal />}
         </>
     )
 };

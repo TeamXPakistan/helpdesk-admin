@@ -69,7 +69,7 @@ const HelperProfileCard = ({ helperDetails }: PropType) => {
               <Box sx={{ display: 'flex', mb: 3 }}>
                 <Typography sx={{ mr: 2, fontWeight: "bold", color: 'text.secondary' }}>Name:</Typography>
                 <Typography sx={{ color: 'text.secondary' }}>{fullName(firstName, lastName) ?? "-"}</Typography>
-              </Box>
+              </Box> 
               <Box sx={{ mb: 3 }}>
                 <Typography sx={{ mr: 2, fontWeight: "bold", color: 'text.secondary' }}>User Name:</Typography>
                 <Typography sx={{ color: 'text.secondary' }}>{username ?? "-"}</Typography>

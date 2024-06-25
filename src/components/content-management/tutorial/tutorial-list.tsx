@@ -15,14 +15,27 @@ type PropTypes = {
     paginatorInfo?: IPaginatorInfo;  // Make paginatorInfo optional
 };
 
-const TutorialList = ({ data = [], onPaginationChange, paginatorInfo = { lastPage: 1, page: 1, totalDocs: 0, limit: 10, totalPages: 1, pagingCounter: 1, hasPrevPage: false, hasNextPage: false, prevPage: null, nextPage: null } }: PropTypes) => {
+const defaultPaginatorInfo: IPaginatorInfo = {
+    lastPage: 1,
+    page: 1,
+    totalDocs: 0,
+    limit: 10,
+    totalPages: 1,
+    pagingCounter: 1,
+    hasPrevPage: false,
+    hasNextPage: false,
+    prevPage: null,
+    nextPage: null
+};
+
+const TutorialList = ({ data = [], onPaginationChange, paginatorInfo = defaultPaginatorInfo }: PropTypes) => {
     const router = useRouter();
     const { openModal } = useModal();
 
     // Ensure data is always an array
-    const faqEntriesData = Array.isArray(data) ? data: [];
+    const tutorialData = Array.isArray(data) ? data : [];
 
-    const FaqEntriesListColumn: GridColDef[] = [
+    const TutorialColumn: GridColDef[] = [
         {
             flex: 0.25,
             minWidth: 200,
@@ -31,7 +44,6 @@ const TutorialList = ({ data = [], onPaginationChange, paginatorInfo = { lastPag
             sortable: false,
             renderCell: ({ row }: { row: Tutorial }) => <Typography sx={{ color: 'text.secondary' }}>{row?.title ?? "-"}</Typography>
         },
-
         {
             flex: 0.25,
             minWidth: 200,
@@ -47,37 +59,35 @@ const TutorialList = ({ data = [], onPaginationChange, paginatorInfo = { lastPag
             sortable: false,
             headerAlign: "right",
             align: "right",
-            renderCell: ({ row }: { row: FaqEntries }) => {
-                return (<>
-                    <Box>
-                        <IconButton
-                            title='Delete'
-                            color='inherit'
-                            aria-haspopup='true'
-                            onClick={() => {
-                                openModal({ view: "DELETE_FAQ_ENTRY", data: row });
-                            }}
-
-                        >
-                            <Icon color='red' fontSize='1.225rem' icon={'octicon:trash-24'} />
-                        </IconButton>
-
-                        <IconButton
-                            color='inherit'
-                            title='Edit'
-                            aria-haspopup='true'
-                            onClick={() => openModal({ view: "UPDATE_FAQ_ENTRY", data: row })}
-                        >
-                            <Icon color='green' fontSize='1.225rem' icon={'nimbus:edit'} />
-                        </IconButton>
-                        <IconButton title='View' color='inherit' aria-haspopup='true' onClick={() => router.push(`${router.asPath}/details/${row?.id}`)}>
-                            <Icon fontSize='1.625rem' icon={'ph:eye'} />
-                        </IconButton>
-                    </Box >
-                </>)
-            }
+            renderCell: ({ row }: { row: FaqEntries }) => (
+                <Box>
+                    <IconButton
+                        title='Delete'
+                        color='inherit'
+                        aria-haspopup='true'
+                        onClick={() => openModal({ view: "DELETE_TUTORIAL", data: row })}
+                    >
+                        <Icon color='red' fontSize='1.225rem' icon={'octicon:trash-24'} />
+                    </IconButton>
+                    <IconButton
+                        color='inherit'
+                        title='Edit'
+                        aria-haspopup='true'
+                        onClick={() => openModal({ view: "UPDATE_TUTORIAL", data: row })}
+                    >
+                        <Icon color='green' fontSize='1.225rem' icon={'nimbus:edit'} />
+                    </IconButton>
+                    <IconButton
+                        title='View'
+                        color='inherit'
+                        aria-haspopup='true'
+                        onClick={() => router.push(`${router.asPath}/details/${row?.id}`)}
+                    >
+                        <Icon fontSize='1.625rem' icon={'ph:eye'} />
+                    </IconButton>
+                </Box>
+            )
         },
-
     ];
 
     return (
@@ -86,7 +96,7 @@ const TutorialList = ({ data = [], onPaginationChange, paginatorInfo = { lastPag
                 autoHeight
                 disableColumnMenu
                 rows={data?.data?.map((value) => ({ ...value }))}
-                columns={FaqEntriesListColumn}
+                columns={TutorialColumn}
                 hideFooterPagination={true}
                 hideFooter={true}
             />
@@ -97,8 +107,8 @@ const TutorialList = ({ data = [], onPaginationChange, paginatorInfo = { lastPag
             >
                 <Pagination
                     color="primary"
-                    count={paginatorInfo.lastPage}
-                    page={paginatorInfo.page}
+                    count={paginatorInfo?.lastPage || 1}
+                    page={paginatorInfo?.page || 1}
                     onChange={onPaginationChange}
                 />
             </Stack>

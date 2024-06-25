@@ -8,21 +8,32 @@ import Icon from '@components/common/icon/icon';
 import { Box } from '@mui/system';
 import { useRouter } from 'next/router';
 import { useModal } from '@store/apps/modal';
-import { useDeleteFaqEntryMutation } from '@data/faq-entries/faq-entry-delete.mutate';
 
 type PropTypes = {
     data?: FaqEntries[];
     onPaginationChange: any;
     paginatorInfo?: IPaginatorInfo;  // Make paginatorInfo optional
 };
+const defaultPaginatorInfo: IPaginatorInfo = {
+    lastPage: 1,
+    page: 1,
+    totalDocs: 0,
+    limit: 10,
+    totalPages: 1,
+    pagingCounter: 1,
+    hasPrevPage: false,
+    hasNextPage: false,
+    prevPage: null,
+    nextPage: null
+};
 
-const FaqEntriesList = ({ data = [], onPaginationChange, paginatorInfo = { lastPage: 1, page: 1, totalDocs: 0, limit: 10, totalPages: 1, pagingCounter: 1, hasPrevPage: false, hasNextPage: false, prevPage: null, nextPage: null } }: PropTypes) => {
+const FaqEntriesList = ({ data, onPaginationChange, paginatorInfo = defaultPaginatorInfo }: PropTypes) => {
     const router = useRouter();
     const { openModal } = useModal();
-    
+
     // Ensure data is always an array
     const faqEntriesData = Array.isArray(data) ? data : [];
-   
+
     const FaqEntriesListColumn: GridColDef[] = [
         {
             flex: 0.25,
@@ -32,7 +43,7 @@ const FaqEntriesList = ({ data = [], onPaginationChange, paginatorInfo = { lastP
             sortable: false,
             renderCell: ({ row }: { row: FaqEntries }) => <Typography sx={{ color: 'text.secondary' }}>{row?.title ?? "-"}</Typography>
         },
-   
+
         {
             flex: 0.25,
             minWidth: 200,
@@ -57,9 +68,7 @@ const FaqEntriesList = ({ data = [], onPaginationChange, paginatorInfo = { lastP
                             aria-haspopup='true'
                             onClick={() => {
                                 openModal({ view: "DELETE_FAQ_ENTRY", data: row });
-                            }}
-                            
-                        >
+                            }}>
                             <Icon color='red' fontSize='1.225rem' icon={'octicon:trash-24'} />
                         </IconButton>
 
@@ -67,18 +76,18 @@ const FaqEntriesList = ({ data = [], onPaginationChange, paginatorInfo = { lastP
                             color='inherit'
                             title='Edit'
                             aria-haspopup='true'
-                            onClick={() => openModal({ view: "UPDATE_FAQ_ENTRY", data: row})}
+                            onClick={() => openModal({ view: "UPDATE_FAQ_ENTRY", data: row })}
                         >
                             <Icon color='green' fontSize='1.225rem' icon={'nimbus:edit'} />
                         </IconButton>
-                        <IconButton title='View' color='inherit' aria-haspopup='true' onClick={() => router.push(`${router.asPath}/details/${row?.id}`)}>
+                        <IconButton title='View' color='inherit' aria-haspopup='true' onClick={() => openModal({ view: "VIEW_FAQ_ENTRY", data: row })}>
                             <Icon fontSize='1.625rem' icon={'ph:eye'} />
                         </IconButton>
                     </Box >
                 </>)
             }
-        }, 
-   
+        },
+
     ];
 
     return (

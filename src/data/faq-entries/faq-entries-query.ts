@@ -1,7 +1,7 @@
 import faqEntries from "@repositories/faq-entries"
 import { useQuery } from "@tanstack/react-query"
 import { GeneralQueryParam, QueryParamsType } from "@ts-types/custom.types"
-import { Helpers, IPaginator } from "@ts-types/generated"
+import { FaqEntries, IPaginator } from "@ts-types/generated"
 import { API_ENDPOINTS } from "@utils/api/endpoints"
 
 type QueryParamType = GeneralQueryParam;
@@ -19,7 +19,7 @@ const fetchFaqEntries = async ({ queryKey }: QueryParamsType) => {
 }
 
 const useFaqEntriesQuery = (options: QueryParamType) => {
-    return useQuery<{ faqEntries: IPaginator<Helpers> }, Error>(
+    return useQuery<{ faqEntries: IPaginator<FaqEntries> }, Error>(
         [API_ENDPOINTS.FAQ_ENTRIES, options],
         fetchFaqEntries,
         {

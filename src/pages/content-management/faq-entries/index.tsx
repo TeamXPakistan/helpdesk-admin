@@ -5,15 +5,13 @@ import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
-import CustomTextField1 from '@components/common/text-field/custom-text-field-1';
 import Spinner from '@components/common/spinner/spinner';
 import CustomButton from '@components/common/Button/custom-button';
 import { AdminStaffPermissions } from '@utils/constants';
 import CustomError from '@components/common/error/custom-error'
 import FaqEntriesList from '@components/content-management/Faq/faqEntriesList'
 import { useFaqEntriesQuery } from '@data/faq-entries/faq-entries-query'
-import { Icon, PropTypes } from '@mui/material'
-import { useRouter } from 'next/router'
+import { Icon } from '@mui/material'
 import { useModal } from '@store/apps/modal'
 import { FaqEntries, IPaginatorInfo } from '@ts-types/generated'
 
@@ -24,7 +22,6 @@ type PropTypes = {
 };
 
 const FaqEntriesPage = () => {
-    const router = useRouter();
     const [text, setText] = useState<string>('')
     const [setSearchVal] = useState<string>('')
     const [page, setPage] = useState<number>(1)
@@ -58,7 +55,7 @@ const FaqEntriesPage = () => {
                     type="button"
                     variant='contained'
                     fullWidth={false}
-                    onClick={() => openModal({ view: "CREATE_FAQ_ENTRY"})}
+                    onClick={() => openModal({ view: "CREATE_FAQ_ENTRY" })}
                     //@ts-ignore
                     startIcon={<Icon color='white' fontSize='1.625rem' icon={'mdi:add-bold'} />}
                 >
