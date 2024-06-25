@@ -2,7 +2,6 @@
 import Card from '@mui/material/Card'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
-import Icon from 'src/@core/components/icon'
 import CustomAvatar from 'src/@core/components/mui/avatar'
 import { Box } from '@mui/system'
 import { Grid } from '@mui/material'

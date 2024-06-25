@@ -1,6 +1,5 @@
 import { QueryKey } from "@tanstack/react-query";
 import { AdminDashboardAnalyticsFilterBy } from "@utils/constants";
-import { Maybe } from "./generated";
 
 export declare type Scalars = {
     ID: string

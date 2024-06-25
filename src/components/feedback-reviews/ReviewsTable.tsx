@@ -21,7 +21,7 @@ const ReviewsTable = ({ userHelpersId, reviewsHeading }: Props) => {
     const { openModal } = useModal();
 
     const [page, setPage] = useState<number>(1)
-    const [roleId, setRoleId] = useState<number>(userHelpersId)
+    const roleId = userHelpersId;
 
     const { data: reviews, isLoading, error } = useHelpersUsersReviewsQuery({
         limit: Number(process.env.NEXT_PUBLIC_PAGINATED_QUERY_LIMIT),

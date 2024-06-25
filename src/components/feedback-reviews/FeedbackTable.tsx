@@ -20,7 +20,7 @@ const FeedbackTable = ({ userHelpersId, feedbackHeading }: Props) => {
     const { openModal } = useModal();
 
     const [page, setPage] = useState<number>(1)
-    const [roleId, setRoleId] = useState<number>(userHelpersId)
+    const roleId = userHelpersId;
 
     const { data: feedbacks, isLoading, error } = useHelpersUsersFeedbackQuery({
         limit: Number(process.env.NEXT_PUBLIC_PAGINATED_QUERY_LIMIT),
