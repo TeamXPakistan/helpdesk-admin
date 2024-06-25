@@ -89,7 +89,6 @@ const HelperBanUnBanModal = () => {
                             backgroundColor: '#F8F7FA',
                             display: 'flex',
                             alignItems: 'center',
-                            border: '2px solid red',
                             justifyContent: 'center'
                         }}>
                             <Grid item xs={3}>
