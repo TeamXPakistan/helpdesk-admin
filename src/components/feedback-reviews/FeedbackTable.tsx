@@ -10,7 +10,8 @@ import { useState } from 'react';
 import Spinner from '@components/common/spinner/spinner';
 import CustomError from '@components/common/error/custom-error';
 import { useHelpersUsersFeedbackQuery } from '@data/helpers-users-feedback/feedback';
-import { UserHelpDeskId } from '@utils/constants';
+import { UserType } from '@utils/constants';
+import { Feedback } from '@ts-types/generated';
 
 type Props = {
     userHelpersId: number;
@@ -43,7 +44,7 @@ const FeedbackTable = ({ userHelpersId, feedbackHeading }: Props) => {
             minWidth: 250,
             headerName: 'Feedback',
             sortable: false,
-            renderCell: ({ row }) => {
+            renderCell: ({ row }: { row: Feedback }) => {
                 return (
                     <Grid display={'flex'} justifyContent={'center'} alignItems={'center'}>
                         <Typography sx={{ color: 'text.secondary', marginLeft: 2 }}>
@@ -59,7 +60,7 @@ const FeedbackTable = ({ userHelpersId, feedbackHeading }: Props) => {
             field: 'feedbackType',
             headerName: 'Positive/Negative',
             sortable: false,
-            renderCell: ({ row }) => {
+            renderCell: ({ row }: { row: Feedback }) => {
                 return (
 
                     <Grid display={'flex'} justifyContent={'center'} alignItems={'center'}>
@@ -76,7 +77,7 @@ const FeedbackTable = ({ userHelpersId, feedbackHeading }: Props) => {
             field: 'reviewee',
             headerName: 'From',
             sortable: false,
-            renderCell: ({ row }) => {
+            renderCell: ({ row }: { row: Feedback }) => {
                 return (
                     <Grid display={'flex'} justifyContent={'center'} alignItems={'center'}>
                         <Typography sx={{ color: 'text.secondary' }}>
@@ -92,7 +93,7 @@ const FeedbackTable = ({ userHelpersId, feedbackHeading }: Props) => {
             field: 'user',
             headerName: 'To',
             sortable: false,
-            renderCell: ({ row }) => {
+            renderCell: ({ row }: { row: Feedback }) => {
                 return (
 
                     <Grid display={'flex'} justifyContent={'center'} alignItems={'center'}>
@@ -109,14 +110,14 @@ const FeedbackTable = ({ userHelpersId, feedbackHeading }: Props) => {
             field: 'view',
             headerName: 'View',
             sortable: false,
-            renderCell: ({ row }) => {
+            renderCell: ({ row }: { row: Feedback }) => {
                 return (
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <IconButton
                             onClick={() => openModal({
                                 view: "HELPERS_USERS_FEEDBACK_REVIEWS_MODAL",
                                 data: row?.message,
-                                heading: userHelpersId == UserHelpDeskId.USER ? `User ${feedbackHeading}` : `Helper ${feedbackHeading}`
+                                heading: userHelpersId == UserType.USER ? `User ${feedbackHeading}` : `Helper ${feedbackHeading}`
                             })}
                             title='View' color='inherit' aria-haspopup='true'
                         >

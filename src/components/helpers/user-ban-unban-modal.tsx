@@ -44,9 +44,6 @@ const UserBanUnBanModal = () => {
         }
     };
 
-    const userFirstName = user?.length && fullName(user[0]?.firstName, user[0]?.lastName) || "User"
-    const initials = getUserInitials(userFirstName);
-
     return (
         <Fragment>
             <Dialog
@@ -103,22 +100,22 @@ const UserBanUnBanModal = () => {
                                         style={{ borderRadius: '100%' }}
                                     />
                                         : <div className='name-initials'>
-                                            {initials}
+                                            {getUserInitials(fullName(user[0]?.firstName, user[0]?.lastName) || "User")}
                                         </div>
                                     }
                                 </Grid>
                                 <Grid item xs={7} sx={{ mb: 5 }}>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
                                         <Typography>Username: </Typography>
-                                        <Typography className='show-dot-long-text'> {'\u00A0' + (fullName(user[0]?.firstName, user[0]?.lastName) ?? 'null')}</Typography>
+                                        <Typography className='show-dot-long-text'>&nbsp; {fullName(user[0]?.firstName, user[0]?.lastName) ?? '-'}</Typography>
                                     </div>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
                                         <Typography>Email:</Typography>
-                                        <Typography className='show-dot-long-text'>{'\u00A0' + (user[0]?.email)} </Typography>
+                                        <Typography className='show-dot-long-text'> &nbsp; {user[0]?.email}</Typography>
                                     </div>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
                                         <Typography>Contact:</Typography>
-                                        <Typography className='show-dot-long-text'>{'\u00A0' + (user[0]?.contact ?? 'null')} </Typography>
+                                        <Typography className='show-dot-long-text'>&nbsp; {user[0]?.contact ?? '-'}</Typography>
                                     </div>
                                 </Grid>
                             </Grid>)}

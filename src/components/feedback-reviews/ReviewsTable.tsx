@@ -10,7 +10,8 @@ import Spinner from '@components/common/spinner/spinner';
 import CustomError from '@components/common/error/custom-error';
 import { useState } from 'react';
 import { useHelpersUsersReviewsQuery } from '@data/helpers-users-reviews/reviews';
-import { UserHelpDeskId } from '@utils/constants';
+import { UserType } from '@utils/constants';
+import { Review } from '@ts-types/generated';
 
 type Props = {
     userHelpersId: number;
@@ -42,7 +43,7 @@ const ReviewsTable = ({ userHelpersId, reviewsHeading }: Props) => {
             minWidth: 250,
             sortable: false,
             headerName: 'Reviews',
-            renderCell: ({ row }) => {
+            renderCell: ({ row }: { row: Review }) => {
                 return (
 
                     <Grid display={'flex'} justifyContent={'center'} alignItems={'center'}>
@@ -59,7 +60,7 @@ const ReviewsTable = ({ userHelpersId, reviewsHeading }: Props) => {
             field: 'rating',
             sortable: false,
             headerName: 'Rating',
-            renderCell: ({ row }) => {
+            renderCell: ({ row }: { row: Review }) => {
                 return (
                     <Grid display={'flex'} justifyContent={'center'} alignItems={'center'}>
                         <Typography sx={{ color: 'text.secondary', marginLeft: 2 }}>
@@ -75,7 +76,7 @@ const ReviewsTable = ({ userHelpersId, reviewsHeading }: Props) => {
             field: 'reviewee',
             headerName: 'From',
             sortable: false,
-            renderCell: ({ row }) => {
+            renderCell: ({ row }: { row: Review }) => {
                 return (
                     <Grid display={'flex'} justifyContent={'center'} alignItems={'center'}>
                         <Typography sx={{ color: 'text.secondary' }}>
@@ -91,7 +92,7 @@ const ReviewsTable = ({ userHelpersId, reviewsHeading }: Props) => {
             field: 'user',
             headerName: 'To',
             sortable: false,
-            renderCell: ({ row }) => {
+            renderCell: ({ row }: { row: Review }) => {
                 return (
                     <Grid display={'flex'} justifyContent={'center'} alignItems={'center'}>
                         <Typography sx={{ color: 'text.secondary' }}>
@@ -106,14 +107,14 @@ const ReviewsTable = ({ userHelpersId, reviewsHeading }: Props) => {
             minWidth: 250,
             field: 'view',
             headerName: 'View',
-            renderCell: ({ row }) => {
+            renderCell: ({ row }: { row: Review }) => {
                 return (
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <IconButton
                             onClick={() => openModal({
                                 view: "HELPERS_USERS_FEEDBACK_REVIEWS_MODAL",
                                 data: row?.message,
-                                heading: userHelpersId == UserHelpDeskId.USER ? `User ${reviewsHeading}` : `Helper ${reviewsHeading}`
+                                heading: userHelpersId == UserType.USER ? `User ${reviewsHeading}` : `Helper ${reviewsHeading}`
                             })}
                             title='View' color='inherit' aria-haspopup='true'
                         >
