@@ -127,6 +127,16 @@ export type Helpers = {
   lastName: Scalars['String']
 }
 
+export type parentCategories = {
+  id: Scalars['ID'],
+  image: Scalars['String'],
+  ratePerHour: Scalars['Int'],
+  callTime: Scalars['Int'],
+  approvalRequired: Scalars['Boolean'],
+  parentId: Scalars['ID'],
+  translations: Scalars['String'],
+  name: Scalars['String'],
+}
 
 export type LoginUserDynamicRole = {
   _id: Scalars["ID"]

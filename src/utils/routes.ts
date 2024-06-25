@@ -12,5 +12,8 @@ export const ROUTES = {
   SUBSCRIPTIONS: '/subscriptions',
   PERMISSIONS: '/management/permissions',
   ROLES: '/management/roles',
-  STAFF: '/management/staff'
+  STAFF: '/management/staff',
+
+  PARENT_CATEGORY: '/category/parent-categories',
+  SUB_CATEGORY: '/category/sub-categories'
 }

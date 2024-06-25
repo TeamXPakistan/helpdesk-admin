@@ -54,6 +54,24 @@ const adminNavigation = (): VerticalNavItemsType => {
       path: ROUTES.SUBSCRIPTIONS,
       allowedRoles: superAdmin_and_AdminStaff,
     },
+
+    {
+      title: 'common:nav-admin-text-category',
+      icon: 'tabler:category',
+      allowedRoles: superAdminOnly,
+      children: [
+        {
+          title: 'common:nav-admin-text-parent-category',
+          path: ROUTES.PARENT_CATEGORY,
+          allowedRoles: superAdminOnly,
+        },
+        {
+          title: 'common:nav-admin-text-sub-category',
+          path: ROUTES.SUB_CATEGORY,
+          allowedRoles: superAdminOnly,
+        }
+      ]
+    },
   ]
 }
 

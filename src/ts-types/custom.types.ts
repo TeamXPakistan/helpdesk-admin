@@ -18,6 +18,7 @@ export declare type Scalars = {
 export type QueryParamsType = {
     queryKey: QueryKey;
     pageParam?: Scalars["String"];
+
 };
 
 export type GeneralQueryParam = {
