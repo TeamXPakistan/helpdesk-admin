@@ -14,10 +14,7 @@ type PropType = {
     formData: Faq
 }
 
-type FormValues = {
-    title: string | undefined;
-    description: string | null | undefined;
-}
+
 
 const EditFaqModal = ({ formData }: PropType) => {
     const { t } = useTranslation(['form'])
@@ -38,7 +35,7 @@ const EditFaqModal = ({ formData }: PropType) => {
         onSubmit: (values, { resetForm }) => handelUpdateFaq(values, resetForm)
     })
 
-    const handelUpdateFaq = (values: FormValues, resetForm: any) => {
+    const handelUpdateFaq = (values: UpdateFaqEntryInput, resetForm: any) => {
         updateFaqEntry(
             {
                 title: values.title,

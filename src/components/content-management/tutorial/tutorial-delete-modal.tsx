@@ -61,7 +61,7 @@ const TutorialDeleteModal = () => {
                         }}
                     >
                         <Icon color="black" icon="line-md:account-delete" fontSize="5.5rem" />
-                        <Typography>{`Are you sure you would like to "Delete" this FAQ-Entry?`}</Typography>
+                        <Typography>{`Are you sure you would like to "Delete" this Tutorial?`}</Typography>
                     </Box>
                 </DialogContent>
                 <DialogActions

@@ -11,8 +11,9 @@ import { useModal } from '@store/apps/modal';
 type PropTypes = {
     data?: FaqEntries[];
     onPaginationChange: any;
-    paginatorInfo?: IPaginatorInfo;  // Make paginatorInfo optional
+    paginatorInfo?: IPaginatorInfo;  
 };
+
 const defaultPaginatorInfo: IPaginatorInfo = {
     lastPage: 1,
     page: 1,
@@ -29,8 +30,6 @@ const defaultPaginatorInfo: IPaginatorInfo = {
 const FaqEntriesList = ({ data, onPaginationChange, paginatorInfo = defaultPaginatorInfo }: PropTypes) => {
     const { openModal } = useModal();
 
-    // Ensure data is always an array
-    const faqEntriesData = Array.isArray(data) ? data : [];
 
     const FaqEntriesListColumn: GridColDef[] = [
         {
