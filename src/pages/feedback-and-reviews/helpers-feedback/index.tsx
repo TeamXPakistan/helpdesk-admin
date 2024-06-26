@@ -31,7 +31,7 @@ const HelpersFeedbackPage = () => {
                     <UsersHelpersFeedbackTabs
                         feedbackTable="Feedbacks"
                         reviewsTable="Reviews"
-                        userHelpersId={UserType.HELP_DESK}
+                        userHelpersId={UserType.HELPER}
                     />
                 </CardContent>
             </Card>
