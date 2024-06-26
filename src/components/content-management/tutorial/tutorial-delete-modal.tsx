@@ -5,7 +5,7 @@ import { useModal } from '@store/apps/modal';
 import Box from '@mui/system/Box';
 import Typography from '@mui/material/Typography';
 import Icon from 'src/@core/components/icon';
-import { Faq } from '@ts-types/generated';
+import { DeleteTutorial } from '@ts-types/generated';
 import DialogActions from '@mui/material/DialogActions';
 import CustomButton from '@components/common/Button/custom-button';
 import Button from '@mui/material/Button';
@@ -16,19 +16,21 @@ const TutorialDeleteModal = () => {
     const { t } = useTranslation(['form']);
     const [open, setOpen] = useState<boolean>(true);
     const { closeModal, modalState } = useModal();
-    const FaqEntriesData: Faq = modalState?.data;
+    const TutorialData: DeleteTutorial = modalState?.data;
     const { mutate: deleteTutorial, isLoading } = useDeleteTutorialMutation();
-    
+
     const handleDelete = () => {
         deleteTutorial(
             {
-                title: FaqEntriesData.title, 
-                description: FaqEntriesData.description,
-                id: FaqEntriesData.id
+                title: TutorialData.title, 
+                description: TutorialData.description,
+                id: TutorialData.id
             },
+
             {
                 onSuccess: () => {
                     handleClose();
+                    closeModal()
                 },
             }
         );
@@ -61,7 +63,7 @@ const TutorialDeleteModal = () => {
                         }}
                     >
                         <Icon color="black" icon="line-md:account-delete" fontSize="5.5rem" />
-                        <Typography>{`Are you sure you would like to "Delete" this FAQ-Entry?`}</Typography>
+                        <Typography>{`Are you sure you would like to "Delete" this Tutorial?`}</Typography>
                     </Box>
                 </DialogContent>
                 <DialogActions

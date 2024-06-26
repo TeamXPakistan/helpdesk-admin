@@ -153,6 +153,7 @@ export type Faq = {
   title: Scalars['String']
   id: Scalars['ID']
 }
+
 export type FaqUpdate = {
   description: Scalars['String']
   title: Scalars['String']

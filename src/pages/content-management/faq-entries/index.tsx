@@ -27,7 +27,7 @@ const FaqEntriesPage = () => {
     };
 
     if (isLoading) return <Spinner />
-    if (error) return <CustomError errorMsg={error.message} />
+    if (error) return <CustomError errorMsg={error  .message} />
 
     return <>
         <Box

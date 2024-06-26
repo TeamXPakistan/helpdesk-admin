@@ -17,7 +17,7 @@ export const useDeleteTutorialMutation = () => {
         
         {
             onSuccess: () => {
-                toast.success(t("FAQ Entry deleted successfully"), { duration: 4000 });
+                toast.success(t("Tutorial deleted successfully"), { duration: 4000 });
             },
             onSettled: () => {
                 queryClient.invalidateQueries({

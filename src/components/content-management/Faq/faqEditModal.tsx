@@ -2,31 +2,26 @@ import CustomButton from "@components/common/Button/custom-button";
 import CustomTextField1 from "@components/common/text-field/custom-text-field-1";
 import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
-import { Faq } from "@ts-types/generated";
+import { Faq, FaqUpdate, UpdateFaqEntryInput } from "@ts-types/generated";
 import { UseFaqEntryUpdateMutation } from "@data/faq-entries/faq-entry-update.mutate";
+import updatefaqSchema from "./update-schema";
 import { useModal } from "@store/apps/modal";
 import { Fragment, useState } from "react";
 import { Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import { Box } from "@mui/system";
-import updatefaqSchema from "../Faq/update-schema";
 
 type PropType = {
     formData: Faq
 }
 
-type FormValues = {
-    title: string | undefined;
-    description: string | null | undefined;
-}
 
-const EditTutorialModal = ({ formData }: PropType) => {
+
+const EditFaqModal = ({ formData }: PropType) => {
     const { t } = useTranslation(['form'])
     const [open, setOpen] = useState<boolean>(true);
-
     const { mutate: updateFaqEntry, isLoading } = UseFaqEntryUpdateMutation();
-
     const { closeModal, modalState } = useModal();
-    const FaqEntriesData: Faq = modalState?.data;
+    const FaqEntriesData: UpdateFaqEntryInput = modalState?.data;
 
     const initialValues: FormValues = {
         title: FaqEntriesData.title,
@@ -40,7 +35,7 @@ const EditTutorialModal = ({ formData }: PropType) => {
         onSubmit: (values, { resetForm }) => handelUpdateFaq(values, resetForm)
     })
 
-    const handelUpdateFaq = (values: FormValues, resetForm: any) => {
+    const handelUpdateFaq = (values: UpdateFaqEntryInput, resetForm: any) => {
         updateFaqEntry(
             {
                 title: values.title,
@@ -88,15 +83,22 @@ const EditTutorialModal = ({ formData }: PropType) => {
                                 <CustomTextField1
                                     errorMsg={t(errors?.title as string)}
                                     fullWidth
+                                    multiline
+                                    rows={2}
                                     sx={{ mb: 5 }}
                                     label={t(`Question`)}
+                                    placeholder={t(`Question`) as string}
                                     {...getFieldProps('title')}
                                 />
+                                
                                 <CustomTextField1
                                     errorMsg={t(errors?.description as string)}
                                     fullWidth
-                                    sx={{ mb: 5 }}
-                                    label={t(`Answer`)}
+                                    multiline
+                                    rows={4}
+                                    sx={{ mb: 4 }}
+                                    label={t(`Description`)}
+                                    placeholder={t(`Description`) as string}
                                     {...getFieldProps('description')}
                                 />
                             </Box>
@@ -110,15 +112,21 @@ const EditTutorialModal = ({ formData }: PropType) => {
                                 >
                                     {t(`Update`)}
                                 </CustomButton>
+                                <CustomButton
+                                    fullWidth={true}
+                                    type="button"
+                                    variant="outlined"
+                                    onClick={closeModal}
+                                >
+                                    {t(`Cancel`)}
+                                </CustomButton>
                             </DialogActions>
                         </Box>
                     </form>
                 </DialogContent>
-
-
             </Dialog>
         </Fragment>
     )
 }
 
-export default EditTutorialModal;
+export default EditFaqModal;
