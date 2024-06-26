@@ -1,17 +1,17 @@
-import helpers from "@repositories/helpers"
+import faqEntries from "@repositories/faq-entries"
 import { useQuery } from "@tanstack/react-query"
-import { Helpers } from "@ts-types/generated"
+import { FaqEntries, Helpers } from "@ts-types/generated"
 import { API_ENDPOINTS } from "@utils/api/endpoints"
 
 const fetchFaqEntry = async (id: string) => {
-    const url = `${API_ENDPOINTS.FAQ_ENTRIES}/${id}`
-    const { data } = await helpers.getSingleHelper(url)
+    const url = `${API_ENDPOINTS.FAQ_ENTRY_VIEW}/${id}`
+    const { data } = await faqEntries.getAllFaqEntry(url)
     return data
 }
 
 const useFaqEntryQuery = (id: string) => {
-    return useQuery<Helpers, Error>(
-        [API_ENDPOINTS.FAQ_ENTRIES, id], () => fetchFaqEntry(id),
+    return useQuery<FaqEntries, Error>(
+        [API_ENDPOINTS.FAQ_ENTRY_VIEW, id], () => fetchFaqEntry(id),
     )
 }
 

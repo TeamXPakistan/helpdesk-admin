@@ -23,6 +23,7 @@ type ModalStatetypes = {
     "DELETE_TUTORIAL" |
     "CREATE_TUTORIAL" |
     "UPDATE_TUTORIAL" |
+    "FAQ_ENTRY_VIEW" |
     ""
 }
 

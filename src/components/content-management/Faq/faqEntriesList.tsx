@@ -6,7 +6,6 @@ import { FaqEntries, IPaginatorInfo } from '@ts-types/generated';
 import { IconButton } from '@mui/material';
 import Icon from '@components/common/icon/icon';
 import { Box } from '@mui/system';
-import { useRouter } from 'next/router';
 import { useModal } from '@store/apps/modal';
 
 type PropTypes = {
@@ -28,7 +27,6 @@ const defaultPaginatorInfo: IPaginatorInfo = {
 };
 
 const FaqEntriesList = ({ data, onPaginationChange, paginatorInfo = defaultPaginatorInfo }: PropTypes) => {
-    const router = useRouter();
     const { openModal } = useModal();
 
     // Ensure data is always an array
@@ -52,6 +50,7 @@ const FaqEntriesList = ({ data, onPaginationChange, paginatorInfo = defaultPagin
             sortable: false,
             renderCell: ({ row }: { row: FaqEntries }) => <Typography sx={{ color: 'text.secondary' }}>{row?.description ?? "-"}</Typography>
         },
+        
         {
             width: 250,
             field: 'action',

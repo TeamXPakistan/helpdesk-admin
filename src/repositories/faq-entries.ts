@@ -1,4 +1,4 @@
-import { CreateFaqEntryInput } from "@ts-types/generated";
+import { CreateFaqEntryInput, FaqUpdate } from "@ts-types/generated";
 import Base from "./base";
 
 class FaqEntries extends Base<any, any> {
@@ -14,6 +14,9 @@ class FaqEntries extends Base<any, any> {
     }
     deleteFaq = async (url: string) => {
         return this.delete(url);
+    }
+    updateFaq = async (url: string, data: FaqUpdate) => {
+        return this.update(url, data);
     }
 }
 

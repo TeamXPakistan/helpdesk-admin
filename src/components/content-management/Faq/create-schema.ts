@@ -1,9 +1,9 @@
 import * as Yup from 'yup'
 
 const createFaqSchema = Yup.object().shape({
-    question: Yup.string()
+    title: Yup.string()
         .required('Question is required'),
-    answer: Yup.string()
+    description: Yup.string()
         .required('Answer is required'),
    
 });

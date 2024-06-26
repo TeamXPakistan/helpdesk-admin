@@ -107,17 +107,16 @@ export type User = {
 }
 
 
-export type FaqEntries ={
-  id: Scalars['ID'],
-  title: Scalars['String'];
-  type: Scalars['String'],
-  description: Scalars['String'];
-  translations: Scalars['String'],
-  createdAt: Scalars['DateTime']
-  updatedAt: Scalars['DateTime']
+export type FaqEntries = {
+    id: Scalars['ID'],
+    title: Scalars['String'];
+    type: Scalars['String'],
+    description: Scalars['String'];
+    translations: Scalars['String'],
+    createdAt: Scalars['DateTime']
 }
 
-export type Tutorial ={
+export type Tutorial = {
   id: Scalars['ID'],
   title: Scalars['String'];
   type: Scalars['String'],
@@ -149,7 +148,12 @@ export type Helpers = {
   lastName: Scalars['String']
 }
 
-export type Faq ={
+export type Faq = {
+  description: Scalars['String']
+  title: Scalars['String']
+  id: Scalars['ID']
+}
+export type FaqUpdate = {
   description: Scalars['String']
   title: Scalars['String']
   id: Scalars['ID']

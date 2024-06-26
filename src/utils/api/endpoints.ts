@@ -41,6 +41,7 @@ export const API_ENDPOINTS = {
   SINGLE_PERMISSION: '/permission/get',
   UPDATE_PERMISSION: '/permission/update',
   FAQ_ENTRIES: '/content/findFaq',
+  FAQ_ENTRY_VIEW: '/content/detail',
   DELETE_FAQ_ENTRY: '/content/delete',
   UPDATE_FAQ_ENTRY: '/content/update',
   CREATE_FAQ_ENTRY: '/content/create',
