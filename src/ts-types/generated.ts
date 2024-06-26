@@ -278,3 +278,19 @@ export type ExcelExport = {
   startDate: Scalars['Date'] | null
   endDate: Scalars['Date'] | null
 }
+export type CreateParentCategoryInput = {
+  ratePerHour: Scalars['Int'],
+  callTime: Scalars['Int']
+  approvalRequired: Scalars['Boolean']
+  image: Scalars['String']
+  translations: [
+    {
+      name: Scalars['String']
+      language?: Scalars['String']
+    },
+    {
+      name: Scalars['String']
+      language?: Scalars['String']
+    }
+  ]
+}

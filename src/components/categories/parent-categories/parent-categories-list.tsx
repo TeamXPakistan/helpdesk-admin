@@ -3,13 +3,14 @@ import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { IPaginatorInfo, User, parentCategories } from '@ts-types/generated';
-import { Avatar, Grid, IconButton } from '@mui/material';
+import { Avatar, Checkbox, Grid, IconButton } from '@mui/material';
 import Icon from '@components/common/icon/icon';
 import { Box } from '@mui/system';
 import { useRouter } from 'next/router';
 import { fullName } from '@utils/helper-functions';
 import CustomButton from '@components/common/Button/custom-button';
 import { useModal } from '@store/apps/modal';
+import Image from 'next/image';
 
 type PropTypes = {
     data: parentCategories[];
@@ -24,21 +25,21 @@ const ParentCategoriesList = ({ data, onPaginationChange, paginatorInfo }: PropT
     const ParentCategoriesColumn: GridColDef[] = [
         {
             flex: 0.25,
-            minWidth: 200,
+            minWidth: 100,
             field: 'image',
             headerName: 'Image',
             sortable: false,
             renderCell: ({ row }: { row: parentCategories }) => {
                 return (
                     <Grid display={'flex'} justifyContent={'center'} alignItems={'center'}>
-                        <Avatar alt={"profile"} src={row?.image} sx={{ width: 38, height: 38, borderRadius: "20%" }} />
+                        <img src={row?.image} alt={'Logo'} width={40} height={40} />
                     </Grid>
                 )
             }
         },
         {
             flex: 0.25,
-            minWidth: 200,
+            minWidth: 150,
             field: 'name',
             headerName: 'Name',
             sortable: false,
@@ -46,7 +47,7 @@ const ParentCategoriesList = ({ data, onPaginationChange, paginatorInfo }: PropT
         },
         {
             flex: 0.25,
-            minWidth: 200,
+            minWidth: 150,
             field: 'id',
             headerName: 'ID',
             sortable: false,
@@ -62,27 +63,24 @@ const ParentCategoriesList = ({ data, onPaginationChange, paginatorInfo }: PropT
         },
         {
             flex: 0.25,
-            minWidth: 200,
+            minWidth: 50,
             field: 'approvalRequired',
             headerName: 'Approval',
             sortable: false,
             renderCell: ({ row }: { row: parentCategories }) => {
                 return (<>
                     <Box>
-                        <CustomButton
-                            type={'button'}
-                            variant='contained'
-                            onClick={() => openModal({ view: "USER_STATUS_MODAL", data: row })}
-                        >
-                            {`${row?.approvalRequired ? 'True' : 'false'}`}
-                        </CustomButton>
+                        <Checkbox
+                            checked={row?.approvalRequired}
+                            name="approvalRequired"
+                        />
                     </Box >
                 </>)
             }
         },
         {
             flex: 0.25,
-            minWidth: 200,
+            minWidth: 150,
             field: 'callTime',
             headerName: 'Call Time',
             sortable: false,
@@ -96,6 +94,24 @@ const ParentCategoriesList = ({ data, onPaginationChange, paginatorInfo }: PropT
             sortable: false,
             renderCell: ({ row }: { row: parentCategories }) => <Typography sx={{ color: 'text.secondary' }}>{row?.ratePerHour ?? "-"}</Typography>
         },
+        {
+            flex: 0.25,
+            minWidth: 150,
+            field: 'Update',
+            headerName: 'Update',
+            sortable: false,
+            renderCell: ({ row }: { row: parentCategories }) => {
+                return (<>
+                    <Box>
+                        <IconButton title='update' color='inherit' aria-haspopup='true'
+                        //onClick={() => openModal({ view: "EDIT_PARENT_CATEGORY", data: row })}
+                        >
+                            <Icon fontSize='1.625rem' icon='tabler:edit' color='green' />
+                        </IconButton>
+                    </Box >
+                </>)
+            }
+        }
     ]
 
     return <>

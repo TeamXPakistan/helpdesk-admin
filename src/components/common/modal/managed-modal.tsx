@@ -1,4 +1,5 @@
 
+import UserParentCategoryUpdateModal from '@components/categories/parent-categories/parent-category-update-modal';
 import { useModal } from '@store/apps/modal';
 import dynamic from 'next/dynamic';
 
@@ -26,6 +27,9 @@ const ManagedModal = () => {
             {view === "HELPER_STATUS_MODAL" && <HelperStatusModal />}
             {view === "SUBSCRIPTIONS_STATUS_MODAL" && <SubscriptionsEditModal />}
             {view === "SUBSCRIPTIONS_DELETE_MODAL" && <SubscriptionsDeleteModal />}
+            {view === "EDIT_PARENT_CATEGORY" && <UserParentCategoryUpdateModal />}
+
+
         </>
     );
 };
