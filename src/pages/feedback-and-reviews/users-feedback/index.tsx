@@ -3,6 +3,7 @@ import Adminlayout from '@layouts/admin-layout'
 import { Card, CardContent, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { useModal } from '@store/apps/modal'
+import { superAdmin_and_AdminStaff } from '@utils/auth-utils'
 import { UserType } from '@utils/constants'
 import React, { ReactNode } from 'react'
 import UsersHelpersFeedbackTabs from 'src/views/components/tabs/UsersHelpersFeedbackTabs'
@@ -38,10 +39,10 @@ const UsersFeedbackPage = () => {
     )
 }
 
-// UsersFeedbackPage.authProps = {
-//     allowedRoles: superAdmin_and_AdminStaff,
-//     adminStaffPermissions: [AdminStaffPermissions.USERS]
-// }
+UsersFeedbackPage.authProps = {
+    allowedRoles: superAdmin_and_AdminStaff,
+    // adminStaffPermissions: [AdminStaffPermissions.USERS]
+}
 
 UsersFeedbackPage.getLayout = (page: ReactNode) => <Adminlayout>{page}</Adminlayout>
 
