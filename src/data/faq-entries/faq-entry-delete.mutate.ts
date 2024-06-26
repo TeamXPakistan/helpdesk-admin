@@ -14,10 +14,10 @@ export const useDeleteFaqEntryMutation = () => {
 
             return faqEntries.deleteFaq(`${API_ENDPOINTS.DELETE_FAQ_ENTRY}/${staffInput?.id}`)
         },
-        
+
         {
             onSuccess: () => {
-                toast.success(t("FAQ Entry deleted successfully"), { duration: 4000 });
+                toast.success(t("Deleted successfully"), { duration: 4000 });
             },
             onSettled: () => {
                 queryClient.invalidateQueries({

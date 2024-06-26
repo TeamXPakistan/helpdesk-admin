@@ -11,7 +11,7 @@ const SubscriptionsDeleteModal = dynamic(() => import('@components/subscriptions
 const CreatePermissionView = dynamic(() => import('@components/permissions/create-permission-modal-view'));
 const EditPermissionView = dynamic(() => import('@components/permissions/edit-permission-modal-view'));
 const FaqEntriesDeleteModal = dynamic(() => import('@components/content-management/Faq/faqEntry-Delete-modal'));
-const EditFaqModal = dynamic(() => import('@components/content-management/Faq/faqEditModal'));
+const EditFaqModal = dynamic(() => import('@components/content-management/Faq/faq-edit-modal'));
 const FaqEntriesCreateModal = dynamic(() => import('@components/content-management/Faq/faqEntry-create-modal'));
 const TutorialDeleteModal = dynamic(() => import('@components/content-management/tutorial/tutorial-delete-modal'));
 const ViewFaqModal = dynamic(() => import('@components/content-management/Faq/faq-view-modal'));

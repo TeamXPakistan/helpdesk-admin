@@ -9,28 +9,13 @@ import { Box } from '@mui/system';
 import { useModal } from '@store/apps/modal';
 
 type PropTypes = {
-    data?: FaqEntries[];
+    data: FaqEntries[];
     onPaginationChange: any;
-    paginatorInfo?: IPaginatorInfo;  // Make paginatorInfo optional
-};
-const defaultPaginatorInfo: IPaginatorInfo = {
-    lastPage: 1,
-    page: 1,
-    totalDocs: 0,
-    limit: 10,
-    totalPages: 1,
-    pagingCounter: 1,
-    hasPrevPage: false,
-    hasNextPage: false,
-    prevPage: null,
-    nextPage: null
+    paginatorInfo: IPaginatorInfo;
 };
 
-const FaqEntriesList = ({ data, onPaginationChange, paginatorInfo = defaultPaginatorInfo }: PropTypes) => {
+const FaqEntriesList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
     const { openModal } = useModal();
-
-    // Ensure data is always an array
-    const faqEntriesData = Array.isArray(data) ? data : [];
 
     const FaqEntriesListColumn: GridColDef[] = [
         {
@@ -50,7 +35,7 @@ const FaqEntriesList = ({ data, onPaginationChange, paginatorInfo = defaultPagin
             sortable: false,
             renderCell: ({ row }: { row: FaqEntries }) => <Typography sx={{ color: 'text.secondary' }}>{row?.description ?? "-"}</Typography>
         },
-        
+
         {
             width: 250,
             field: 'action',

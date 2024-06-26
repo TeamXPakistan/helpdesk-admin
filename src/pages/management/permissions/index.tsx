@@ -9,9 +9,7 @@ import Spinner from '@components/common/spinner/spinner';
 import CustomButton from '@components/common/Button/custom-button';
 import CustomError from '@components/common/error/custom-error'
 import Icon from '@components/common/icon/icon';
-import { useRolesQuery } from '@data/roles/roles-query'
 import { useModal } from '@store/apps/modal'
-import RolesList from '@components/roles/roles-list'
 import { usePermissionsQuery } from '@data/permissions/permissions-query'
 import PermissionsList from '@components/permissions/permissions-list'
 import CustomTextField1 from '@components/common/text-field/custom-text-field-1'
