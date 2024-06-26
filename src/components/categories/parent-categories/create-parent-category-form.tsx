@@ -8,8 +8,8 @@ import { useCreateParentCategoryMutation } from '@data/category/create-parent-ca
 
 type FormValues = {
     approvalRequired: boolean;
-    callTime: number | null;
-    ratePerHour: number | null;
+    callTime: number;
+    ratePerHour: number;
     image: string;
     translations: {
         en: { name: string, language: string },
@@ -19,8 +19,8 @@ type FormValues = {
 
 const initialValues: FormValues = {
     approvalRequired: false,
-    callTime: null,
-    ratePerHour: null,
+    callTime: 0,
+    ratePerHour: 0,
     image: "",
     translations: {
         en: {
@@ -87,23 +87,23 @@ const CreateParentCategoryForm = () => {
     };
     return (
         <form noValidate autoComplete='off' onSubmit={handleSubmit}>
-            {/* <CustomTextField1
+            <CustomTextField1
                 errorMsg={t(errors?.image as string)}
                 fullWidth
                 sx={{ mb: 5 }}
                 label={t(`Image`)}
                 {...getFieldProps('image')}
-            /> */}
-            <FormControl fullWidth sx={{ mb: 5 }}>
+            />
+            {/* <FormControl fullWidth sx={{ mb: 5 }}>
                 <InputLabel>{t('Image')}</InputLabel>
                 <Input
                     type="file"
-                    accept="image/*"
+                    // accept="image/*"
                     onChange={handleImageChange}
                     inputProps={{ 'aria-label': 'upload image' }}
                 />
                 {errors?.image && <Typography variant="caption" color="error">{t(errors?.image as string)}</Typography>}
-            </FormControl>
+            </FormControl> */}
 
             <CustomTextField1
                 errorMsg={t(errors?.ratePerHour as string)}
