@@ -1,8 +1,11 @@
 import Base from "./base";
 
-class Reviews extends Base<any, any>{
+class Reviews extends Base<any, any> {
 
     getAllShopReviews = async (url: string) => {
+        return this.all(url)
+    }
+    getAllReviews = async (url: string) => {
         return this.all(url)
     }
 

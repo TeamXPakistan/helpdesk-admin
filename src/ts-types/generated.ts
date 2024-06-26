@@ -314,3 +314,51 @@ export type ExcelExport = {
   startDate: Scalars['Date'] | null
   endDate: Scalars['Date'] | null
 }
+export type Feedback = {
+  id?: Scalars['ID']
+  feedbackType?: Scalars['String']
+  message?: Scalars['String']
+  reviewee?: {
+    id?: Scalars['ID']
+    username?: Scalars['String']
+    email?: Scalars['String']
+    phone?: Scalars['String']
+  }
+  revieweeId?: Scalars['String']
+  updatedAt?: Scalars['Date']
+  createdAt?: Scalars['Date']
+  user?: {
+    id?: Scalars['ID']
+    username?: Scalars['String']
+    email?: Scalars['String']
+    phone?: Scalars['String']
+  }
+  userId?: Scalars['ID']
+
+}
+export type Review = {
+  id?: Scalars['ID']
+  rating?: Scalars['String']
+  message?: Scalars['String']
+  reviewee?: {
+    id?: Scalars['ID']
+    username?: Scalars['String']
+    email?: Scalars['String']
+    phone?: Scalars['String']
+  }
+  revieweeId?: Scalars['String']
+  updatedAt?: Scalars['Date']
+  createdAt?: Scalars['Date']
+  user?: {
+    id?: Scalars['ID']
+    username?: Scalars['String']
+    email?: Scalars['String']
+    phone?: Scalars['String']
+  }
+  userId?: Scalars['ID']
+
+}
+export type UserHelperMessage = {
+  rating?: Scalars['String']
+  message?: Scalars['String']
+}

@@ -38,10 +38,18 @@ export enum AdminDashboardAnalyticsFilterBy {
     YEARLY = "yearly",
     MONTHLY = "monthly",
 }
+export enum UserType {
+    USER = 1,
+    HELPER = 2
+}
 
 export enum RouteActions {
     GET = "GET",
     POST = "POST",
     DELETE = "DELETE",
     PUT = "PUT"
+}
+export enum ReviewFeedbackTabs {
+    FEEDBACK_TAB = "1",
+    REVIEW_TAB = "2"
 }

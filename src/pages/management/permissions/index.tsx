@@ -14,19 +14,27 @@ import { useModal } from '@store/apps/modal'
 import RolesList from '@components/roles/roles-list'
 import { usePermissionsQuery } from '@data/permissions/permissions-query'
 import PermissionsList from '@components/permissions/permissions-list'
+import CustomTextField1 from '@components/common/text-field/custom-text-field-1'
 
 const Permissions = () => {
+    const [text, setText] = useState<string>('')
+    const [searchVal, setSearchVal] = useState<string>('')
     const [page, setPage] = useState<number>(1)
-    const { openModal } = useModal()
 
+    const { openModal } = useModal()
 
     const { data: permissions, isLoading, error } = usePermissionsQuery({
         limit: Number(process.env.NEXT_PUBLIC_PAGINATED_QUERY_LIMIT),
         page: page,
+        text
     });
 
     const onPageChange = (event: React.ChangeEvent<unknown>, value: number) => {
         setPage(value);
+    };
+
+    const onReset = () => {
+        setPage(1); setText(''); setSearchVal('')
     };
 
     if (isLoading) return <Spinner />
@@ -38,6 +46,21 @@ const Permissions = () => {
         >
             <Typography variant='h4' sx={{ color: "text.primary" }}>Permissions List</Typography>
             <Box sx={{ gap: 4, display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
+                <form onSubmit={(e) => {
+                    e.preventDefault()
+                    setText(searchVal)
+                }}>
+                    <CustomTextField1 value={searchVal} placeholder='Search by name, module name' onChange={e => setSearchVal(e.target.value)} />
+                </form>
+
+                <CustomButton
+                    type="button"
+                    variant='contained'
+                    fullWidth={false}
+                    onClick={() => onReset()}
+                >
+                    Reset
+                </CustomButton>
                 <CustomButton
                     type="button"
                     variant='contained'
