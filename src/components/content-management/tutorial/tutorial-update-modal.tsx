@@ -4,12 +4,10 @@ import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
 import { Faq } from "@ts-types/generated";
 import { UseFaqEntryUpdateMutation } from "@data/faq-entries/faq-entry-update.mutate";
-
 import { useModal } from "@store/apps/modal";
 import { Fragment, useState } from "react";
 import { Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import { Box } from "@mui/system";
-import { useFaqEntriesQuery } from "@data/faq-entries/faq-entries-query";
 import updatefaqSchema from "../Faq/update-schema";
 
 type PropType = {
@@ -35,7 +33,7 @@ const EditTutorialModal = ({ formData }: PropType) => {
         description: FaqEntriesData.description,
     }
 
-    const { handleSubmit, errors, getFieldProps, setFieldValue, values } = useFormik({
+    const { handleSubmit, errors, getFieldProps } = useFormik({
         initialValues,
         enableReinitialize: true,
         validationSchema: updatefaqSchema,
@@ -62,7 +60,6 @@ const EditTutorialModal = ({ formData }: PropType) => {
         setOpen(false);
         closeModal();
     };
-    const { data, isLoading: fetchingFaqEntry, error: faqEntryError } = useFaqEntriesQuery(modalState?.data?.permissionId)
 
     return (
         <Fragment>

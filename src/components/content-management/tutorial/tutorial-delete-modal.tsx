@@ -18,7 +18,7 @@ const TutorialDeleteModal = () => {
     const { closeModal, modalState } = useModal();
     const TutorialData: DeleteTutorial = modalState?.data;
     const { mutate: deleteTutorial, isLoading } = useDeleteTutorialMutation();
-    
+
     const handleDelete = () => {
         deleteTutorial(
             {
@@ -26,7 +26,7 @@ const TutorialDeleteModal = () => {
                 description: TutorialData.description,
                 id: TutorialData.id
             },
-            
+
             {
                 onSuccess: () => {
                     handleClose();
