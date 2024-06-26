@@ -41,8 +41,8 @@ const EditFaqModal = ({ formData }: PropType) => {
     const handelUpdateFaq = (values: FormValues, resetForm: any) => {
         updateFaqEntry(
             {
-                title: FaqEntriesData.title,
-                description: FaqEntriesData.description,
+                title: values.title,
+                description: values.description,
                 id: FaqEntriesData.id
             },
             {
