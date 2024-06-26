@@ -32,8 +32,6 @@ const TutorialList = ({ data = [], onPaginationChange, paginatorInfo = defaultPa
     const router = useRouter();
     const { openModal } = useModal();
 
-    // Ensure data is always an array
-    const tutorialData = Array.isArray(data) ? data : [];
 
     const TutorialColumn: GridColDef[] = [
         {

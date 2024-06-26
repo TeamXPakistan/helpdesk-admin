@@ -1,6 +1,6 @@
 import * as Yup from 'yup'
 
-const createFaqSchema = Yup.object().shape({
+const createtutorialSchema = Yup.object().shape({
     question: Yup.string()
         .required('Question is required'),
     answer: Yup.string()
@@ -8,4 +8,4 @@ const createFaqSchema = Yup.object().shape({
    
 });
 
-export default createFaqSchema
+export default createtutorialSchema
