@@ -4,12 +4,13 @@ import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
 import { Faq } from "@ts-types/generated";
 import { UseFaqEntryUpdateMutation } from "@data/faq-entries/faq-entry-update.mutate";
-import updatefaqSchema from "./update-schema";
+
 import { useModal } from "@store/apps/modal";
 import { Fragment, useState } from "react";
 import { Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import { Box } from "@mui/system";
 import { useFaqEntriesQuery } from "@data/faq-entries/faq-entries-query";
+import updatefaqSchema from "../Faq/update-schema";
 
 type PropType = {
     formData: Faq
@@ -25,10 +26,6 @@ const EditTutorialModal = ({ formData }: PropType) => {
     const [open, setOpen] = useState<boolean>(true);
 
     const { mutate: updateFaqEntry, isLoading } = UseFaqEntryUpdateMutation();
-    const { data: faqEntries, isLoading: fetchingRoles } = useFaqEntriesQuery({
-        limit: 9999,
-        page: 1,
-    });
 
     const { closeModal, modalState } = useModal();
     const FaqEntriesData: Faq = modalState?.data;
@@ -48,13 +45,14 @@ const EditTutorialModal = ({ formData }: PropType) => {
     const handelUpdateFaq = (values: FormValues, resetForm: any) => {
         updateFaqEntry(
             {
-                title: FaqEntriesData.title,
-                description: FaqEntriesData.description,
+                title: values.title,
+                description: values.description,
                 id: FaqEntriesData.id
             },
             {
                 onSuccess: () => {
                     resetForm({ values: '' })
+                    closeModal()
                 }
             }
         )
