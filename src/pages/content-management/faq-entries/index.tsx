@@ -33,7 +33,6 @@ const FaqEntriesPage = () => {
         text
     });
 
-    console.log(faqEntries)
     const onPageChange = (event: React.ChangeEvent<unknown>, value: number) => {
         setPage(value);
     };
