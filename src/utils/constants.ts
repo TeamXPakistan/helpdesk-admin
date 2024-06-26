@@ -31,7 +31,7 @@ export enum AdminDashboardAnalyticsFilterBy {
 }
 export enum UserType {
     USER = 1,
-    HELP_DESK = 2
+    HELPER = 2
 }
 
 export enum RouteActions {
