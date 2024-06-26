@@ -30,7 +30,7 @@ const data = [
 
 const RADIAN = Math.PI / 180
 const renderCustomizedLabel = (props: LabelProp) => {
-    const { cx, cy, midAngle, innerRadius, outerRadius, percent } = props
+    const { cx, cy, midAngle, outerRadius, percent } = props
 
     const radius = outerRadius * 0.66
     const x = cx + radius * Math.cos(-midAngle * RADIAN)

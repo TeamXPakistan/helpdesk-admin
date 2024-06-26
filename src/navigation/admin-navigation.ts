@@ -54,6 +54,23 @@ const adminNavigation = (): VerticalNavItemsType => {
       path: ROUTES.SUBSCRIPTIONS,
       allowedRoles: superAdmin_and_AdminStaff,
     },
+    {
+      title: 'common:nav-admin-text-feedback-and-review',
+      icon: 'fa-solid:thumbs-up',
+      allowedRoles: superAdmin_and_AdminStaff,
+      children: [
+        {
+          title: 'common:nav-admin-text-users-feedback',
+          path: ROUTES.USERS_FEEDBACK,
+          allowedRoles: superAdmin_and_AdminStaff,
+        },
+        {
+          title: 'common:nav-admin-text-helpers-feedback',
+          path: ROUTES.HELPERS_FEEDBACK,
+          allowedRoles: superAdmin_and_AdminStaff,
+        }
+      ]
+    },
   ]
 }
 

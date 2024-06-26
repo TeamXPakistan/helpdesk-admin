@@ -1,10 +1,8 @@
 import { Card, CardHeader, Grid, Box, Typography, LinearProgress } from '@mui/material';
-import { textAlign } from '@mui/system';
 
 const FeedbackCard = ({ positiveFeedback, negativeFeedback }: any) => {
     const totalFeedback = positiveFeedback + negativeFeedback;
     const positivePercentage = (positiveFeedback / totalFeedback) * 100;
-    const negativePercentage = (negativeFeedback / totalFeedback) * 100;
 
     return (
         <Card className='cards-styling-hd'>

@@ -127,15 +127,15 @@ const AdminDashboard = () => {
           <ParcelsEarningsBarChart analytics={analytics} />
         </Grid>
 
-        <Grid item xs={12} lg={6} md={8} className="recent-customers">
+        <Grid item xs={12} lg={6} md={12} className="recent-customers">
           <RecentCustomerRegistered />
         </Grid>
 
-        <Grid item xs={12} lg={3} md={4} className="recent-customers">
+        <Grid item xs={12} lg={3} md={6} className="recent-customers">
           <HelpersPerformance />
         </Grid>
 
-        <Grid item xs={12} lg={3} className="cat-feedback">
+        <Grid item xs={12} lg={3} md={6} className="cat-feedback">
           <Box sx={{ height: '53%' }}>
             <TopCategories />
           </Box>

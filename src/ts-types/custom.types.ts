@@ -1,6 +1,5 @@
 import { QueryKey } from "@tanstack/react-query";
 import { AdminDashboardAnalyticsFilterBy } from "@utils/constants";
-import { Maybe } from "./generated";
 
 export declare type Scalars = {
     ID: string
@@ -25,6 +24,7 @@ export type GeneralQueryParam = {
     limit?: Scalars["Int"]
     text?: Scalars["String"];
     shopId?: Scalars["String"];
+    roleId?: Scalars["Int"];
 }
 
 export type UsersQueryParam = {
