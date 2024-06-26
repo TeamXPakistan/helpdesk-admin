@@ -5,8 +5,6 @@ import Typography from '@mui/material/Typography'
 import CardHeader from '@mui/material/CardHeader'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
 
-
-
 interface Customer {
     id: number;
     name: string;

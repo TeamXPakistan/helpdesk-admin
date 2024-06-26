@@ -96,11 +96,6 @@ code[class*='language-'] {
   }
 }
 
-.language-selected {
-  font-size: 16px;
-  margin-right: 5px;
-}
-
 .vertical-line {
   border: 1px solid #EEEEEE;
   height: 70px;
@@ -116,4 +111,27 @@ code[class*='language-'] {
   .vertical-line {
     display: none;
   }
+}
+
+.user-helpers-feedback-table {
+  border-radius: 10px;
+}
+
+.show-dot-long-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.name-initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  background-color: #fff;
+  color: #000;
+  font-size: 24px;
+  font-weight: 500;
+  border-radius: 100px;
 }

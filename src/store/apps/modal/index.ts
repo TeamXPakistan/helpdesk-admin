@@ -4,13 +4,15 @@ import { RootState } from '@store/index'
 
 
 type ModalStatetypes = {
-    data?: any
+    data?: any,
+    heading?: string,
     view:
     "GENERAL_DELETE_VIEW" |
     "CREATE_ROLE_VIEW" |
     "EDIT_ROLE_VIEW" |
     "USER_STATUS_MODAL" |
     "HELPER_STATUS_MODAL" |
+    "HELPERS_USERS_FEEDBACK_REVIEWS_MODAL" |
     "SUBSCRIPTIONS_STATUS_MODAL" |
     "SUBSCRIPTIONS_DELETE_MODAL" |
     "CREATE_PERMISSION_VIEW" |
@@ -24,10 +26,12 @@ type ModalStatetypes = {
     "CREATE_TUTORIAL" |
     "UPDATE_TUTORIAL" |
     "FAQ_ENTRY_VIEW" |
-    ""
+    "BAN_UNBAN_USER_MODAL" |
+    "BAN_UNBAN_HELPER_MODAL" |
+    "",
 }
 
-const initialState: ModalStatetypes = { view: '', data: null }
+const initialState: ModalStatetypes = { view: '', data: null, heading: '' }
 
 const modalSlice = createSlice({
     name: 'modalSlice',
@@ -36,10 +40,12 @@ const modalSlice = createSlice({
         setModalState: (state: ModalStatetypes, action: PayloadAction<ModalStatetypes>) => {
             state.view = action.payload.view;
             state.data = action.payload.data;
+            state.heading = action.payload.heading;
         },
         removeModalState: (state: ModalStatetypes) => {
             state.view = ""
             state.data = null;
+            state.heading = "";
         }
     }
 })
@@ -48,8 +54,8 @@ export const useModal = () => {
     const modalState: ModalStatetypes = useSelector((state: RootState) => state.modal);
     const dispatch = useDispatch();
 
-    const openModal = ({ view, data }: ModalStatetypes) => {
-        dispatch(setModalState({ view, data }));
+    const openModal = ({ view, data, heading }: ModalStatetypes) => {
+        dispatch(setModalState({ view, data, heading }));
     }
     const closeModal = () => {
         dispatch(removeModalState());

@@ -35,6 +35,8 @@ export const API_ENDPOINTS = {
   HELPERS_LIST: 'helpers/findAll',
   SINGLE_HELPER: 'helpers/find',
   HELPER_STATUS: 'helper/ban',
+  FEEDBACK: 'feedback/getFeedback',
+  REVIEWS: 'feedback/getReviews',
   CREATE_PERMISSION: 'permission/create',
   DELETE_PERMISSION: '/permission/delete',
   PERMISSIONS: '/permission/all',

@@ -12,18 +12,27 @@ import Icon from '@components/common/icon/icon';
 import { useRolesQuery } from '@data/roles/roles-query'
 import { useModal } from '@store/apps/modal'
 import RolesList from '@components/roles/roles-list'
+import CustomTextField1 from '@components/common/text-field/custom-text-field-1'
 
 const Roles = () => {
+    const [text, setText] = useState<string>('')
+    const [searchVal, setSearchVal] = useState<string>('')
     const [page, setPage] = useState<number>(1)
+
     const { openModal } = useModal()
 
     const { data: roles, isLoading, error } = useRolesQuery({
         limit: Number(process.env.NEXT_PUBLIC_PAGINATED_QUERY_LIMIT),
         page: page,
+        text
     });
 
     const onPageChange = (event: React.ChangeEvent<unknown>, value: number) => {
         setPage(value);
+    };
+
+    const onReset = () => {
+        setPage(1); setText(''); setSearchVal('')
     };
 
     if (isLoading) return <Spinner />
@@ -35,6 +44,21 @@ const Roles = () => {
         >
             <Typography variant='h4' sx={{ color: "text.primary" }}>Roles List</Typography>
             <Box sx={{ gap: 4, display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
+                <form onSubmit={(e) => {
+                    e.preventDefault()
+                    setText(searchVal)
+                }}>
+                    <CustomTextField1 value={searchVal} placeholder='Search by name' onChange={e => setSearchVal(e.target.value)} />
+                </form>
+
+                <CustomButton
+                    type="button"
+                    variant='contained'
+                    fullWidth={false}
+                    onClick={() => onReset()}
+                >
+                    Reset
+                </CustomButton>
                 <CustomButton
                     type="button"
                     variant='contained'
