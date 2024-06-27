@@ -4,8 +4,7 @@ import DialogContent from '@mui/material/DialogContent';
 import { useModal } from '@store/apps/modal';
 import Box from '@mui/system/Box';
 import Typography from '@mui/material/Typography';
-import Icon from 'src/@core/components/icon'
-import { User, parentCategories } from '@ts-types/generated';
+import { ParentCategories } from '@ts-types/generated';
 import DialogActions from '@mui/material/DialogActions';
 import CustomButton from '@components/common/Button/custom-button';
 import Button from '@mui/material/Button';
@@ -34,7 +33,7 @@ const UserParentCategoryUpdateModal = () => {
     const [open, setOpen] = useState<boolean>(true);
     const { closeModal, modalState } = useModal();
 
-    const userData: parentCategories = modalState?.data
+    const userData: ParentCategories = modalState?.data
 
     const { mutate: toggleUserStatus, isLoading } = useUpdateUserMutation();
 

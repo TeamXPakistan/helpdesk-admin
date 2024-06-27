@@ -3,16 +3,16 @@ import * as Yup from 'yup'
 const createParentCategorySchema = Yup.object().shape({
     // id: Yup.string().required('ID is required'),
     // parentId: Yup.string(),
-    callTime: Yup.number().required("Call Time is required"),
-    approvalRequired: Yup.boolean().required("approval Required Time is required"),
-    ratePerHour: Yup.number().required('Rate per hour is required'),
+    callTime: Yup.number().typeError('Call Time must be a number').required("Call Time is required"),
+    approvalRequired: Yup.boolean().required("Approval Time is required"),
+    ratePerHour: Yup.number().typeError('Rate per hour must be a number').required('Rate per hour is required'),
     image: Yup.string().required('Image is required'),
     translations: Yup.object().shape({
         en: Yup.object().shape({
-            name: Yup.string().required("English name is required"),
+            name: Yup.string().required("Name in English is required"),
         }).required('English translation is required'),
         ar: Yup.object().shape({
-            name: Yup.string().required("Arabic name is required"),
+            name: Yup.string().matches(/^[؀-ۿـ ]+$/, 'Name must be in Arabic').required("Name in Arabic is required"),
         }).required('Arabic translation is required'),
     }).required("Translations are required"),
 });

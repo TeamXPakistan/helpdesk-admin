@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import { CardHeader, Checkbox, FormControl, Input, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import { CardHeader, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import CustomButton from "@components/common/Button/custom-button";
 import CustomTextField1 from "@components/common/text-field/custom-text-field-1";
@@ -160,8 +160,8 @@ const CreateParentCategoryForm = () => {
                     value={initialValues.approvalRequired}
                     onChange={(e) => setFieldValue('approvalRequired', e.target.value as boolean)}
                 >
-                    <MenuItem value={true}>{t('True')}</MenuItem>
-                    <MenuItem value={false}>{t('False')}</MenuItem>
+                    <MenuItem value={true}>True</MenuItem>
+                    <MenuItem value={false}>False</MenuItem>
                 </Select>
             </FormControl>
 
@@ -175,7 +175,7 @@ const CreateParentCategoryForm = () => {
             >
                 {t(`Create`)}
             </CustomButton>
-        </form>
+        </form >
     );
 };
 

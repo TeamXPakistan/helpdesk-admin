@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
 import { GeneralQueryParam, QueryParamsType } from "@ts-types/custom.types"
-import { Helpers, IPaginator, parentCategories } from "@ts-types/generated"
+import { IPaginator, ParentCategories } from "@ts-types/generated"
 import { API_ENDPOINTS } from "@utils/api/endpoints"
 import ParentCategory from "@repositories/parent-categories"
 
@@ -19,7 +19,7 @@ const fetchParentCategories = async ({ queryKey }: QueryParamsType) => {
 }
 
 const useParentCategoriesQuery = (options: QueryParamType) => {
-    return useQuery<{ parentCategories: IPaginator<parentCategories> }, Error>(
+    return useQuery<{ parentCategories: IPaginator<ParentCategories> }, Error>(
         [API_ENDPOINTS.PARENT_CATEGORIES, options],
         fetchParentCategories,
         {
