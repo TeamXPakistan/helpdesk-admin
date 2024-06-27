@@ -41,33 +41,6 @@ const FaqEntriesDeleteModal = () => {
     };
 
     return (
-<<<<<<< HEAD
-        <Fragment>
-            <Dialog
-                open={open}
-                onClose={handleClose}
-                maxWidth="sm"
-                fullWidth
-                aria-labelledby="scroll-dialog-title"
-                aria-describedby="scroll-dialog-description"
-            >
-                <DialogContent>
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            textAlign: 'center',
-                            alignItems: 'center',
-                            flexDirection: 'column',
-                            justifyContent: 'center',
-                            '& svg': { mb: 6, color: 'warning.main' },
-                        }}
-                    >
-                        <Icon color="black" icon="mingcute:delete-2-line" fontSize="5.5rem" />
-                        <Typography>{`Are you sure you would like to "Delete" this FAQ-Entry?`}</Typography>
-                    </Box>
-                </DialogContent>
-                <DialogActions
-=======
         <Dialog
             open={open}
             onClose={handleClose}
@@ -78,7 +51,6 @@ const FaqEntriesDeleteModal = () => {
         >
             <DialogContent>
                 <Box
->>>>>>> f9cf9ede1377a463494c3ed2ec5c4a3b5ac1227a
                     sx={{
                         display: 'flex',
                         textAlign: 'center',

@@ -14,14 +14,9 @@ type PropTypes = {
     paginatorInfo: IPaginatorInfo;
 };
 
-<<<<<<< HEAD
-
-const FaqEntriesList = ({ data, onPaginationChange, paginatorInfo}: PropTypes) => {
-=======
 const FaqEntriesList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
->>>>>>> f9cf9ede1377a463494c3ed2ec5c4a3b5ac1227a
     const { openModal } = useModal();
-
+    console.log(data)
     const FaqEntriesListColumn: GridColDef[] = [
         {
             flex: 0.25,
