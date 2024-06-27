@@ -3,9 +3,14 @@ import CustomTextField1 from "@components/common/text-field/custom-text-field-1"
 import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
 import { useCreateFaqMutation } from "@data/faq-entries/faq-entry-create-mutate";
+<<<<<<< HEAD
 import { DialogActions } from "@mui/material";
 import { FaqEntry } from "@utils/constants";
 import { Box } from "@mui/system";
+=======
+import { Box, DialogActions } from "@mui/material";
+import { FaqEntry } from "@utils/constants";
+>>>>>>> f9cf9ede1377a463494c3ed2ec5c4a3b5ac1227a
 import createFaqSchema from "./create-schema";
 
 type FormValues = {
@@ -17,7 +22,6 @@ type FormValues = {
 type propTypes = {
     closeModal: () => void;
 };
-
 
 const initialValues: FormValues = {
     title: "",

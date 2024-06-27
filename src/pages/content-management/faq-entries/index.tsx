@@ -7,38 +7,23 @@ import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
 import Spinner from '@components/common/spinner/spinner';
 import CustomButton from '@components/common/Button/custom-button';
-import { AdminStaffPermissions } from '@utils/constants';
+import Icon from '@components/common/icon/icon';
 import CustomError from '@components/common/error/custom-error'
-import FaqEntriesList from '@components/content-management/Faq/faqEntriesList'
 import { useFaqEntriesQuery } from '@data/faq-entries/faq-entries-query'
-import { Icon } from '@mui/material'
 import { useModal } from '@store/apps/modal'
-import { FaqEntries, IPaginatorInfo } from '@ts-types/generated'
-
-type PropTypes = {
-    data?: FaqEntries[];
-    onPaginationChange: any;
-    paginatorInfo?: IPaginatorInfo;  // Make paginatorInfo optional
-};
+import FaqEntriesList from '@components/content-management/Faq/faqEntriesList'
 
 const FaqEntriesPage = () => {
-    const [text, setText] = useState<string>('')
-    const [setSearchVal] = useState<string>('')
     const [page, setPage] = useState<number>(1)
     const { openModal } = useModal();
 
     const { data: faqEntries, isLoading, error } = useFaqEntriesQuery({
         limit: Number(process.env.NEXT_PUBLIC_PAGINATED_QUERY_LIMIT),
-        page: page,
-        text
+        page: page
     });
 
     const onPageChange = (event: React.ChangeEvent<unknown>, value: number) => {
         setPage(value);
-    };
-
-    const onReset = () => {
-        setPage(1); setText(''); setSearchVal('')
     };
 
     if (isLoading) return <Spinner />
@@ -55,7 +40,7 @@ const FaqEntriesPage = () => {
                     variant='contained'
                     fullWidth={false}
                     onClick={() => openModal({ view: "CREATE_FAQ_ENTRY" })}
-                    //@ts-ignore
+                    // @ts-ignore
                     startIcon={<Icon color='white' fontSize='1.625rem' icon={'mdi:add-bold'} />}
                 >
                     Create FAQ
@@ -77,7 +62,7 @@ const FaqEntriesPage = () => {
 
 FaqEntriesPage.authProps = {
     allowedRoles: superAdmin_and_AdminStaff,
-    adminStaffPermissions: [AdminStaffPermissions.HELPERS]
+    // adminStaffPermissions: [AdminStaffPermissions.HELPERS]
 }
 
 FaqEntriesPage.getLayout = (page: ReactNode) => <Adminlayout>{page}</Adminlayout>

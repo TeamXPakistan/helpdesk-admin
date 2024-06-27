@@ -6,7 +6,7 @@ import { API_ENDPOINTS } from "@utils/api/endpoints"
 const fetchFaqEntry = async (id: string) => {
     const url = `${API_ENDPOINTS.FAQ_ENTRY_VIEW}/${id}`
     const { data } = await faqEntries.getAllFaqEntry(url)
-    return data
+    return data?.data
 }
 
 const useFaqEntryQuery = (id: string) => {

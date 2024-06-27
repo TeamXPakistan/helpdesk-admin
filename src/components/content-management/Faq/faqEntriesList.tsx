@@ -9,15 +9,18 @@ import { Box } from '@mui/system';
 import { useModal } from '@store/apps/modal';
 
 type PropTypes = {
-    data?: FaqEntries[];
+    data: FaqEntries[];
     onPaginationChange: any;
-    paginatorInfo?: IPaginatorInfo;  
+    paginatorInfo: IPaginatorInfo;
 };
 
+<<<<<<< HEAD
 
 const FaqEntriesList = ({ data, onPaginationChange, paginatorInfo}: PropTypes) => {
+=======
+const FaqEntriesList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
+>>>>>>> f9cf9ede1377a463494c3ed2ec5c4a3b5ac1227a
     const { openModal } = useModal();
-
 
     const FaqEntriesListColumn: GridColDef[] = [
         {
@@ -37,7 +40,7 @@ const FaqEntriesList = ({ data, onPaginationChange, paginatorInfo}: PropTypes) =
             sortable: false,
             renderCell: ({ row }: { row: FaqEntries }) => <Typography sx={{ color: 'text.secondary' }}>{row?.description ?? "-"}</Typography>
         },
-        
+
         {
             width: 250,
             field: 'action',
