@@ -79,7 +79,7 @@ const FaqEntriesList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) 
             <DataGrid
                 autoHeight
                 disableColumnMenu
-                rows={data?.data?.map((value) => ({ ...value }))}
+                rows={data?.map((value) => ({ ...value }))}
                 columns={FaqEntriesListColumn}
                 hideFooterPagination={true}
                 hideFooter={true}

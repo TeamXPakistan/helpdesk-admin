@@ -14,8 +14,8 @@ const fetchFaqEntries = async ({ queryKey }: QueryParamsType) => {
     } = queryKey[1] as QueryParamType;
     const url = `${API_ENDPOINTS.FAQ_ENTRIES}?limit=${limit}&page=${page}${text && `&search=${text}`}`
     const data = await faqEntries.getAllFaqEntries(url)
-
-    return { faqEntries: { data: data?.data, paginatorInfo: data?.meta } }
+    
+    return { faqEntries: { data: data?.data?.data, paginatorInfo: data?.meta } }
 }
 
 const useFaqEntriesQuery = (options: QueryParamType) => {
