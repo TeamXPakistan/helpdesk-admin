@@ -12,11 +12,9 @@ import { Box } from "@mui/system";
 import CustomButton from "@components/common/Button/custom-button";
 import CustomTextField1 from "@components/common/text-field/custom-text-field-1";
 
-type PropType = {
-    formData: FaqEntries
-}
 
-const ViewFaqModal = ({ formData }: PropType) => {
+
+const ViewFaqModal = () => {
     const { t } = useTranslation(['form'])
     const { closeModal, modalState } = useModal();
     const [open, setOpen] = useState<boolean>(true);
@@ -55,6 +53,7 @@ const ViewFaqModal = ({ formData }: PropType) => {
                                     '& svg': { mb: 6, color: 'warning.main' },
                                 }}
                             >
+                                
                                 <Box>
                                     <CustomTextField1
                                         fullWidth

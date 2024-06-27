@@ -64,7 +64,7 @@ const CreateFaqForm = ({ closeModal }: propTypes) => {
                     "& svg": { mb: 6, color: "warning.main" },
                 }}
             >
-                
+
                 <Box>
                     <CustomTextField1
                         errorMsg={t(errors?.title as string)}
@@ -86,8 +86,8 @@ const CreateFaqForm = ({ closeModal }: propTypes) => {
                         multiline
                         rows={4}
                         sx={{ mb: 4 }}
-                        label={t(`Description`)}
-                        placeholder={t(`Description`) as string}
+                        label={t(`Answer`)}
+                        placeholder={t(`Answer`) as string}
                         {...getFieldProps('description')}
                     />
                 </Box>

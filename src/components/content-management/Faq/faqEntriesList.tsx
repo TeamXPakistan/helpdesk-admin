@@ -14,20 +14,8 @@ type PropTypes = {
     paginatorInfo?: IPaginatorInfo;  
 };
 
-const defaultPaginatorInfo: IPaginatorInfo = {
-    lastPage: 1,
-    page: 1,
-    totalDocs: 0,
-    limit: 10,
-    totalPages: 1,
-    pagingCounter: 1,
-    hasPrevPage: false,
-    hasNextPage: false,
-    prevPage: null,
-    nextPage: null
-};
 
-const FaqEntriesList = ({ data, onPaginationChange, paginatorInfo = defaultPaginatorInfo }: PropTypes) => {
+const FaqEntriesList = ({ data, onPaginationChange, paginatorInfo}: PropTypes) => {
     const { openModal } = useModal();
 
 
@@ -105,8 +93,8 @@ const FaqEntriesList = ({ data, onPaginationChange, paginatorInfo = defaultPagin
             >
                 <Pagination
                     color="primary"
-                    count={paginatorInfo.lastPage}
-                    page={paginatorInfo.page}
+                    count={paginatorInfo?.lastPage}
+                    page={paginatorInfo?.page}
                     onChange={onPaginationChange}
                 />
             </Stack>

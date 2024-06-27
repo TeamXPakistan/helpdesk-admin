@@ -23,9 +23,10 @@ const EditFaqModal = ({ formData }: PropType) => {
     const { closeModal, modalState } = useModal();
     const FaqEntriesData: UpdateFaqEntryInput = modalState?.data;
 
-    const initialValues: FormValues = {
+    const initialValues  = {
         title: FaqEntriesData.title,
         description: FaqEntriesData.description,
+        id: FaqEntriesData.id
     }
 
     const { handleSubmit, errors, getFieldProps } = useFormik({
