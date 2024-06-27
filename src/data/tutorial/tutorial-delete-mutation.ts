@@ -1,32 +1,27 @@
-import { UpdateAdminStaffInput } from "@ts-types/generated";
-import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { API_ENDPOINTS } from "@utils/api/endpoints";
-import adminStaff from "@repositories/admin-staff";
+import { DeleteTutorial, UpdateFaqEntryInput } from "@ts-types/generated";
+import tutorial from "@repositories/tutorial";
 
-export const useUpdateStaffMutation = () => {
+export const useDeleteTutorialMutation = () => {
     const { t } = useTranslation();
-    const router = useRouter();
     const queryClient = useQueryClient();
 
     return useMutation(
-        (staffInput: UpdateAdminStaffInput) => {
-            const newInput = JSON.parse(JSON.stringify(staffInput));
-            delete newInput?.id;
+        (tutorialInput: DeleteTutorial) => {
 
-            return adminStaff.updateStaff(`${API_ENDPOINTS.UPDATE_ADMIN_STAFF}/${staffInput?.id}`, newInput)
+            return tutorial.deleteTutorial(`${API_ENDPOINTS.DELETE_TUTORIAL}/${tutorialInput?.id}`)
         },
-
+        
         {
             onSuccess: () => {
-                toast.success(t("Staff updated successfully"), { duration: 4000 });
-                router.back();
+                toast.success(t("Tutorial deleted successfully"), { duration: 4000 });
             },
             onSettled: () => {
                 queryClient.invalidateQueries({
-                    queryKey: [API_ENDPOINTS.ADMIN_STAFFS]
+                    queryKey: [API_ENDPOINTS.FAQ_ENTRIES]
                 });
             },
             

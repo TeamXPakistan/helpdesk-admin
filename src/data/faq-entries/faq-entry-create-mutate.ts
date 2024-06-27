@@ -1,35 +1,29 @@
-import { UpdateAdminStaffInput } from "@ts-types/generated";
-import { useRouter } from "next/router";
+import { CreateFaqEntryInput } from "@ts-types/generated";
 import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { API_ENDPOINTS } from "@utils/api/endpoints";
-import adminStaff from "@repositories/admin-staff";
+import faqEntries from "@repositories/faq-entries";
 
-export const useUpdateStaffMutation = () => {
+export const useCreateFaqMutation = () => {
     const { t } = useTranslation();
-    const router = useRouter();
     const queryClient = useQueryClient();
 
     return useMutation(
-        (staffInput: UpdateAdminStaffInput) => {
-            const newInput = JSON.parse(JSON.stringify(staffInput));
-            delete newInput?.id;
-
-            return adminStaff.updateStaff(`${API_ENDPOINTS.UPDATE_ADMIN_STAFF}/${staffInput?.id}`, newInput)
-        },
-
+        (faqInput: CreateFaqEntryInput) =>
+            faqEntries.createFaq(`${API_ENDPOINTS.CREATE_FAQ_ENTRY}`, faqInput),
         {
+
             onSuccess: () => {
-                toast.success(t("Staff updated successfully"), { duration: 4000 });
-                router.back();
+                toast.success(t("Created successfully"), { duration: 4000 });
+
             },
             onSettled: () => {
                 queryClient.invalidateQueries({
-                    queryKey: [API_ENDPOINTS.ADMIN_STAFFS]
+                    queryKey: [API_ENDPOINTS.FAQ_ENTRIES]
                 });
             },
-            
+
             onError: (error: any) => {
                 toast.error(
                     error?.response?.data?.message

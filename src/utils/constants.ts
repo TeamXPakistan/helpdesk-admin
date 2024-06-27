@@ -9,7 +9,15 @@ export enum AdminStaffPermissions {
     USERS = "user",
     HELPERS = "helpers",
     REVIEW = "review",
-    FEEDBACK = "feedback"
+    FEEDBACK = "feedback",
+    FAQ_ENTRIES = "Faq Entries"
+}
+export enum FaqEntry {
+    FAQ = "FAQ",
+}
+
+export enum Tutorial {
+    TUTORIAL = "TUTORIAL",
 }
 
 export const adminStaffPermissionsList = [
@@ -20,7 +28,8 @@ export const permissionModuleList = [
     AdminStaffPermissions.USERS,
     AdminStaffPermissions.HELPERS,
     AdminStaffPermissions.FEEDBACK,
-    AdminStaffPermissions.REVIEW
+    AdminStaffPermissions.REVIEW,
+    AdminStaffPermissions.FAQ_ENTRIES,
 ]
 
 export enum AdminDashboardAnalyticsFilterBy {

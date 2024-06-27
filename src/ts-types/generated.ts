@@ -106,6 +106,27 @@ export type User = {
   }
 }
 
+
+export type FaqEntries = {
+    id: Scalars['ID'],
+    title: Scalars['String'];
+    type: Scalars['String'],
+    description: Scalars['String'];
+    translations: Scalars['String'],
+    createdAt: Scalars['DateTime']
+}
+
+export type Tutorial = {
+  id: Scalars['ID'],
+  title: Scalars['String'];
+  type: Scalars['String'],
+  description: Scalars['String'];
+  translations: Scalars['String'],
+  createdAt: Scalars['DateTime']
+  updatedAt: Scalars['DateTime']
+}
+
+
 export type Helpers = {
   id: Scalars['ID'],
   email: Scalars['String'],
@@ -127,6 +148,17 @@ export type Helpers = {
   lastName: Scalars['String']
 }
 
+export type Faq = {
+  description: Scalars['String']
+  title: Scalars['String']
+  id: Scalars['ID']
+}
+
+export type FaqUpdate = {
+  description: Scalars['String']
+  title: Scalars['String']
+  id: Scalars['ID']
+}
 
 export type LoginUserDynamicRole = {
   _id: Scalars["ID"]
@@ -216,6 +248,26 @@ export type CreateAdminStaffInput = {
   username: Scalars['String']
   firstName: Scalars['String']
   lastName: Scalars['String']
+}
+export type CreateFaqEntryInput = {
+  title: Scalars['String'],
+  description: Scalars['String'],
+  type: Scalars['String'],
+}
+export type CreateTutorialEntryInput = {
+  title: Scalars['String'],
+  description: Scalars['String'],
+  type: Scalars['String'],
+}
+export type UpdateFaqEntryInput = {
+  title: Scalars['String'],
+  description: Scalars['String'],
+  id: Scalars['ID'],
+}
+export type DeleteTutorial = {
+  title: Scalars['String'],
+  description: Scalars['String'],
+  id: Scalars['ID'],
 }
 
 export type UpdateAdminStaffInput = {

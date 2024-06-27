@@ -37,6 +37,7 @@ const HelpersList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => 
                 )
             }
         },
+        
         {
             flex: 0.25,
             minWidth: 200,
