@@ -12,11 +12,9 @@ export const useCreateParentCategoryMutation = () => {
     const router = useRouter();
     const queryClient = useQueryClient();
     return useMutation(
-        (staffInput: CreateParentCategoryInput) => {
-            console.log(staffInput, "comingg input");
-
+        (categoryInput: CreateParentCategoryInput) => {
             return (parentCategories.createParentCateorgy(`${API_ENDPOINTS.CREATE_PARENT_CATEGORY}`,
-                staffInput)
+                categoryInput)
             )
         },
         {

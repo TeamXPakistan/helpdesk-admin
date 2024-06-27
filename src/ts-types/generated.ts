@@ -282,7 +282,7 @@ export type CreateParentCategoryInput = {
   ratePerHour: Scalars['Int'],
   callTime: Scalars['Int']
   approvalRequired: Scalars['Boolean']
-  image: Scalars['String']
+  image: Scalars['String'] | null,
   translations: [
     {
       name: Scalars['String']

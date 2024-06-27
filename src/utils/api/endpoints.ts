@@ -42,6 +42,8 @@ export const API_ENDPOINTS = {
   UPDATE_PERMISSION: '/permission/update',
   PARENT_CATEGORIES: '/category/getOnlyCategories',
   CREATE_PARENT_CATEGORY: '/category/createCategory',
+  GENERAl_SINGLE_UPLOAD: '/upload',
+
 
 
 }

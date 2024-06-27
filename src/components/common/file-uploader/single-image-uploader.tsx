@@ -36,7 +36,7 @@ const SingleImageUploader = ({ getFile, errorMsg, removeFile, data }: PropTypes)
         onDrop: (acceptedFiles: File[]) => {
             upload(acceptedFiles as any, {
                 onSuccess: (res: string[]) => {
-                    const url = res[0];
+                    const url = res;
                     if (url) {
                         setFiles(() => [url])
                         getFile(url)
@@ -94,7 +94,7 @@ const SingleImageUploader = ({ getFile, errorMsg, removeFile, data }: PropTypes)
             </div>
 
             {errorMsg && (
-                <Typography variant='body2' sx={{ mt: 1, mb: 0, color: 'red' }}>
+                <Typography variant='body2' sx={{ mt: 1, mb: 0, color: '#EA5455' }}>
                     {errorMsg as string}
                 </Typography>
             )}

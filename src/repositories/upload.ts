@@ -5,7 +5,7 @@ class Upload extends Base<any, any> {
   upload = async (url: string, variables: any) => {
     const formData = new FormData();
     variables.forEach((attachment: any) => {
-      formData.append("image", attachment);
+      formData.append("file", attachment);
     });
     const options = {
       headers: {

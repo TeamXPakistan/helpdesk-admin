@@ -10,7 +10,8 @@ export const useGeneralUploadMutation = () => {
 
   return useMutation<{ url: string[] }, Error>(
     (input: any) => {
-      return Upload.upload(API_ENDPOINTS.GENERAL_UPLOAD, input);
+      console.log(input, 'image data')
+      return Upload.upload(API_ENDPOINTS.GENERAl_SINGLE_UPLOAD, input);
     },
     {
       onError: (error: any) => {
