@@ -4,7 +4,7 @@ import { useModal } from '@store/apps/modal';
 import { DialogContent, DialogTitle } from '@mui/material';
 import CreateTutorialForm from './create-tutorial';
 
-const FaqEntriesCreateModal = () => {
+const TutorialCreateModal = () => {
     const [open, setOpen] = useState<boolean>(true);
     const { closeModal, modalState } = useModal();
 
@@ -32,4 +32,4 @@ const FaqEntriesCreateModal = () => {
     );
 };
 
-export default FaqEntriesCreateModal;
+export default TutorialCreateModal;

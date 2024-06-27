@@ -16,7 +16,7 @@ export enum FaqEntry {
     FAQ = "FAQ",
 }
 
-export enum TUTORIAL {
+export enum Tutorial {
     TUTORIAL = "TUTORIAL",
 }
 

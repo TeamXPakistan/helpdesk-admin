@@ -3,10 +3,9 @@ import CustomTextField1 from "@components/common/text-field/custom-text-field-1"
 import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
 import { useCreateFaqMutation } from "@data/faq-entries/faq-entry-create-mutate";
-import { DialogActions, TextField } from "@mui/material";
+import { DialogActions } from "@mui/material";
 import { FaqEntry } from "@utils/constants";
 import { Box } from "@mui/system";
-import { useState } from "react";
 import createFaqSchema from "./create-schema";
 
 type FormValues = {
@@ -30,7 +29,7 @@ const CreateFaqForm = ({ closeModal }: propTypes) => {
     const { t } = useTranslation(["form"]);
     const { mutate: createFaq, isLoading } = useCreateFaqMutation();
 
-    const { handleSubmit, errors, getFieldProps, setFieldValue, values } = useFormik({
+    const { handleSubmit, errors, getFieldProps } = useFormik({
         initialValues,
         enableReinitialize: true,
         validationSchema: createFaqSchema,
@@ -65,6 +64,7 @@ const CreateFaqForm = ({ closeModal }: propTypes) => {
                     "& svg": { mb: 6, color: "warning.main" },
                 }}
             >
+                
                 <Box>
                     <CustomTextField1
                         errorMsg={t(errors?.title as string)}
@@ -91,6 +91,7 @@ const CreateFaqForm = ({ closeModal }: propTypes) => {
                         {...getFieldProps('description')}
                     />
                 </Box>
+
                 <DialogActions
                 >
                     <CustomButton

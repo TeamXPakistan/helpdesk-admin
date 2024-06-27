@@ -2,16 +2,17 @@ import CustomButton from "@components/common/Button/custom-button";
 import CustomTextField1 from "@components/common/text-field/custom-text-field-1";
 import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
-import { useCreateFaqMutation } from "@data/faq-entries/faq-entry-create-mutate";
-import { DialogActions } from "@mui/material";
-import { FaqEntry } from "@utils/constants";
+import { DialogActions, Typography } from "@mui/material";
+import { Tutorial } from "@utils/constants";
 import { Box } from "@mui/system";
+import { useCreateTutorialMutation } from "@data/tutorial/tutorial-create-mutation";
 import createtutorialSchema from "./create-schema";
 
 type FormValues = {
     title: string;
     description: string;
     type: string;
+    video: File | null;
 };
 
 type propTypes = {
@@ -22,13 +23,14 @@ const initialValues: FormValues = {
     title: "",
     description: "",
     type: "",
+    video: null,
 };
 
 const CreateTutorialForm = ({ closeModal }: propTypes) => {
     const { t } = useTranslation(["form"]);
-    const { mutate: createFaq, isLoading } = useCreateFaqMutation();
+    const { mutate: createTutorial, isLoading } = useCreateTutorialMutation();
 
-    const { handleSubmit, errors, getFieldProps } = useFormik({
+    const { handleSubmit, errors, getFieldProps, setFieldValue } = useFormik({
         initialValues,
         enableReinitialize: true,
         validationSchema: createtutorialSchema,
@@ -36,15 +38,19 @@ const CreateTutorialForm = ({ closeModal }: propTypes) => {
     });
 
     const handelCreateTutorial = (values: FormValues, resetForm: any) => {
-        createFaq(
-            {
-                title: values?.title,
-                description: values?.description,
-                type: FaqEntry.FAQ,
-            },
+        const formData = new FormData();
+        formData.append('title', values.title);
+        formData.append('description', values.description);
+        formData.append('type', Tutorial.TUTORIAL);
+        if (values.video) {
+            formData.append('video', values.video);
+        }
+
+        createTutorial(
+            formData,
             {
                 onSuccess: () => {
-                    resetForm({ values: "" });
+                    resetForm({ values: initialValues });
                     closeModal();
                 },
             }
@@ -74,7 +80,6 @@ const CreateTutorialForm = ({ closeModal }: propTypes) => {
                         }}
                         label={t(`Question`)}
                         placeholder={t(`Question`) as string}
-
                         {...getFieldProps("title")}
                     />
 
@@ -88,9 +93,18 @@ const CreateTutorialForm = ({ closeModal }: propTypes) => {
                         placeholder={t(`Description`) as string}
                         {...getFieldProps('description')}
                     />
+
+                    <Grid sx={{ marginBottom: "10px" }}>
+                        <Typography>{t('Upload-Video')}</Typography>
+                        <VideoUploader
+                            data={values?.video}
+                            setFieldValue={(val: string) => setFieldValue("video", val)}
+                            videoWidth={1200}
+                            videoHeight={680}
+                        />
+                    </Grid>
                 </Box>
-                <DialogActions
-                >
+                <DialogActions>
                     <CustomButton
                         variant="contained"
                         disabled={isLoading}

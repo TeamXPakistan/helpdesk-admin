@@ -60,7 +60,7 @@ const FaqEntriesDeleteModal = () => {
                             '& svg': { mb: 6, color: 'warning.main' },
                         }}
                     >
-                        <Icon color="black" icon="line-md:account-delete" fontSize="5.5rem" />
+                        <Icon color="black" icon="mingcute:delete-2-line" fontSize="5.5rem" />
                         <Typography>{`Are you sure you would like to "Delete" this FAQ-Entry?`}</Typography>
                     </Box>
                 </DialogContent>

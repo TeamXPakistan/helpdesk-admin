@@ -66,7 +66,7 @@ const EditFaqModal = ({ formData }: PropType) => {
                 aria-labelledby="scroll-dialog-title"
                 aria-describedby="scroll-dialog-description"
             >
-                <DialogTitle align='center' typography={"h4"} id='alert-dialog-title'>Edit Faq Entry</DialogTitle>
+                <DialogTitle align='center' typography={"h4"} id='alert-dialog-title'>Edit FAQ Entry</DialogTitle>
                 <DialogContent>
                     <form noValidate autoComplete='off' onSubmit={handleSubmit}>
                         <Box
@@ -89,6 +89,7 @@ const EditFaqModal = ({ formData }: PropType) => {
                                     label={t(`Question`)}
                                     placeholder={t(`Question`) as string}
                                     {...getFieldProps('title')}
+                                    
                                 />
                                 
                                 <CustomTextField1

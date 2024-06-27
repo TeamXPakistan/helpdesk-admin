@@ -19,6 +19,7 @@ const HelpersUsersFeedbackReviewsModal = dynamic(() => import('@components/helpe
 const UserBanUnBanModal = dynamic(() => import('@components/helpers/user-ban-unban-modal'));
 const HelperBanUnBanModal = dynamic(() => import('@components/helpers/helper-ban-unban-modal'));
 const EditTutorialModal = dynamic(() => import('@components/content-management/tutorial/tutorial-update-modal'));
+const TutorialCreateModal = dynamic(() => import('@components/content-management/tutorial/tutorial-create-modal'));
 
 const ManagedModal = () => {
     const { modalState: { view } } = useModal();
@@ -40,6 +41,7 @@ const ManagedModal = () => {
             {view === "CREATE_FAQ_ENTRY" && <FaqEntriesCreateModal />}
             {view === "VIEW_FAQ_ENTRY" && <ViewFaqModal />}
             {view === "DELETE_TUTORIAL" && <TutorialDeleteModal />}
+            {view === "CREATE_TUTORIAL" && <TutorialCreateModal />}
             {view === "UPDATE_TUTORIAL" && <EditTutorialModal />}
             {view === "BAN_UNBAN_USER_MODAL" && <UserBanUnBanModal />}
             {view === "BAN_UNBAN_HELPER_MODAL" && <HelperBanUnBanModal />}

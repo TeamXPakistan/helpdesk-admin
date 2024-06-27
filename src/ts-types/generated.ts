@@ -254,6 +254,11 @@ export type CreateFaqEntryInput = {
   description: Scalars['String'],
   type: Scalars['String'],
 }
+export type CreateTutorialEntryInput = {
+  title: Scalars['String'],
+  description: Scalars['String'],
+  type: Scalars['String'],
+}
 export type UpdateFaqEntryInput = {
   title: Scalars['String'],
   description: Scalars['String'],

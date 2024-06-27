@@ -3,13 +3,14 @@ import { useTranslation } from "react-i18next";
 import { FaqEntries } from "@ts-types/generated";
 import { useModal } from "@store/apps/modal";
 import { Fragment, useState } from "react";
-import { Dialog, DialogActions, DialogContent, DialogTitle, Icon, Typography } from "@mui/material";
+import { Dialog, DialogActions, DialogContent, DialogTitle, Typography } from "@mui/material";
 
 import { useFaqEntryQuery } from "@data/faq-entries/faq-entry-query";
 import Spinner from "@components/common/spinner/spinner";
 import CustomError from "@components/common/error/custom-error";
 import { Box } from "@mui/system";
 import CustomButton from "@components/common/Button/custom-button";
+import CustomTextField1 from "@components/common/text-field/custom-text-field-1";
 
 type PropType = {
     formData: FaqEntries
@@ -42,39 +43,42 @@ const ViewFaqModal = ({ formData }: PropType) => {
                         <DialogTitle align='center' typography={"h4"} id='alert-dialog-title'>Detail Faq Entry</DialogTitle>
                         <DialogContent>
                             <Box
-                                
+
                                 sx={{
-                                
+
                                     display: 'flex',
-                                    
+
                                     textAlign: 'start',
                                     alignItems: 'center',
                                     flexDirection: 'column',
-                                    justifyContent: 'center',                                
+                                    justifyContent: 'center',
                                     '& svg': { mb: 6, color: 'warning.main' },
                                 }}
                             >
-                                <Box
-                                sx={{ width: '500px',
-                                    height: 'auto', 
-                                    padding: 2,
-                                }}
-                                >
-                                    <Typography variant="h5" sx={{ mb: 1 }}>
-                                        Question :
-                                    </Typography>
-                                    <Typography
-                                    >
-                                        {faqEntry.data.title || 'No question provided'}
-                                    </Typography>
+                                <Box>
+                                    <CustomTextField1
+                                        fullWidth
+                                        multiline
+                                        rows={2}
+                                        sx={{ mb: 5 }}
+                                        label={t(`Question`)}
+                                        placeholder={t(`Question`) as string}
+                                        defaultValue={faqEntry.data.title || 'No question provided'}
+                                        disabled
+                                    />
 
-                                    <Typography variant="h5" sx={{ mt: 3, mb: 1 }}>
-                                        Answer :
-                                    </Typography>
-                                    <Typography>
-                                        {faqEntry.data.description || 'No answer provided'}
-                                    </Typography>
+                                    <CustomTextField1
+                                        fullWidth
+                                        multiline
+                                        rows={4}
+                                        sx={{ mb: 4 }}
+                                        label={t(`Description`)}
+                                        placeholder={t(`Description`) as string}
+                                        defaultValue={faqEntry.data.description || 'No answer provided'}
+                                        disabled
+                                    />
                                 </Box>
+
 
                                 <DialogActions>
                                     <CustomButton

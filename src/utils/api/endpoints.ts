@@ -47,7 +47,7 @@ export const API_ENDPOINTS = {
   DELETE_FAQ_ENTRY: '/content/delete',
   UPDATE_FAQ_ENTRY: '/content/update',
   CREATE_FAQ_ENTRY: '/content/create',
-  TUTORIAL: '/content/findAll',
+  TUTORIAL: '/content/findTutorial',
   UPDATE_TUTORIAL: '/content/update',
   DELETE_TUTORIAL: '/content/delete',
   CREATE_TUTORIAL: '/content/create',

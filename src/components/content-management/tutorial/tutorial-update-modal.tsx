@@ -8,7 +8,7 @@ import { useModal } from "@store/apps/modal";
 import { Fragment, useState } from "react";
 import { Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import { Box } from "@mui/system";
-import updatefaqSchema from "../Faq/update-schema";
+import updateTutorialSchema from "./update-schema";
 
 type PropType = {
     formData: Faq
@@ -36,7 +36,7 @@ const EditTutorialModal = ({ formData }: PropType) => {
     const { handleSubmit, errors, getFieldProps } = useFormik({
         initialValues,
         enableReinitialize: true,
-        validationSchema: updatefaqSchema,
+        validationSchema: updateTutorialSchema,
         onSubmit: (values, { resetForm }) => handelUpdateFaq(values, resetForm)
     })
 
@@ -109,6 +109,14 @@ const EditTutorialModal = ({ formData }: PropType) => {
                                     fullWidth={true}
                                 >
                                     {t(`Update`)}
+                                </CustomButton>
+                                <CustomButton
+                                    fullWidth={true}
+                                    type="button"
+                                    variant="outlined"
+                                    onClick={closeModal}
+                                >
+                                    {t(`Cancel`)}
                                 </CustomButton>
                             </DialogActions>
                         </Box>
