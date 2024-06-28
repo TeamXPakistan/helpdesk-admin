@@ -45,7 +45,7 @@ const CreateParentCategoryForm = () => {
     const { t } = useTranslation(['form']);
     const { mutate: createParentCategory, isLoading } = useCreateParentCategoryMutation();
 
-    const { handleSubmit, errors, setFieldValue, getFieldProps } = useFormik({
+    const { handleSubmit, errors, setFieldValue, getFieldProps, values } = useFormik({
         initialValues,
         validationSchema: createParentCategorySchema,
         onSubmit: (values, { resetForm }) => handleCreateParentCategory(values, resetForm),
@@ -157,12 +157,13 @@ const CreateParentCategoryForm = () => {
                 <Select
                     {...getFieldProps('approvalRequired')}
                     label={t(`Approval`)}
-                    value={initialValues.approvalRequired}
+                    value={values.approvalRequired}
                     onChange={(e) => setFieldValue('approvalRequired', e.target.value as boolean)}
                 >
                     <MenuItem value={true}>True</MenuItem>
                     <MenuItem value={false}>False</MenuItem>
                 </Select>
+
             </FormControl>
 
             <CustomButton
