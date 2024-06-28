@@ -268,22 +268,6 @@ export type ExcelExport = {
   startDate: Scalars['Date'] | null
   endDate: Scalars['Date'] | null
 }
-export type CreateParentCategoryInput = {
-  ratePerHour: Scalars['Int'],
-  callTime: Scalars['Int']
-  approvalRequired: Scalars['Boolean']
-  image: Scalars['String'] | null,
-  translations: [
-    {
-      name: Scalars['String']
-      language?: Scalars['String']
-    },
-    {
-      name: Scalars['String']
-      language?: Scalars['String']
-    }
-  ]
-}
 
 export type ParentCategories = {
   id: Scalars['ID'],
@@ -302,5 +286,100 @@ export type ParentCategories = {
       language?: Scalars['String']
     }
   ],
-  name: Scalars['String'] | null,
+  name: Scalars['String'],
+}
+export type CreateParentCategoryInput = {
+  ratePerHour: Scalars['Int'],
+  callTime: Scalars['Int']
+  approvalRequired: Scalars['Boolean']
+  image: Scalars['String'] | null,
+  translations: [
+    {
+      name: Scalars['String']
+      language?: Scalars['String']
+    },
+    {
+      name: Scalars['String']
+      language?: Scalars['String']
+    }
+  ]
+}
+
+export type SubCategories = {
+  id: Scalars['ID'],
+  image: Scalars['String'],
+  ratePerHour: Scalars['Int'],
+  callTime: Scalars['Int'],
+  approvalRequired: Scalars['Boolean'],
+  parentId?: Scalars['ID'],
+  parent:
+  {
+    id: Scalars['ID'],
+    image: Scalars['String'],
+    ratePerHour: Scalars['Int'],
+    callTime: Scalars['Int'],
+    approvalRequired: Scalars['Boolean'],
+    parentId?: Scalars['ID'],
+    translations: [
+      {
+        name: Scalars['String']
+        language?: Scalars['String']
+      },
+      {
+        name: Scalars['String']
+        language?: Scalars['String']
+      }
+    ],
+    name: Scalars['String'],
+  },
+  translations: [
+    {
+      name: Scalars['String']
+      language?: Scalars['String']
+    },
+    {
+      name: Scalars['String']
+      language?: Scalars['String']
+    }
+  ],
+  name: Scalars['String'],
+}
+
+export type CreateSubCategoryInput = {
+  name: Scalars['String']
+  ratePerHour: Scalars['Int'],
+  callTime: Scalars['Int']
+  approvalRequired?: Scalars['Boolean']
+  image: Scalars['String'] | null,
+  parentId: Scalars['Int'],
+  translations: [
+    {
+      name: Scalars['String']
+      language?: Scalars['String']
+    },
+    {
+      name: Scalars['String']
+      language?: Scalars['String']
+    }
+  ]
+}
+
+export type NestedSubCategory = {
+  id: Scalars['ID'],
+  image: Scalars['String'],
+  ratePerHour: Scalars['Int'],
+  callTime: Scalars['Int'],
+  approvalRequired: Scalars['Boolean'],
+  parentId: Scalars['ID'],
+  translations: [
+    {
+      name: Scalars['String']
+      language?: Scalars['String']
+    },
+    {
+      name: Scalars['String']
+      language?: Scalars['String']
+    }
+  ],
+  name: Scalars['String'],
 }

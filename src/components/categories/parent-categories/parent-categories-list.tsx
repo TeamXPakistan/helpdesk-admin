@@ -19,6 +19,16 @@ const ParentCategoriesList = ({ data, onPaginationChange, paginatorInfo }: PropT
     const router = useRouter();
     const { openModal } = useModal();
 
+    const rows = data.map((value) => ({
+        id: value.id,
+        image: value.image,
+        ratePerHour: value.ratePerHour,
+        callTime: value.callTime,
+        approvalRequired: value.approvalRequired,
+        parentId: value.parentId,
+        name: value.name ?? "-"
+    }));
+
     const ParentCategoriesColumn: GridColDef[] = [
         {
             flex: 0.25,
@@ -115,7 +125,7 @@ const ParentCategoriesList = ({ data, onPaginationChange, paginatorInfo }: PropT
         <DataGrid
             autoHeight
             disableColumnMenu
-            rows={data.map((value) => ({ _id: value?.id, ...value })) ?? []}
+            rows={rows}
             columns={ParentCategoriesColumn}
             hideFooterPagination={true}
             hideFooter={true}

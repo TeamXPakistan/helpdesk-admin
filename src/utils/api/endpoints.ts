@@ -43,7 +43,8 @@ export const API_ENDPOINTS = {
   PARENT_CATEGORIES: '/category/getOnlyCategories',
   CREATE_PARENT_CATEGORY: '/category/createCategory',
   GENERAl_SINGLE_UPLOAD: '/upload',
-
-
+  SUB_CATEGORIES: '/category/getOnlySubCategories',
+  CREATE_SUB_CATEGORY: '/category/createSubCategory',
+  NESTED_SUB_CATEGORIES: '/category/getAllNestedCategories',
 
 }

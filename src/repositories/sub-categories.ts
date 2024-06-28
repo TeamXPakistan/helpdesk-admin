@@ -1,21 +1,26 @@
-import { CreateSubCategory, EditSubCategory } from "@ts-types/generated";
+
+
+import { CreateSubCategoryInput } from "@ts-types/generated";
 import Base from "./base";
 
-class SubCategories extends Base<CreateSubCategory, EditSubCategory>{
+class SubCategory extends Base<any, any> {
 
-    createSubCategories = async (url: string, variables: CreateSubCategory) => {
-        return this.create(url, variables)
-    }
-    editSubCategories = async (url: string, variables: EditSubCategory) => {
-        return this.http<EditSubCategory>(url, 'patch', variables)
-    }
-    deleteSubCategory = async (url: string) => {
-        return this.delete(url);
-    }
-    getAllSubCategoriesByShop = async (url: string) => {
+    getAllSubCategory = async (url: string) => {
         return this.all(url)
     }
+    createSubCateorgy = async (url: string, variables: CreateSubCategoryInput) => {
+        return this.create(url, variables)
+    }
+
+    // editSubCategories = async (url: string, variables: EditSubCategory) => {
+    //     return this.http<EditSubCategory>(url, 'patch', variables)
+    // }
+    // deleteSubCategory = async (url: string) => {
+    //     return this.delete(url);
+    // }
 
 }
 
-export default new SubCategories()
+export default new SubCategory()
+
+

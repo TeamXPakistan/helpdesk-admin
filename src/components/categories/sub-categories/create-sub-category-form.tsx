@@ -4,10 +4,11 @@ import { CardHeader, FormControl, InputLabel, MenuItem, Select, Typography } fro
 import { useTranslation } from 'react-i18next';
 import CustomButton from "@components/common/Button/custom-button";
 import CustomTextField1 from "@components/common/text-field/custom-text-field-1";
-import { useCreateParentCategoryMutation } from '@data/category/parent-category/create-parent-category-mutation';
-import createParentCategorySchema from './create-parent-category-schema';
+import { useCreateSubCategoryMutation } from '@data/category/sub-category/create-sub-category-mutation';
+import createSubCategorySchema from './create-sub-category-schema';
 import DropzoneWrapper from 'src/@core/styles/libs/react-dropzone';
 import SingleImageUploader from '@components/common/file-uploader/single-image-uploader';
+import CustomSelect from '@components/common/select/custom-select';
 
 type FormValues = {
     approvalRequired: boolean;
@@ -24,6 +25,11 @@ type FormValues = {
             language: string;
         },
     };
+    parentId: {
+        label: string,
+        value: number
+    },
+    name: string,
 };
 
 const initialValues: FormValues = {
@@ -38,55 +44,77 @@ const initialValues: FormValues = {
         ar: {
             name: "", language: "ar"
         }
-    }
+    },
+    parentId: {
+        label: "",
+        value: 0
+    },
+    name: ''
 };
 
-const CreateParentCategoryForm = () => {
+const CreateSubCategoryForm = ({ allNestedCategories }: any) => {
     const { t } = useTranslation(['form']);
-    const { mutate: createParentCategory, isLoading } = useCreateParentCategoryMutation();
+    const { mutate: createSubCategory, isLoading } = useCreateSubCategoryMutation();
 
     const { handleSubmit, errors, setFieldValue, getFieldProps, values } = useFormik({
         initialValues,
-        validationSchema: createParentCategorySchema,
-        onSubmit: (values, { resetForm }) => handleCreateParentCategory(values, resetForm),
+        validationSchema: createSubCategorySchema,
+        onSubmit: (values, { resetForm }) => handleCreateSubCategory(values, resetForm),
     });
 
-    const handleCreateParentCategory = (values: FormValues, resetForm: any) => {
+
+
+    console.log('alldata====>:', allNestedCategories);
+
+    let shopCategories = allNestedCategories?.map((data: any) => ({
+        label: data?.name || "Rimsha",
+        value: data?.id
+    }));
+
+    console.log('shopCategories:====?>', shopCategories);
+
+    const handleCreateSubCategory = (values: FormValues, resetForm: any) => {
         const formData = {
             ...values,
             callTime: Number(values.callTime),
             ratePerHour: Number(values.ratePerHour),
+            parentId: Number(values.parentId.value),
         };
-        createParentCategory(
+        console.log(formData.parentId, "fo====================");
+
+
+        createSubCategory(
             {
-                callTime: formData?.callTime,
-                ratePerHour: formData?.ratePerHour,
-                image: formData?.image,
-                approvalRequired: formData?.approvalRequired,
+                callTime: formData.callTime,
+                ratePerHour: formData.ratePerHour,
+                image: formData.image,
+                approvalRequired: formData.approvalRequired,
                 translations: [
                     {
-                        name: formData?.translations?.en?.name,
-                        language: formData?.translations?.en?.language
+                        name: formData.translations.en.name,
+                        language: formData.translations.en.language
                     },
                     {
-                        name: formData?.translations?.ar?.name,
-                        language: formData?.translations?.ar?.language
+                        name: formData.translations.ar.name,
+                        language: formData.translations.ar.language
                     }
-                ]
+                ],
+                parentId: formData.parentId,
+                name: formData.name
             },
             {
                 onSuccess: () => {
                     resetForm({ values: '' });
                 }
             }
-        )
+        );
     };
 
     return (
         <form noValidate autoComplete='off' onSubmit={handleSubmit}>
             <CardHeader
-                title={`Category Image`}
-                subheader={`Upload your category image from here`}
+                title={`Sub Category Image`}
+                subheader={`Upload your Subcategory image from here`}
                 sx={{ p: 0 }}
                 titleTypographyProps={{ fontSize: "0.9rem !important" }}
             />
@@ -95,7 +123,7 @@ const CreateParentCategoryForm = () => {
                     errorMsg={t(errors.image as string)}
                     getFile={(val) => setFieldValue("image", val)}
                     removeFile={() => setFieldValue("image", "")}
-                    data={initialValues?.image}
+                    data={initialValues.image}
                 />
             </DropzoneWrapper>
 
@@ -136,22 +164,40 @@ const CreateParentCategoryForm = () => {
                     {...getFieldProps('translations.ar.language')}
                 />
             </div>
-            <CustomTextField1
-                errorMsg={t(errors?.ratePerHour as string)}
-                fullWidth
-                sx={{ mb: 5 }}
-                label={t(`Rate Per Hour`)}
-                {...getFieldProps('ratePerHour')}
-            />
 
-            <CustomTextField1
-                errorMsg={t(errors?.callTime as string)}
-                fullWidth
-                sx={{ mb: 5 }}
-                label={t(`Call Time`)}
-                {...getFieldProps('callTime')}
+            <CustomSelect
+                name="category"
+                list={shopCategories}
+                value={values.parentId.value}
+                onChange={(val, { action }) => {
+                    if (action === "clear") {
+                        setFieldValue("parentId", { label: "", value: 0 });
+                    } else {
+                        setFieldValue("parentId", val);
+                    }
+                }}
+                isMulti={false}
+                label={"Parent Id"}
+                errorMsg={t(errors.parentId as string)}
+                placeHolder='Select parent category'
             />
+            <div style={{ display: 'flex' }}>
+                <CustomTextField1
+                    errorMsg={t(errors?.ratePerHour as string)}
+                    fullWidth
+                    sx={{ mb: 5, mr: 1 }}
+                    label={t(`Rate Per Hour`)}
+                    {...getFieldProps('ratePerHour')}
+                />
 
+                <CustomTextField1
+                    errorMsg={t(errors?.callTime as string)}
+                    fullWidth
+                    sx={{ mb: 5, ml: 1 }}
+                    label={t(`Call Time`)}
+                    {...getFieldProps('callTime')}
+                />
+            </div>
             <FormControl fullWidth sx={{ mb: 5 }}>
                 <InputLabel>Approval</InputLabel>
                 <Select
@@ -163,7 +209,6 @@ const CreateParentCategoryForm = () => {
                     <MenuItem value={true}>True</MenuItem>
                     <MenuItem value={false}>False</MenuItem>
                 </Select>
-
             </FormControl>
 
             <CustomButton
@@ -176,8 +221,8 @@ const CreateParentCategoryForm = () => {
             >
                 {t(`Create`)}
             </CustomButton>
-        </form >
+        </form>
     );
 };
 
-export default CreateParentCategoryForm;
+export default CreateSubCategoryForm;

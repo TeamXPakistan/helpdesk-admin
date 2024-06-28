@@ -2,7 +2,7 @@ import ParentCategoriesList from '@components/categories/parent-categories/paren
 import CustomButton from '@components/common/Button/custom-button'
 import CustomError from '@components/common/error/custom-error'
 import Spinner from '@components/common/spinner/spinner'
-import { fetchParentCategories, useParentCategoriesQuery } from '@data/category/parent-categories-query'
+import { fetchParentCategories, useParentCategoriesQuery } from '@data/category/parent-category/parent-categories-query'
 import AdminLayout from '@layouts/admin-layout'
 import { Card, CardContent, Icon, Typography } from '@mui/material'
 import { Box } from '@mui/system'
