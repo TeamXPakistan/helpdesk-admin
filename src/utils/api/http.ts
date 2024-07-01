@@ -1,8 +1,16 @@
 import { setNetworkError } from '@store/apps/networkError'
 import { getLocalForageAuthToken, removeLocalForageAuthToken } from '@utils/auth-utils'
+import { LANGUAGES_ENUM } from '@utils/constants'
 import { ROUTES } from '@utils/routes'
 import axios from 'axios'
 import Router from 'next/router'
+
+
+let language: any
+
+if (typeof window !== "undefined") {
+  language = localStorage?.getItem('i18nextLng');
+}
 
 const http = axios.create({
   baseURL: process.env.NEXT_PUBLIC_REST_API_ENDPOINT, // TODO: take this api URL from env
@@ -20,6 +28,7 @@ http.interceptors.request.use(
     if (token) {
       config.headers.Authorization = 'Bearer ' + token
     }
+    config.headers['accept-language'] = language ? language : LANGUAGES_ENUM.EN
     return config
   },
   error => {

@@ -3,11 +3,13 @@ import SubCategoriesList from '@components/categories/sub-categories/sub-categor
 import CustomButton from '@components/common/Button/custom-button'
 import CustomError from '@components/common/error/custom-error'
 import Spinner from '@components/common/spinner/spinner'
-import { fetchParentCategories, useParentCategoriesQuery } from '@data/category/parent-category/parent-categories-query'
 import { useSubCategoriesQuery } from '@data/category/sub-category/sub-categories-query'
+import { Icon } from '@iconify/react'
 import AdminLayout from '@layouts/admin-layout'
-import { Card, CardContent, Icon, Typography } from '@mui/material'
+import { Card, CardContent, Typography } from '@mui/material'
 import { Box } from '@mui/system'
+import { superAdmin_and_AdminStaff } from '@utils/auth-utils'
+import { AdminStaffPermissions } from '@utils/constants'
 import { useRouter } from 'next/router'
 import React, { ReactNode, useState } from 'react'
 
@@ -42,7 +44,7 @@ const SubCategories = () => {
             >
                 Create Sub Category
             </CustomButton>
-        </Box>
+        </Box >
 
         <Card sx={{ borderRadius: 2 }}>
             <CardContent>
@@ -54,6 +56,11 @@ const SubCategories = () => {
             </CardContent>
         </Card>
     </>
+}
+
+SubCategories.authProps = {
+    allowedRoles: superAdmin_and_AdminStaff,
+    //adminStaffPermissions: [AdminStaffPermissions.HELPERS]
 }
 
 SubCategories.getLayout = (page: ReactNode) => <AdminLayout>{page}</AdminLayout>

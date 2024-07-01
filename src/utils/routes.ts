@@ -15,5 +15,7 @@ export const ROUTES = {
   STAFF: '/management/staff',
 
   PARENT_CATEGORY: '/category/parent-categories',
+  UPDATE_PARENT_CATEGORY: '/category/parent-categories/update',
+
   SUB_CATEGORY: '/category/sub-categories'
 }

@@ -9,6 +9,13 @@ class ParentCategory extends Base<any, any> {
     createParentCateorgy = async (url: string, variables: CreateParentCategoryInput) => {
         return this.create(url, variables)
     }
+    updateParentCateorgy = async (url: string, variables: CreateParentCategoryInput) => {
+        return this.update(url, variables)
+    }
+    singleParentCategory = async (url: string) => {
+        return this.find(url)
+    }
+
 }
 
 export default new ParentCategory()

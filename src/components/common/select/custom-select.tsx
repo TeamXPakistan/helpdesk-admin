@@ -7,11 +7,11 @@ type PropTypes = TextFieldProps & {
     list: { label: string; value: string }[] | undefined;
     errorMsg?: string | undefined | null;
     placeHolder?: string
-    label?: string | undefined;
+    label?: string | undefined | null;
     name: string
     onChange: (e: any, { val }: any) => void;
     isMulti: boolean
-    value: { label: string; value: string }[] | { label: string; value: string } | [] | undefined | null;
+    value: { label: string; value: string }[] | { label: string; value: string } | [] | number | undefined | null;
     disable?: boolean
 }
 

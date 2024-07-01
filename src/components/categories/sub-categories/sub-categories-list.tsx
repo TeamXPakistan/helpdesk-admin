@@ -17,10 +17,6 @@ type PropTypes = {
 const SubCategoriesList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
     const { openModal } = useModal();
 
-
-    console.log(data, "rrrrrrrrrrrrrrrrrrrrrrrrrr");
-
-
     const rows = data.map((value) => ({
         id: value.id,
         image: value.image,
@@ -31,9 +27,6 @@ const SubCategoriesList = ({ data, onPaginationChange, paginatorInfo }: PropType
         parentName: value.parent?.name ?? "-",
         name: value.name ?? "-"
     }));
-
-    console.log(rows, "rrrrrrrrrrrrrr");
-
 
     const SubCategoriesColumn: GridColDef[] = [
         {
@@ -56,22 +49,6 @@ const SubCategoriesList = ({ data, onPaginationChange, paginatorInfo }: PropType
             sortable: false,
             renderCell: ({ row }) => <Typography sx={{ color: 'text.secondary' }}>{row.name}</Typography>
         },
-        // {
-        //     field: 'id',
-        //     headerName: 'ID',
-        //     flex: 0.25,
-        //     minWidth: 150,
-        //     sortable: false,
-        //     renderCell: ({ row }) => <Typography sx={{ color: 'text.secondary' }}>{row.id}</Typography>
-        // },
-        // {
-        //     field: 'parentId',
-        //     headerName: 'Parent ID',
-        //     flex: 0.25,
-        //     minWidth: 200,
-        //     sortable: false,
-        //     renderCell: ({ row }) => <Typography sx={{ color: 'text.secondary' }}>{row.parentId}</Typography>
-        // },
         {
             field: 'parentName',
             headerName: 'Parent Name',
@@ -125,7 +102,7 @@ const SubCategoriesList = ({ data, onPaginationChange, paginatorInfo }: PropType
                         aria-haspopup='true'
                         onClick={() => openModal({ view: "EDIT_PARENT_CATEGORY", data: row })}
                     >
-                        <Icon fontSize='1.625rem' icon='tabler:edit' color='green' />
+                        <Icon fontSize='1.625rem' icon='tabler:edit' color='#000' />
                     </IconButton>
                 </Box>
             )

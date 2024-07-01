@@ -11,14 +11,6 @@ import { useNestedSubCategoriesQuery } from "@data/category/sub-category/nested-
 
 const CreateSubCategory = () => {
 
-    const [page, setPage] = useState<number>(1)
-
-
-    const { data: nestedSubcategories } = useNestedSubCategoriesQuery({
-        limit: Number(process.env.NEXT_PUBLIC_PAGINATED_QUERY_LIMIT),
-        page: page
-    });
-
     return <>
         <Card sx={{ borderRadius: 2, height: "100vh" }}>
             <CardContent >
@@ -33,9 +25,7 @@ const CreateSubCategory = () => {
                     </Grid>
 
                     <Grid item xs={12} md={7} lg={8} >
-                        <CreateSubCategoryForm
-                            allNestedCategories={nestedSubcategories?.nestedSubcategories?.data}
-                        />
+                        <CreateSubCategoryForm />
                     </Grid>
 
                 </Grid>

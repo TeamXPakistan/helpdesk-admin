@@ -6,8 +6,9 @@ import { IPaginatorInfo, ParentCategories } from '@ts-types/generated';
 import { Checkbox, Grid, IconButton } from '@mui/material';
 import Icon from '@components/common/icon/icon';
 import { Box } from '@mui/system';
-import { useRouter } from 'next/router';
 import { useModal } from '@store/apps/modal';
+import { ROUTES } from '@utils/routes';
+import { useRouter } from 'next/router';
 
 type PropTypes = {
     data: ParentCategories[];
@@ -17,7 +18,6 @@ type PropTypes = {
 
 const ParentCategoriesList = ({ data, onPaginationChange, paginatorInfo }: PropTypes) => {
     const router = useRouter();
-    const { openModal } = useModal();
 
     const rows = data.map((value) => ({
         id: value.id,
@@ -51,14 +51,6 @@ const ParentCategoriesList = ({ data, onPaginationChange, paginatorInfo }: PropT
             headerName: 'Name',
             sortable: false,
             renderCell: ({ row }: { row: ParentCategories }) => <Typography sx={{ color: 'text.secondary' }}>{row?.name ?? "-"}</Typography>
-        },
-        {
-            flex: 0.25,
-            minWidth: 150,
-            field: 'id',
-            headerName: 'ID',
-            sortable: false,
-            renderCell: ({ row }: { row: ParentCategories }) => <Typography sx={{ color: 'text.secondary' }}>{row?.id ?? "-"}</Typography>
         },
         {
             flex: 0.25,
@@ -111,9 +103,10 @@ const ParentCategoriesList = ({ data, onPaginationChange, paginatorInfo }: PropT
                 return (<>
                     <Box>
                         <IconButton title='update' color='inherit' aria-haspopup='true'
-                            onClick={() => openModal({ view: "EDIT_PARENT_CATEGORY", data: row })}
+                            onClick={() => router.push(`${router.asPath}/edit/${row.id}`)}
+
                         >
-                            <Icon fontSize='1.625rem' icon='tabler:edit' color='green' />
+                            <Icon fontSize='1.625rem' icon='tabler:edit' color='#000' />
                         </IconButton>
                     </Box >
                 </>)

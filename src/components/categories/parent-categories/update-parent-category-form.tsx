@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useFormik } from 'formik';
 import { CardHeader, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import CustomButton from "@components/common/Button/custom-button";
 import CustomTextField1 from "@components/common/text-field/custom-text-field-1";
-import { useCreateSubCategoryMutation } from '@data/category/sub-category/create-sub-category-mutation';
-import createSubCategorySchema from './create-sub-category-schema';
+import { useCreateParentCategoryMutation } from '@data/category/parent-category/create-parent-category-mutation';
+import createParentCategorySchema from './create-parent-category-schema';
 import DropzoneWrapper from 'src/@core/styles/libs/react-dropzone';
 import SingleImageUploader from '@components/common/file-uploader/single-image-uploader';
-import CustomSelect from '@components/common/select/custom-select';
-import { useNestedSubCategoriesQuery } from '@data/category/sub-category/nested-sub-categories-query';
+import updateParentCategorySchema from './update-parent-category-schema';
+import { useUpdateParentCategoryMutation } from '@data/category/parent-category/update-parent-category-mutation';
 
 type FormValues = {
     approvalRequired: boolean;
@@ -26,96 +26,77 @@ type FormValues = {
             language: string;
         },
     };
-    parentId: {
-        label: string | null,
-        value: number | null
-    },
-    name: string,
 };
 
-const initialValues: FormValues = {
-    approvalRequired: false,
-    callTime: 0,
-    ratePerHour: 0,
-    image: "",
-    translations: {
-        en: {
-            name: "", language: "en"
-        },
-        ar: {
-            name: "", language: "ar"
+
+
+const UpdateParentCategoryForm = ({ data }: any) => {
+
+    const initialValues: FormValues = {
+        approvalRequired: data?.approvalRequired,
+        callTime: data?.callTime,
+        ratePerHour: data?.ratePerHour,
+        image: data?.image,
+        translations: {
+            en: {
+                name: data?.ratePerHour?.translations?.name, language: "en"
+            },
+            ar: {
+                name: data?.ratePerHour?.translations?.name, language: "ar"
+            }
         }
-    },
-    parentId: {
-        label: null,
-        value: null
-    },
-    name: ''
-};
+    };
 
-const CreateSubCategoryForm = () => {
     const { t } = useTranslation(['form']);
+    const { mutate: updateParentCategory, isLoading } = useUpdateParentCategoryMutation();
 
-    const [page, setPage] = useState<number>(1)
-
-    const { data: nestedSubcategories } = useNestedSubCategoriesQuery({
-        limit: 9999,
-        page: page
-    });
-
-    const { mutate: createSubCategory, isLoading } = useCreateSubCategoryMutation();
-
-    const allNestedCategories = nestedSubcategories?.nestedSubcategories?.data
     const { handleSubmit, errors, setFieldValue, getFieldProps, values } = useFormik({
         initialValues,
-        validationSchema: createSubCategorySchema,
-        onSubmit: (values, { resetForm }) => handleCreateSubCategory(values, resetForm),
+        validationSchema: updateParentCategorySchema,
+        onSubmit: (values, { resetForm }) => handleCreateParentCategory(values, resetForm),
     });
-    let shopCategories = allNestedCategories?.map((data: any) => ({
-        label: data?.name || "abc",
-        value: data?.id
-    }));
 
-    const handleCreateSubCategory = (values: FormValues, resetForm: any) => {
+    console.log(data, "updateinfff data");
+
+
+    const handleCreateParentCategory = (values: FormValues, resetForm: any) => {
         const formData = {
             ...values,
             callTime: Number(values.callTime),
             ratePerHour: Number(values.ratePerHour),
-            parentId: Number(values.parentId.value),
         };
+        console.log(formData, "Updateing data");
 
-        createSubCategory(
-            {
-                callTime: formData.callTime,
-                ratePerHour: formData.ratePerHour,
-                image: formData.image,
-                approvalRequired: formData.approvalRequired,
-                translations: [
-                    {
-                        name: formData.translations.en.name,
-                        language: formData.translations.en.language
-                    },
-                    {
-                        name: formData.translations.ar.name,
-                        language: formData.translations.ar.language
-                    }
-                ],
-                parentId: formData.parentId,
-                name: formData.name
-            },
-            {
-                onSuccess: () => {
-                    resetForm({ values: '' });
-                }
-            }
-        );
+        // updateParentCategory(
+        //     {
+        //         callTime: formData?.callTime,
+        //         ratePerHour: formData?.ratePerHour,
+        //         image: formData?.image,
+        //         approvalRequired: formData?.approvalRequired,
+        //         translations: [
+        //             {
+        //                 name: formData?.translations?.en?.name,
+        //                 language: formData?.translations?.en?.language
+        //             },
+        //             {
+        //                 name: formData?.translations?.ar?.name,
+        //                 language: formData?.translations?.ar?.language
+        //             }
+        //         ]
+        //     },
+        //     {
+        //         onSuccess: () => {
+        //             resetForm({ values: '' });
+        //         }
+        //     }
+        // )
     };
 
     return (
         <form noValidate autoComplete='off' onSubmit={handleSubmit}>
             <CardHeader
-                title={`Sub Category Image`}
-                subheader={`Upload your Subcategory image from here`}
+                title={`Category Image`}
+                subheader={`Upload your category image from here`}
                 sx={{ p: 0 }}
                 titleTypographyProps={{ fontSize: "0.9rem !important" }}
             />
@@ -124,7 +105,7 @@ const CreateSubCategoryForm = () => {
                     errorMsg={t(errors.image as string)}
                     getFile={(val) => setFieldValue("image", val)}
                     removeFile={() => setFieldValue("image", "")}
-                    data={initialValues.image}
+                    data={initialValues?.image}
                 />
             </DropzoneWrapper>
 
@@ -165,40 +146,22 @@ const CreateSubCategoryForm = () => {
                     {...getFieldProps('translations.ar.language')}
                 />
             </div>
-
-            <CustomSelect
-                name="category"
-                list={shopCategories}
-                value={values.parentId.value}
-                onChange={(val, { action }) => {
-                    if (action === "clear") {
-                        setFieldValue("parentId", { label: null, value: null });
-                    } else {
-                        setFieldValue("parentId", val);
-                    }
-                }}
-                isMulti={false}
-                label={"Select Parent"}
-                errorMsg={t(errors?.parentId?.value as string)}
-                placeHolder='Select parent category'
+            <CustomTextField1
+                errorMsg={t(errors?.ratePerHour as string)}
+                fullWidth
+                sx={{ mb: 5 }}
+                label={t(`Rate Per Hour`)}
+                {...getFieldProps('ratePerHour')}
             />
-            <div style={{ display: 'flex' }}>
-                <CustomTextField1
-                    errorMsg={t(errors?.ratePerHour as string)}
-                    fullWidth
-                    sx={{ mb: 5, mr: 1 }}
-                    label={t(`Rate Per Hour`)}
-                    {...getFieldProps('ratePerHour')}
-                />
 
-                <CustomTextField1
-                    errorMsg={t(errors?.callTime as string)}
-                    fullWidth
-                    sx={{ mb: 5, ml: 1 }}
-                    label={t(`Call Time`)}
-                    {...getFieldProps('callTime')}
-                />
-            </div>
+            <CustomTextField1
+                errorMsg={t(errors?.callTime as string)}
+                fullWidth
+                sx={{ mb: 5 }}
+                label={t(`Call Time`)}
+                {...getFieldProps('callTime')}
+            />
+
             <FormControl fullWidth sx={{ mb: 5 }}>
                 <InputLabel>Approval</InputLabel>
                 <Select
@@ -210,6 +173,7 @@ const CreateSubCategoryForm = () => {
                     <MenuItem value={true}>True</MenuItem>
                     <MenuItem value={false}>False</MenuItem>
                 </Select>
+
             </FormControl>
 
             <CustomButton
@@ -220,10 +184,10 @@ const CreateSubCategoryForm = () => {
                 type='submit'
                 fullWidth={true}
             >
-                {t(`Create`)}
+                {t(`Update`)}
             </CustomButton>
-        </form>
+        </form >
     );
 };
 
-export default CreateSubCategoryForm;
+export default UpdateParentCategoryForm;

@@ -278,11 +278,11 @@ export type ParentCategories = {
   parentId?: Scalars['ID'],
   translations: [
     {
-      name: Scalars['String']
+      name: Scalars['String'],
       language?: Scalars['String']
     },
     {
-      name: Scalars['String']
+      name: Scalars['String'],
       language?: Scalars['String']
     }
   ],
@@ -382,4 +382,4 @@ export type NestedSubCategory = {
     }
   ],
   name: Scalars['String'],
-}
+}[]

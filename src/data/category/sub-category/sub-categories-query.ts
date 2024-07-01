@@ -13,7 +13,6 @@ const fetchSubCategories = async ({ queryKey }: QueryParamsType) => {
     } = queryKey[1] as QueryParamType;
     const url = `${API_ENDPOINTS.SUB_CATEGORIES}?limit=${limit}&page=${page}`
     const { data } = await SubCategory.getAllSubCategory(url)
-
     return { subCategories: { data: data?.data, paginatorInfo: data?.meta } }
 }
 

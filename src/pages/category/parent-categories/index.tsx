@@ -2,10 +2,13 @@ import ParentCategoriesList from '@components/categories/parent-categories/paren
 import CustomButton from '@components/common/Button/custom-button'
 import CustomError from '@components/common/error/custom-error'
 import Spinner from '@components/common/spinner/spinner'
-import { fetchParentCategories, useParentCategoriesQuery } from '@data/category/parent-category/parent-categories-query'
+import { useParentCategoriesQuery } from '@data/category/parent-category/parent-categories-query'
+import { Icon } from '@iconify/react'
 import AdminLayout from '@layouts/admin-layout'
-import { Card, CardContent, Icon, Typography } from '@mui/material'
+import { Card, CardContent, Typography } from '@mui/material'
 import { Box } from '@mui/system'
+import { superAdmin_and_AdminStaff } from '@utils/auth-utils'
+import { AdminStaffPermissions } from '@utils/constants'
 import { useRouter } from 'next/router'
 import React, { ReactNode, useState } from 'react'
 
@@ -18,8 +21,6 @@ const ParentCategories = () => {
         limit: Number(process.env.NEXT_PUBLIC_PAGINATED_QUERY_LIMIT),
         page: page
     });
-    console.log(categories, "all parent categores")
-
     const onPageChange = (event: React.ChangeEvent<unknown>, value: number) => {
         setPage(value);
     };
@@ -54,6 +55,10 @@ const ParentCategories = () => {
             </CardContent>
         </Card>
     </>
+}
+ParentCategories.authProps = {
+    allowedRoles: superAdmin_and_AdminStaff,
+    //adminStaffPermissions: [AdminStaffPermissions.HELPERS]
 }
 
 ParentCategories.getLayout = (page: ReactNode) => <AdminLayout>{page}</AdminLayout>

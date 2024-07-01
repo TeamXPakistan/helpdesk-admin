@@ -1,12 +1,10 @@
 import * as Yup from 'yup'
 
 const createSubCategorySchema = Yup.object().shape({
-    // parentId: Yup.number().required("Parent Id is required"),
-
-    // parentId: Yup.object().shape({
-    //     label: Yup.string().required("Module Name is required"),
-    //     value: Yup.number().required("Parent Id is required").typeError('Rate per hour must be a number')
-    // }).required("Parent Id is required is required"),
+    parentId: Yup.object().shape({
+        label: Yup.string().required("Parent Id is required"),
+        value: Yup.number().required("Parent Id is required")
+    }).required("Parent Id is required is required"),
 
     callTime: Yup.number().typeError('Call Time must be a number').required("Call Time is required"),
     approvalRequired: Yup.boolean().required("Approval Time is required"),

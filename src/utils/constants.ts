@@ -36,3 +36,8 @@ export enum RouteActions {
     DELETE = "DELETE",
     PUT = "PUT"
 }
+export enum LANGUAGES_ENUM {
+    EN = "en",
+    AR = "ar",
+}
+

@@ -13,8 +13,6 @@ const fetchParentCategories = async ({ queryKey }: QueryParamsType) => {
     } = queryKey[1] as QueryParamType;
     const url = `${API_ENDPOINTS.PARENT_CATEGORIES}?limit=${limit}&page=${page}`
     const { data } = await ParentCategory.getAllParentCategory(url)
-    console.log(data, "parnt cat backend");
-
     return { parentCategories: { data: data?.data, paginatorInfo: data?.meta } }
 }
 
